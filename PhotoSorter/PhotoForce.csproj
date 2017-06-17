@@ -41,6 +41,10 @@
     <ApplicationIcon>Images\PS4.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aurigma.GraphicsMill, Version=7.5.69.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Aurigma.GraphicsMill.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v15.2.Core">
       <HintPath>..\..\..\Sw\Sw\DevExpress.Charts.v15.2.Core.dll</HintPath>
     </Reference>
