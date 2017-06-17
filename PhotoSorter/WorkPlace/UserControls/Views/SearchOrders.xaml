@@ -1,0 +1,270 @@
+﻿<UserControl x:Class="PhotoForce.WorkPlace.UserControls.SearchOrders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"        
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        Name="ucSearchOrders" Height="Auto" Width="Auto" IsVisibleChanged="SearchOrders_IsVisibleChanged" DataContext="{Binding SearchOrdersViewModelBase, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter" />
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator" />
+    </UserControl.Resources>
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockSearchOrders" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:LayoutGroup Orientation="Vertical" Name="Group1">
+                <dxdo:LayoutGroup Orientation="Horizontal" Name="Group2">
+
+                    <dxdo:DocumentGroup Name="Group3" SelectedTabIndex="{Binding selectedIndex, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CaptionLocation="Top">
+
+                        <dxdo:LayoutPanel AllowClose="False" VerticalAlignment="Stretch" Padding="0,0,0,5" Caption="Search Criteria" x:Name="pnlOrderPackages" AllowHide="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="30"/>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Order Packages" Grid.Row="1" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Width="91" Margin="0,2,0,3"/>
+                                <dxg:GridControl x:Name="dgOrderPackages" Grid.Row="2" ItemsSource="{Binding dgOrderPackagesData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 dx:DXSerializer.SerializationID="gridControlID" SelectedItems="{Binding selectedOrderPackages, Mode=TwoWay}">
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding OrderPackageLeftClickCommand}"/>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OrderPackageDoubleClickCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Package" FieldName="Item" x:Name="grdColumnItem" AllowEditing="False" />
+                                        <dxg:GridColumn Header="Description" FieldName="Package" x:Name="grdColumnPackage" AllowEditing="False" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" FocusedRow="{Binding Path=selectedOrderPackage,Mode=TwoWay}" ShowGroupPanel="False" MultiSelectMode="Row" x:Name="OrderPackageTableView" CellStyle="{StaticResource RowStyle}">
+
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="256" Grid.Row="3" HorizontalAlignment="Left" Margin="0,5">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgOrderPackages" Path="VisibleRowCount" />
+                                            <Binding Path="selectedOrderPackages.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+
+                                <Grid Grid.Column="1" Grid.Row="2">
+                                    <Button Height="25" Width="90" Content=" &gt; &gt; " Command="{Binding MoveSelectedPackagesCommand}" />
+                                    <Button Height="25" Width="90" Content=" &lt; &lt; " Command="{Binding DeleteOrderPackageCommand}" Margin="5,258,5,198" />
+                                </Grid>
+
+                                <TextBlock Text="Selected Order Packages" Height="20" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="142" Margin="0,2,0,3"/>
+                                <dxg:GridControl x:Name="dgSelectedOrderPackages" Grid.Column="2" Grid.Row="2" ItemsSource="{Binding dgSelectedOrderPackagesData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 dx:DXSerializer.SerializationID="gridControlID1" SelectedItems="{Binding newOrderPackages, Mode=TwoWay}" >
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding NewOrderPackageLeftClickCommand}"/>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DeleteOrderPackageCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Package" FieldName="Item" x:Name="grdItem" AllowEditing="False" />
+                                        <dxg:GridColumn Header="Description" FieldName="Package" x:Name="grdPackage" AllowEditing="False" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" FocusedRow="{Binding newOrderPackage, Mode=TwoWay}" ShowGroupPanel="False" MultiSelectMode="Row" 
+                                                       x:Name="SelectedOrderPackageTableView" CellStyle="{StaticResource RowStyle}">
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="258" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="0,5">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgSelectedOrderPackages" Path="VisibleRowCount" />
+                                            <Binding Path="newOrderPackages.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+
+                                <Grid Grid.Row="0" Height="70">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Gallery Group -->
+                                    <Label Grid.Row="2" Content="Gallery Group:" Margin="10,2,2,2" />
+                                    <dxg:LookUpEdit Name="GalleryGrouplookUpEditType" 
+												DisplayMember="sp_GroupName" ValueMember="Id" AutoPopulateColumns="False" AutoComplete="True"
+												IncrementalFiltering="False" ImmediatePopup="True" IsPopupAutoWidth="True"												
+												FilterCondition = "Equals" PopupWidth="350"
+												ItemsSource="{Binding galleryGroupData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+												SelectedItem="{Binding selectedGalleryGroup,Mode=TwoWay}"                                         
+																	    Margin="2" Grid.Row="2" Grid.Column="1" Width="196">
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl Name="PART_GridControl">
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn FieldName="sp_GroupName" Header="Group Name" Width="120" />
+                                                    </dxg:GridControl.Columns>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView AutoWidth="True" ShowSearchPanelMode="Never" ShowAutoFilterRow="True" SearchDelay="0" />
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                    </dxg:LookUpEdit>
+                                    <!--Import Batch -->
+                                    <Label Grid.Row="1" Content="Import Batch:" Margin="14,2,6,2" />
+                                    <dxg:LookUpEdit Name="ImportBatchlookUpEditType" 
+												DisplayMember="Description" ValueMember="Id" AutoPopulateColumns="False" AutoComplete="True"
+												IncrementalFiltering="False" ImmediatePopup="True" IsPopupAutoWidth="True"												
+												FilterCondition = "Equals" PopupWidth="350"
+												ItemsSource="{Binding importBatchData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+												SelectedItem="{Binding selectedImportBatch,Mode=TwoWay}"                                         
+																	    Margin="2" Grid.Row="1" Grid.Column="1" Width="196">
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl Name="PART_GridControl">
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn FieldName="Id" Header="Batch no" Width="80"/>
+                                                        <dxg:GridColumn FieldName="CreatedOn" Header="Created On" Width="120" AllowSearchPanel="False"/>
+                                                        <dxg:GridColumn FieldName="Description" Header="Description" AllowSearchPanel="False"/>
+                                                    </dxg:GridControl.Columns>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView AutoWidth="True" ShowSearchPanelMode="Never" ShowAutoFilterRow="True" SearchDelay="0" />
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                    </dxg:LookUpEdit>
+                                </Grid>
+
+                                <Grid Grid.Row="0" Grid.Column="2" Height="70">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Gallery Group -->
+                                    <Label Grid.Row="1" Content="FirstName:" Margin="25,2,7,2" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding firstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <!--Import Batch -->
+                                    <Label Grid.Row="2" Content="LastName:" Margin="25,2,9,2" />
+                                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding lastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Grid>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+
+
+                        <dxdo:LayoutPanel Caption="Result" AllowClose="False" AllowHide="False" x:Name="pnlStudentPhotoOrders">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl x:Name="dgOrders" ItemsSource="{Binding dgOrdersData, Mode=TwoWay}" MVVM:FilteredDataSupport.VisibleData="{Binding VisibleData, Mode=TwoWay}"
+                                                 dx:DXSerializer.SerializationID="gridControlID3" SelectedItems="{Binding selectedOrders,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding StudentImagesLeftClickCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <dxg:GridControl.Columns>
+                                        <!--<dxg:SelectAllColumn/>-->
+                                        <dxg:GridColumn FieldName="FPOrderId" Header="FP Order Id" x:Name="grdOrderId" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="SimplePhotoOrderID" Header="SimplePhoto Order Id" x:Name="grdSimplePhotoId" MinWidth="130" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrdersImportId" Header="Orders Import Batch" x:Name="grdImportBatchId" MinWidth="130" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrdersImport.Description" Header="Import Batch Description" x:Name="grdImportBatchDescription" MinWidth="130" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="VendorOrderNo" Header="Vendor Order Number" x:Name="grdVendorOrderNo" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Order Date" FieldName="VendorDate" x:Name="grdColumnVendorDate" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="ImportedBy" Header="Imported By" x:Name="grdImportedBy" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="ExportedBy" Header="Exported By" x:Name="grdExportedBy" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrderTotal" Header="Order Total" x:Name="grdOrderTotal" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Variance" Header="Total Variance" x:Name="grdOrderTotalVariance" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrdersLog" Header="Orders Log" x:Name="grdOrdersLog" ReadOnly="True">
+                                                    <dxg:GridColumn.EditSettings>
+                                                        <dxe:MemoEditSettings ShowIcon="False" MemoTextWrapping="WrapWithOverflow" PopupWidth="500" IsTextEditable="False" />
+                                                    </dxg:GridColumn.EditSettings>
+                                                </dxg:GridColumn>
+
+                                                <dxg:GridColumn Header="Exported?" FieldName="IsExported" x:Name="grdChkExported" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="HasMissingImages" x:Name="grdHasMissingImages" Header="Has Missing Images" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Export Folder" FieldName="ExportFolder" x:Name="grdChkExportFolder" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Export Date" FieldName="ExportDate" x:Name="grdColumnExportDate" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="CreatedOn" x:Name="grdDateImported" Header="Imported On" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Billing Code Empty" FieldName="isSimplePhotoBillingCodeFilled" x:Name="grdChkisBillingCodefilled" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Retouch" FieldName="Retouch" x:Name="grdChkRetouch" AllowEditing="False" />
+                                                <dxg:GridColumn Header="Has Notes" FieldName="HasNotes" x:Name="grdChkHasNotes" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="PaymentMethod" x:Name="grdPaymentMethod" Header="Payment Method" AllowEditing="False" />
+                                                <!--bHARAT-->
+                                                <dxg:GridColumn FieldName="Fulfilled" x:Name="grdfulfilled" Header="fulfilled" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_FirstName" x:Name="grdCust_FirstName" Header="Cust First Name" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_LastName" x:Name="grdCust_LastName" Header="Cust Last Name" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_Address" x:Name="grdCust_Address" Header="Cust Address" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_City" x:Name="grdCust_City" Header="Cust City" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_State" x:Name="grdCust_State" Header="Cust State" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_PostalCode" x:Name="grdCust_PostalCode" Header="Cust Postal Code" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_Country" x:Name="grdCust_Country" Header="Cust Country" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_Phone" x:Name="grdCust_Phone" Header="Cust Phone" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Cust_Email" x:Name="grdCust_Email" Header="Cust Email" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_FirstName" x:Name="grdShip_FirstName" Header="Ship First Name" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_LastName" x:Name="grdShip_LastName" Header="Ship Last Name" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_City" x:Name="grdShip_City" Header="Ship City" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_State" x:Name="grdShip_State" Header="Ship State" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_Address" x:Name="grdShip_Address" Header="Ship Address" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_PostalCode" x:Name="grdShip_PostalCode" Header="Ship Postal Code" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_Country" x:Name="grdShip_Country" Header="Ship Country" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_Phone" x:Name="grdShip_Phone" Header="Ship Phone" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="ShippingCost" x:Name="grdShipCost" Header="Shipping Cost" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrderType" x:Name="grdOrderType" Header="Order Type" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Title" x:Name="grdTitle" Header="Title" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Description" x:Name="grdDescription" Header="Description" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="Ship_UseBillToShip" x:Name="grdShipUseBillToShip" Header="ShipUseBillToShip" AllowEditing="False" />
+                                                <dxg:GridColumn FieldName="OrderedFromVendor" x:Name="grdOrderedFromVendor" Header="Ordered from Vendor" AllowEditing="False" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowGroupPanel="False" ShowAutoFilterRow="True" AllowEditing="False" MultiSelectMode="Row" x:Name="StudentPhotosTable"  HorizontalAlignment="Stretch" CellStyle="{StaticResource RowStyle}"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgOrders" Path="VisibleRowCount"/>
+                                            <Binding Path="selectedOrders.Count"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:DocumentGroup>
+                </dxdo:LayoutGroup>
+
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+    </UserControl>

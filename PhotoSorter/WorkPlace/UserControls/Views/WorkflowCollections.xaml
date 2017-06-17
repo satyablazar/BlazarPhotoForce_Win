@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="PhotoForce.WorkPlace.UserControls.WorkflowCollections"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        Height="auto" Width="auto" IsVisibleChanged="UserControl_IsVisibleChanged" DataContext="{Binding WorkflowCollectionsViewModelBase,Source={StaticResource ViewModelLocator}}" >
+    <UserControl.Resources>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockWorkflowCollection" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" Name="WorkflowCollection" AllowHide="False">
+
+                <dxdo:LayoutGroup Orientation="Horizontal" Name="Group1" >
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group2">
+                        <dxdo:LayoutPanel Name="Panel1" AllowClose="False" Caption="Photoshoot Items Collections" AllowHide="False" AllowSizing="True" AllowMove="True" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgWorkflowCollections" ItemsSource="{Binding dgWorkflowCollectionsData,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlerID1"
+								SelectedItems="{Binding selectedWorkflowCollections,Mode=TwoWay}" >
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding WorkflowCollectionsGridDoubleClickCommand}" />
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding WorkflowCollectionsMouseUpCommand}" />
+                                    </dxg:GridControl.InputBindings>
+                                    <!--<dxg:SelectAllColumn />-->
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Collection ID" FieldName="Id" Name="grdColumnId" />
+                                        <dxg:GridColumn Header="Collection Name" FieldName="Name" Name="grdColumnName" />
+                                        <dxg:GridColumn Header="Created On" FieldName="CreatedOn" Name="grdColumnCreatedOn" />
+                                        <dxg:GridColumn Header="Created By" FieldName="CreatedBy" Name="grdColumnCreatedBy" />
+                                        <dxg:GridColumn Header="Item Class Type" FieldName="ItemClassType.ClassType" Name="grdColumnItemClassType" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView MultiSelectMode="Row" FocusedRow="{Binding selectedWorkflowCollection,Mode=TwoWay}"
+                                                       ShowAutoFilterRow="True" Name="WorkflowCollectionsView" CellStyle="{StaticResource RowStyle}"
+                                                       HorizontalScrollbarVisibility="Visible"
+                                                       ShowSearchPanelMode="{Binding workflowCollectionSearchPanelMode,Mode=TwoWay}" 
+                                                       SearchControl="{Binding workflowCollectionSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding workflowCollectionShowGroupPanel,Mode=TwoWay}" AllowEditing="False"
+                                                                   >
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgWorkflowCollections" Path="VisibleRowCount" />
+                                            <Binding Path="selectedWorkflowCollections.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+
+                <dxdo:LayoutGroup Grid.Row="2" Orientation="Horizontal" Name="WorkflowCollectionItems">
+                    <!--<dxdo:LayoutGroup.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding WorkflowCollectionItemsFocusCommand}" />
+                    </dxdo:LayoutGroup.InputBindings>-->
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group3">
+                        <dxdo:LayoutPanel Caption="Collection Items" AllowClose="False" Name="pnlWorkflowCollectionItems" AllowHide="False" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgWorkflowCollectionItems" ItemsSource="{Binding dgWorkflowCollectionItemsData,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlerID2"
+								SelectedItems="{Binding selectedWorkflowCollectionItems,Mode=TwoWay}">
+                                    <!--<dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding WorkflowCollectionItemsDoubleClickCommand}" />
+                                    </dxg:GridControl.InputBindings>-->
+                                    <dxg:GridControl.Columns>
+                                        <!--<dxg:GridColumn Header="{Binding sortOrderHeader, Mode=TwoWay}" SortOrder="Ascending" SortIndex="0" FieldName="SortOrder" Name="grddColumnSortOrder"   AllowEditing="True"/>-->
+                                        <dxg:GridColumn Header="Sort Order" SortOrder="Ascending" SortIndex="0" FieldName="SortOrder" Name="grddColumnSortOrder"   AllowEditing="True"/>
+                                        <dxg:GridColumn Header="Quantity" SortOrder="Ascending" FieldName="Quantity" Name="grddColumnQuantity" />
+                                        <dxg:GridColumn Header="Workflow Descrption" FieldName="WorkflowItem.Description" Name="grdColumnWorkflowItemId" />
+                                        <dxg:GridColumn Header="Workflow Type" FieldName="WorkflowItem.Type" Name="grdColumnWorkflowCollectionId" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView FocusedRow="{Binding selectedWorkflowCollectionItem,Mode=TwoWay}" ShowAutoFilterRow="True" AllowEditing="False"
+                                                                   ShowSearchPanelMode="{Binding workflowCollectionItemsSearchPanelMode,Mode=TwoWay}"
+                                                                   SearchControl="{Binding workflowCollectionItemsSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding workflowCollectionItemsShowGroupPanel,Mode=TwoWay}"
+                                                                   CellStyle="{StaticResource RowStyle}"
+                                                       MultiSelectMode="Row" HorizontalAlignment="Stretch">
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+
+                                            <dxg:TableView.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick" Command="{Binding WorkflowCollectionItemsMouseUpCommand}" />
+                                            </dxg:TableView.InputBindings>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Grid.Row="1" Width="250" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgWorkflowCollectionItems" Path="VisibleRowCount" />
+                                            <Binding Path="selectedWorkflowCollectionItems.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+
+</UserControl>

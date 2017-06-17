@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PhotoForce4" Class="PhotoSorterDBModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DEVELOPER40;Initial Catalog=PhotoForce4;User ID=sa" SettingsObjectName="PhotoForce.Properties.Settings" SettingsPropertyName="PhotoForce4ConnectionString4" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Templates" Member="Templates">
+    <Type Name="Template">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="templateCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="templatePath" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Group]" Member="Groups">
+    <Type Name="Group">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="createdOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hasClassPhoto" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Group_GroupClassPhoto" Member="GroupClassPhotos" ThisKey="ID" OtherKey="GroupId" Type="GroupClassPhoto" />
+      <Association Name="Group_GroupItem" Member="GroupItems" ThisKey="ID" OtherKey="GroupID" Type="GroupItem" />
+      <Association Name="School_Group" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DefaultPackages" Member="DefaultPackages">
+    <Type Name="DefaultPackage">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="item" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="package" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupClassPhoto" Member="GroupClassPhotos">
+    <Type Name="GroupClassPhoto">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="studentImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Group_GroupClassPhoto" Member="Group" ThisKey="GroupId" OtherKey="ID" Type="Group" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="StudentImage_GroupClassPhoto" Member="StudentImage" ThisKey="studentImageId" OtherKey="ID" Type="StudentImage" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupItem" Member="GroupItems">
+    <Type Name="GroupItem">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StudentPhotoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Group_GroupItem" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="StudentImage_GroupItem" Member="StudentImage" ThisKey="StudentPhotoID" OtherKey="ID" Type="StudentImage" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MaskDetails" Member="MaskDetails">
+    <Type Name="MaskDetail">
+      <Column Name="MaskDetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaskID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaskDetail" Member="MaskDetail1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblmask_MaskDetail" Member="tblmask" ThisKey="MaskID" OtherKey="MaskID" Type="tblmask" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Package" Member="Packages">
+    <Type Name="Package">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="schoolId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="item" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="package" Member="package1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="defaultval" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="School_Package" Member="School" ThisKey="schoolId" OtherKey="ID" Type="School" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhotographyJob" Member="PhotographyJobs">
+    <Type Name="PhotographyJob">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JobName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImageFolder" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="UploadedDatafile" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="StartYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="EndYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="PhotographyJob_Activity" Member="Activities" ThisKey="ID" OtherKey="PhotographyJobId" Type="Activity" />
+      <Association Name="PhotographyJob_PhotoShoot" Member="PhotoShoots" ThisKey="ID" OtherKey="PhotographyjobID" Type="PhotoShoot" />
+      <Association Name="PhotographyJob_Student" Member="Students" ThisKey="ID" OtherKey="PhotographyJobID" Type="Student" />
+      <Association Name="School_PhotographyJob" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblmask" Member="tblmasks">
+    <Type Name="tblmask">
+      <Column Name="MaskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaskName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="schoolid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblmask_MaskDetail" Member="MaskDetails" ThisKey="MaskID" OtherKey="MaskID" Type="MaskDetail" />
+      <Association Name="School_tblmask" Member="School" ThisKey="schoolid" OtherKey="ID" Type="School" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Settings" Member="Settings">
+    <Type Name="Setting">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="settingName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="settingValue" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Renameerrorlog" Member="Renameerrorlogs">
+    <Type Name="Renameerrorlog">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="message" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="imagename" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="imagepath" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="currentdatetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Activities" Member="Activities">
+    <Type Name="Activity">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShortDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="StudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoShootId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SchoolId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PhotographyJobId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActivityDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="PhotographyJob_Activity" Member="PhotographyJob" ThisKey="PhotographyJobId" OtherKey="ID" Type="PhotographyJob" IsForeignKey="true" />
+      <Association Name="ActivityType_Activity" Member="ActivityType" ThisKey="Type" OtherKey="Id" Type="ActivityType" IsForeignKey="true" />
+      <Association Name="User_Activity" Member="User" ThisKey="UserName" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="School_Activity" Member="School" ThisKey="SchoolId" OtherKey="ID" Type="School" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActivityType" Member="ActivityTypes">
+    <Type Name="ActivityType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ActivityType_Activity" Member="Activities" ThisKey="Id" OtherKey="Type" Type="Activity" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentImage" Member="StudentImages">
+    <Type Name="StudentImage">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoShootID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="QuixieID" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Teacher" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Grade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HomeRoom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Packages" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="yearbook" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Multipose" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Ticketcode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Emailaddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rating" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RecordStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudentIDPK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Admincd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OriginalImageName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="failedRename" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="StudentImage_GroupClassPhoto" Member="GroupClassPhotos" ThisKey="ID" OtherKey="studentImageId" Type="GroupClassPhoto" />
+      <Association Name="StudentImage_GroupItem" Member="GroupItems" ThisKey="ID" OtherKey="StudentPhotoID" Type="GroupItem" />
+      <Association Name="StudentImage_StudentPhotoOrder" Member="StudentPhotoOrders" ThisKey="ID" OtherKey="StudentImageId" Type="StudentPhotoOrder" />
+      <Association Name="PhotoShoot_StudentImage" Member="PhotoShoot" ThisKey="PhotoShootID" OtherKey="PhotoShotID" Type="PhotoShoot" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Student_StudentImage" Member="Student" ThisKey="StudentIDPK" OtherKey="ID" Type="Student" IsForeignKey="true" />
+      <Association Name="School_StudentImage" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NextOrder" Member="NextOrders">
+    <Type Name="NextOrder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NextOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_Order" Member="View_Orders">
+    <Type Name="View_Order">
+      <Column Name="StudentImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SchoolName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="PhotoShootID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ticketcode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Teacher" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Grade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ImageNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Packages" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Package" Type="System.String" DbType="VarChar(61)" CanBeNull="true" />
+      <Column Name="StudentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudentPhotoOrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sp_SimplePhotoBillingCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LabCost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="VenueName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="sp_JobNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GroupImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fulfilled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SimplePhotoOrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cust_FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="VendorDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sp_ItemDescription" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="sp_GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="sp_Name" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="sp_Password" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="sp_PriceListName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="sp_ProductType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="crop_dimensions" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="crop_orientation" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="crop_coordinates" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="VendorOrderNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_Address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Ship_City" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Ship_State" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Ship_PostalCode" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Ship_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_Phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cust_Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IQAccounts" Member="IQAccounts">
+    <Type Name="IQAccount">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IQAccountCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="IQAccount_IQPriceSheet" Member="IQPriceSheets" ThisKey="Id" OtherKey="IQAccountId" Type="IQPriceSheet" />
+      <Association Name="IQAccount_IQVandoSetting" Member="IQVandoSettings" ThisKey="Id" OtherKey="IQAccountId" Type="IQVandoSetting" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IQPriceSheet" Member="IQPriceSheets">
+    <Type Name="IQPriceSheet">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IQAccountId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IQPriceSheetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="IQAccount_IQPriceSheet" Member="IQAccount" ThisKey="IQAccountId" OtherKey="Id" Type="IQAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentImport" Member="StudentImports">
+    <Type Name="StudentImport">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataFile" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsValidated" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="StudentImport_Student" Member="Students" ThisKey="ID" OtherKey="StudentImportID" Type="Student" />
+      <Association Name="School_StudentImport" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IQVandoSettings" Member="IQVandoSettings">
+    <Type Name="IQVandoSetting">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IQAccountId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IQVandoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IsDefault" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="IQAccount_IQVandoSetting" Member="IQAccount" ThisKey="IQAccountId" OtherKey="Id" Type="IQAccount" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SimplePhotoPriceSheet" Member="SimplePhotoPriceSheets">
+    <Type Name="SimplePhotoPriceSheet">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SPPriceSheetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderPackages" Member="OrderPackages">
+    <Type Name="OrderPackage">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Package" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SimplePhotoItemId" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DefaultPrice" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Seniors" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="User_Activity" Member="Activities" ThisKey="Id" OtherKey="UserName" Type="Activity" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Studio" Member="Studios">
+    <Type Name="Studio">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PFStudioId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StudioName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PrimaryContact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Studio_School" Member="Schools" ThisKey="Id" OtherKey="StudioId" Type="School" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SimplePhotoExportBatch" Member="SimplePhotoExportBatches">
+    <Type Name="SimplePhotoExportBatch">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExportType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ExportPath" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GroupsExported" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NoOfImages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhotoShoot" Member="PhotoShoots">
+    <Type Name="PhotoShoot">
+      <Column Name="PhotoShotID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PhotographyjobID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoShotName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ImageFolder" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PhotoShotDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="isReduced" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RenameSourceImages" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsValidated" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Job#" Member="Job_" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="OnCalendar" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Scheduled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PhotoshootType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Season" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="PhotoShoot_StudentImage" Member="StudentImages" ThisKey="PhotoShotID" OtherKey="PhotoShootID" Type="StudentImage" />
+      <Association Name="PhotoShoot_PhotoshootWorkflowItem" Member="PhotoshootWorkflowItems" ThisKey="PhotoShotID" OtherKey="PhotoShootID" Type="PhotoshootWorkflowItem" />
+      <Association Name="PhotographyJob_PhotoShoot" Member="PhotographyJob" ThisKey="PhotographyjobID" OtherKey="ID" Type="PhotographyJob" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="PhotoshootTypeTable_PhotoShoot" Member="PhotoshootTypeTable" ThisKey="PhotoshootType" OtherKey="Id" Type="PhotoshootTypeTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhotoshootTypeTable" Member="PhotoshootTypeTables">
+    <Type Name="PhotoshootTypeTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PhotoshootType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="PhotoshootTypeTable_PhotoShoot" Member="PhotoShoots" ThisKey="Id" OtherKey="PhotoshootType" Type="PhotoShoot" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkflowCollection" Member="WorkflowCollections">
+    <Type Name="WorkflowCollection">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ItemClassTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="WorkflowCollection_WorkflowCollectionItem" Member="WorkflowCollectionItems" ThisKey="Id" OtherKey="WorkflowCollectionId" Type="WorkflowCollectionItem" />
+      <Association Name="ItemClassType_WorkflowCollection" Member="ItemClassType" ThisKey="ItemClassTypeId" OtherKey="Id" Type="ItemClassType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemClassType" Member="ItemClassTypes">
+    <Type Name="ItemClassType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClassType" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="ItemClassType_WorkflowCollection" Member="WorkflowCollections" ThisKey="Id" OtherKey="ItemClassTypeId" Type="WorkflowCollection" />
+      <Association Name="ItemClassType_WorkflowItem" Member="WorkflowItems" ThisKey="Id" OtherKey="ItemClassTypeId" Type="WorkflowItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhotoshootWorkflowItem" Member="PhotoshootWorkflowItems">
+    <Type Name="PhotoshootWorkflowItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WorkflowItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoShootID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Assignedto" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HasNotes" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CompletedBy" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="CompletedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PhotoShoot_PhotoshootWorkflowItem" Member="PhotoShoot" ThisKey="PhotoShootID" OtherKey="PhotoShotID" Type="PhotoShoot" IsForeignKey="true" />
+      <Association Name="WorkflowItem_PhotoshootWorkflowItem" Member="WorkflowItem" ThisKey="WorkflowItemId" OtherKey="Id" Type="WorkflowItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkflowItem" Member="WorkflowItems">
+    <Type Name="WorkflowItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Assignedto" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Offset" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BeforeAfter" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ItemClassTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="WorkflowItem_PhotoshootWorkflowItem" Member="PhotoshootWorkflowItems" ThisKey="Id" OtherKey="WorkflowItemId" Type="PhotoshootWorkflowItem" />
+      <Association Name="WorkflowItem_WorkflowCollectionItem" Member="WorkflowCollectionItems" ThisKey="Id" OtherKey="WorkflowItemId" Type="WorkflowCollectionItem" />
+      <Association Name="ItemClassType_WorkflowItem" Member="ItemClassType" ThisKey="ItemClassTypeId" OtherKey="Id" Type="ItemClassType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkflowCollectionItems" Member="WorkflowCollectionItems">
+    <Type Name="WorkflowCollectionItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WorkflowItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkflowCollectionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="WorkflowItem_WorkflowCollectionItem" Member="WorkflowItem" ThisKey="WorkflowItemId" OtherKey="Id" Type="WorkflowItem" IsForeignKey="true" />
+      <Association Name="WorkflowCollection_WorkflowCollectionItem" Member="WorkflowCollection" ThisKey="WorkflowCollectionId" OtherKey="Id" Type="WorkflowCollection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrdersImport" Member="OrdersImports">
+    <Type Name="OrdersImport">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OrderType" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="OrdersImport_Order" Member="Orders" ThisKey="Id" OtherKey="OrdersImportId" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentImportID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StudentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Teacher" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Grade" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Custom5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RecordStatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emailaddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhotographyJobID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsStudent" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SchoolCampus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OfficialFirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OfficialLastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Student_StudentImage" Member="StudentImages" ThisKey="ID" OtherKey="StudentIDPK" Type="StudentImage" />
+      <Association Name="PhotographyJob_Student" Member="PhotographyJob" ThisKey="PhotographyJobID" OtherKey="ID" Type="PhotographyJob" IsForeignKey="true" />
+      <Association Name="StudentImport_Student" Member="StudentImport" ThisKey="StudentImportID" OtherKey="ID" Type="StudentImport" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.School" Member="Schools">
+    <Type Name="School">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SchoolName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="folderPath" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="YearBookRequired" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IDRequired" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Students" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SchoolYear" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StudioId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDCards" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Calendars" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pencils" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContractExpiration" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Contact1Name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Contact1Type" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="Contact1Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contact1Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Contact2Name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Contact2Type" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="Contact2Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contact2Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Contact3Name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Contact3Type" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="Contact3Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contact3Notes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Visit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Affiliation" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="School_Group" Member="Groups" ThisKey="ID" OtherKey="SchoolID" Type="Group" />
+      <Association Name="School_Package" Member="Packages" ThisKey="ID" OtherKey="schoolId" Type="Package" />
+      <Association Name="School_PhotographyJob" Member="PhotographyJobs" ThisKey="ID" OtherKey="SchoolID" Type="PhotographyJob" />
+      <Association Name="School_tblmask" Member="tblmasks" ThisKey="ID" OtherKey="schoolid" Type="tblmask" />
+      <Association Name="School_Activity" Member="Activities" ThisKey="ID" OtherKey="SchoolId" Type="Activity" />
+      <Association Name="School_StudentImage" Member="StudentImages" ThisKey="ID" OtherKey="SchoolID" Type="StudentImage" />
+      <Association Name="School_StudentImport" Member="StudentImports" ThisKey="ID" OtherKey="SchoolID" Type="StudentImport" />
+      <Association Name="School_StudentPhotoOrder" Member="StudentPhotoOrders" ThisKey="ID" OtherKey="SchoolId" Type="StudentPhotoOrder" />
+      <Association Name="Studio_School" Member="Studio" ThisKey="StudioId" OtherKey="Id" Type="Studio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Fulfilled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="VendorOrderNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="VendorDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SimplePhotoOrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderTotal" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ShippingCost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cust_FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Cust_City" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Cust_State" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cust_PostalCode" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Cust_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Ship_FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="XMLOrder" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="OrdersLog" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ship_Address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Ship_City" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Ship_State" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Ship_PostalCode" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Ship_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ship_Phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Ship_UseBillToShip" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="OrderedFromVendor" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExportDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExportFolder" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ExportedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IsExported" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isSimplePhotoBillingCodeFilled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Platform" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OrderType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HasMissingImages" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Retouch" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImportedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OrdersImportId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PaymentMethod" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HasNotes" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FPOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Variance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TrackingNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isShipped" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Studio" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IsStandardRetouch" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GotPhotoOrderKey" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Order_StudentPhotoOrder" Member="StudentPhotoOrders" ThisKey="Id" OtherKey="OrderId" Type="StudentPhotoOrder" />
+      <Association Name="OrdersImport_Order" Member="OrdersImport" ThisKey="OrdersImportId" OtherKey="Id" Type="OrdersImport" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentPhotoOrder" Member="StudentPhotoOrders">
+    <Type Name="StudentPhotoOrder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SchoolId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sp_SimplePhotoBillingCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="sp_ItemDescription" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="sp_GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="sp_Name" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="sp_Password" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="sp_PriceListName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="VenueName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LabCost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="sp_ProductType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sp_JobNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="crop_coordinates" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="crop_dimensions" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="crop_orientation" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="gp_FileName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="gp_FileName2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Order_StudentPhotoOrder" Member="Order" ThisKey="OrderId" OtherKey="Id" Type="Order" IsForeignKey="true" />
+      <Association Name="School_StudentPhotoOrder" Member="School" ThisKey="SchoolId" OtherKey="ID" Type="School" IsForeignKey="true" />
+      <Association Name="StudentImage_StudentPhotoOrder" Member="StudentImage" ThisKey="StudentImageId" OtherKey="ID" Type="StudentImage" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

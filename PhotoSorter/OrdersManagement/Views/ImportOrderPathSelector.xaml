@@ -1,0 +1,38 @@
+﻿<Window x:Class="PhotoForce.OrdersManagement.ImportOrderPathSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Import Orders" Height="245" Width="520" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="82"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <RadioButton Content="From FTP site" Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding isFromFTPsiteEnabled, Mode=TwoWay}" IsChecked="{Binding isFromFTPsiteChecked, Mode=TwoWay}" Margin="5,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95"/>
+        <RadioButton Content="From folder" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding isFromfolderChecked, Mode=TwoWay}" Margin="5,8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="95"/>
+        <RadioButton Content="From Excel" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding isFromExcelChecked, Mode=TwoWay}" Margin="5,8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="95"/>
+        <TextBox Grid.ColumnSpan="4" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="5,4,0,0" Grid.Row="4" TextWrapping="Wrap" IsEnabled="{Binding istxtAndbtnEnabled, Mode=TwoWay}" Text="{Binding txtPath, Mode=TwoWay}" VerticalAlignment="Top" Width="488" Grid.RowSpan="2"/>
+        <Button Content="Browse" Grid.Column="4" HorizontalAlignment="Left" Margin="136,5,0,0" Height="24" IsEnabled="{Binding istxtAndbtnEnabled, Mode=TwoWay}" Command="{Binding BrowseCommand}" Grid.Row="5" VerticalAlignment="Top" Width="85"/>
+        <Button Content="Import" Grid.Column="4" HorizontalAlignment="Left" Margin="47,10,0,0" Grid.Row="6" Height="24" Command="{Binding ImportCommand}" VerticalAlignment="Top" Width="85" Grid.RowSpan="2"/>
+        <Button Content="Cancel" Grid.Column="4" HorizontalAlignment="Left" Margin="136,10,0,0" Height="24" Grid.Row="6" Command="{Binding WindowCloseCommand}" VerticalAlignment="Top" Width="85" Grid.RowSpan="2"/>
+        <CheckBox Content="Got Photo" Grid.Column="2" HorizontalAlignment="Left" IsChecked="{Binding isFromGotPhotoChecked, Mode=TwoWay}" Margin="27,8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="95" Grid.ColumnSpan="2" />
+
+    </Grid>
+</Window>

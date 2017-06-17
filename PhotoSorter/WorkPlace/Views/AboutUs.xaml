@@ -1,0 +1,25 @@
+﻿<Window x:Class="PhotoForce.WorkPlace.AboutUs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        Title="About" Height="348" Width="520" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="White" >
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <Label Content="PhotoForce" FontSize="68" HorizontalAlignment="Left" Margin="17,10,0,0" Name="label2" VerticalAlignment="Top" Height="95" Width="480" FontWeight="Bold" Foreground="#FF0C1057" />
+        <Label Content="Name:" HorizontalAlignment="Left" Name="lblName" VerticalAlignment="Top" FontSize="20" Margin="20,110,0,0"/>
+        <Label Name="lblUserName" Content="{Binding userName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,110,0,0" FontSize="20" ></Label>
+        <Label Content="Version:" HorizontalAlignment="Left" Margin="17,147,0,0" Name="label1" VerticalAlignment="Top" FontSize="20"/>
+        <Label Name="lblVersion" Content="{Binding version}" HorizontalAlignment="Left" Margin="178,141,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Name="lblServer" Content="Server:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,184,0,0" FontSize="20" ></Label>
+        <Label Name="lblservername" Content="{Binding server}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,180,0,0" FontSize="20" ></Label>
+        <Label Name="lblDatabase" Content="Database Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,219,0,0" FontSize="20" ></Label>
+        <Label Name="lbldatabasename" Content="{Binding dataBaseName}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,219,0,0" FontSize="20" ></Label>
+        <Label Content="Credits Left:" HorizontalAlignment="Left" Name="lblCreditsLeft" VerticalAlignment="Top" FontSize="20" Margin="20,261,0,0"/>
+        <Label Name="lblCreditsCount" Content="{Binding creditsLeft}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,261,0,0" FontSize="20" ></Label>
+    </Grid>
+</Window>
+

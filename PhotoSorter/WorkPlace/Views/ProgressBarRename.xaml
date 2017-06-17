@@ -1,0 +1,10 @@
+﻿<Window x:Class="PhotoForce.WorkPlace.ProgressBarRename"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="ProgressBarRename" Height="300" Width="300">
+    <Grid>
+        
+    </Grid>
+</Window>

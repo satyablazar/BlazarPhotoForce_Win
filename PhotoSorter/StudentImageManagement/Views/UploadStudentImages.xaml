@@ -1,0 +1,43 @@
+﻿<Window x:Class="PhotoForce.StudentImageManagement.UploadStudentImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Upload Student Images" Height="250" Width="550" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Height="215" Width="540">
+        <GroupBox Header="Upload Settings" Height="173" HorizontalAlignment="Center" Name="groupBox1" VerticalAlignment="Top" Width="500" Margin="5,3,5,5">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="44*"/>
+                    <ColumnDefinition Width="92*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="School" Height="28" HorizontalAlignment="Left" Margin="10,1,0,0" Name="label1" VerticalAlignment="Top" Padding="0,2,0,0" VerticalContentAlignment="Center" Width="74" Grid.ColumnSpan="2" />
+                <Label Content="{Binding lblSchoolName}" HorizontalAlignment="Left" Margin="8,6,0,0" Name="lblSchool" VerticalAlignment="Top" FontWeight="Bold" Foreground="Gray" Padding="0" Height="22" Grid.Column="2" Grid.ColumnSpan="2" />
+                <!--<Label Content="School Year" Height="28" HorizontalAlignment="Left" Padding="0,2,0,0" Margin="10,26,0,0" Name="label2" VerticalAlignment="Top" Width="68" VerticalContentAlignment="Center"  />
+                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,31,0,0" Name="cbPhotoJob" IsEnabled="{Binding isControlsDisableAfterUpload,Mode=OneWay}" DisplayMemberPath="JobName" SelectedValuePath="ID" SelectedItem="{Binding photoJobSelectedItem,Mode=TwoWay}" ItemsSource="{Binding cbPhotographyJobData,Mode=TwoWay}" Width="249" Padding="0" Height="22" KeyboardNavigation.TabIndex="0" Grid.Column="1"></ComboBox>
+                <Button Content="New School Year" HorizontalAlignment="left" VerticalAlignment="Top" Margin="0,31,0,0" Width="113" Name="btnSchoolYear" IsEnabled="{Binding isControlsDisableAfterUpload,Mode=OneWay}" Command="{Binding NewSchoolYearCommand}" TabIndex="1" Grid.Column="2"></Button>-->
+                <Label Content="Photo Shoot" Height="28" HorizontalAlignment="Left" Padding="0,2,0,0" Margin="10,56,0,0" Name="label3" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.ColumnSpan="2" />
+                <!--<ComboBox  Margin="7,65,0,0" Name="txtShootName" IsEnabled="{Binding isControlsDisableAfterUpload,Mode=OneWay}" DisplayMemberPath="PhotoShotName" SelectedValuePath="PhotoShotID"  ItemsSource="{Binding photoShootData,Mode=TwoWay}" SelectedItem="{Binding selectedPhotoShoot, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="275" Padding="0" Height="22" TabIndex="2" VerticalContentAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" />-->
+                <TextBox  Margin="7,63,0,0" Name="txtShootName" IsEnabled="{Binding isControlsDisableAfterUpload,Mode=OneWay}" Text="{Binding selectedPhotoShoot,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="275" Padding="0" Height="22" TabIndex="2" VerticalContentAlignment="Top" Grid.Column="2" Grid.ColumnSpan="3" IsReadOnly="True" />
+                <Label Margin="7,84,112,18" Grid.ColumnSpan="3" Grid.Column="2" Content="Browse to Originals Folder"/>
+                <Label Content="Folder Path" HorizontalAlignment="Left" Margin="10,30,0,0" Name="lblLocation" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="86" Padding="0,2,0,0" Grid.ColumnSpan="3" Height="25" />
+                <TextBox HorizontalAlignment="Stretch" Margin="7,33,102,0" Name="txtPhotoShootPath" Text="{Binding photoShootPath,Mode=TwoWay}" VerticalAlignment="Top" Height="22" Padding="0" TabIndex="4" Grid.Column="2" Grid.ColumnSpan="3"/>
+                <Button Content="Browse" HorizontalAlignment="Right" Margin="0,33,12,0" Name="btnBrowse" VerticalAlignment="Top" Command="{Binding BrowsePhotoShootFolderCommand}" TabIndex="5" Width="76" Grid.Column="4"/>
+
+                <CheckBox Name="cbSelectFolder" Margin="8,111,112,3" MinHeight="20" IsEnabled="{Binding isControlsDisableAfterUpload,Mode=OneWay}" IsChecked="{Binding isReducedImagesChecked,Mode=TwoWay}" Grid.ColumnSpan="3" TabIndex="5" Grid.Column="2">
+                    <TextBlock Text="Scan reduced images (if present) for QR codes" Height="17" VerticalAlignment="Center" />
+                </CheckBox>
+            </Grid>
+        </GroupBox>
+        <ProgressBar Visibility="{Binding progressVisibility}" Value="{Binding currentProgress}" Minimum="{Binding minValue}" Maximum="{Binding maxValue}" Height="23" Margin="20,182,162,10"/>
+        <Button Content="Upload" Height="22" HorizontalAlignment="Right" Margin="0,0,84,11" Name="BtnImport" Width="65" VerticalAlignment="Bottom" Command="{Binding UploadImagesCommand}" IsEnabled="{Binding isInProgress}" TabIndex="6"/>
+        <Button Content="Cancel" Height="22" HorizontalAlignment="Right" Margin="0,0,20,11" Name="btnCancel" Width="60" VerticalAlignment="Bottom" Command="{Binding WindowCloseCommand}" TabIndex="7"/>
+    </Grid>
+</Window>

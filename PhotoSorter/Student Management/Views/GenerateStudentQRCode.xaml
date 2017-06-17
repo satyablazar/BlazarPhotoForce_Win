@@ -1,0 +1,38 @@
+﻿<Window x:Class="PhotoForce.Student_Management.GenerateStudentQRCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PhotoForce.Student_Management"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Generate Student QRcodes" Height="350" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <GroupBox Name="grpbxStudentSelection" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="Generate barcodes" Height="82" Margin="5,5,5,0" >
+            <Grid>
+                <RadioButton Name="rbAll" IsChecked="{Binding isFilteredStudents,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Content="For all (filtered) students in the grid" ></RadioButton>
+                <RadioButton Name="rbSelected" IsEnabled="{Binding isSelectedStudents,Mode=TwoWay}" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,25,0,0" Content="For selected students" Height="24" ></RadioButton>
+            </Grid>
+        </GroupBox>
+        <Grid>
+            <GroupBox Name="grpbxPrint" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="Print" Height="82" Margin="5,95,5,0">
+                <Grid>
+                    <RadioButton Name="rbPrintOne" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Content="1 student per page" GroupName="PrintBarCode" IsChecked="{Binding printOneIsChecked, Mode=TwoWay}"></RadioButton>
+                    <RadioButton Name="rbPrintEight" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,25,0,0" Content="8 students per page" GroupName="PrintBarCode" IsChecked="{Binding printEightIsChecked, Mode=TwoWay}" Height="24" ></RadioButton>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid>
+            <GroupBox Name="grpbxPrintWay" HorizontalAlignment="Stretch" VerticalAlignment="Top" Header="Print Students" Height="82" Margin="5,185,5,0">
+                <Grid>
+                    <RadioButton Name="rbPrintWithTeacher" IsChecked="{Binding isPrintWithTeacher,Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Content="with group by teacher"></RadioButton>
+                    <RadioButton Name="rbPrintWithoutTeacher" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="5,25,0,0" Content="without group by teacher" Height="24" ></RadioButton>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid>
+            <Button Name="btnGenerateQRCodes" Content="Generate QR Code" MinHeight="24" HorizontalAlignment="Right" Width="124" VerticalAlignment="Bottom" Command="{Binding GenerateQRCodesCommand}" Margin="0,0,7,10"></Button>
+        </Grid>
+    </Grid>
+</Window>

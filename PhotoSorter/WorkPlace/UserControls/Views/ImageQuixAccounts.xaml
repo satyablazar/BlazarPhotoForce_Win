@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="PhotoForce.WorkPlace.UserControls.ImageQuixAccounts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        Height="Auto" Width="Auto" IsVisibleChanged="mainImageQuix_IsVisibleChanged_1" DataContext="{Binding ImageQuixAccountsViewModelBase,Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockImageQuixAccounts" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" Name="grpImageQuixAccounts" AllowHide="False">
+                <dxdo:LayoutGroup Orientation="Horizontal" Name="Group1">
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group2">
+                        <dxdo:LayoutPanel Name="Panel1" AllowClose="False" Caption="Accounts" AllowHide="False" AllowSizing="True" AllowMove="True" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgImageQuixAccounts" ItemsSource="{Binding dgImageQuixAccountsData,Mode=TwoWay}" SelectedItems="{Binding selectedImageQuixAccounts,Mode=TwoWay}"
+                                                 dx:DXSerializer.SerializationID="gridControlID">
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ImageQuixAccountsGridDoubleClickCommand}" />
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding ImageQuixAccountsMouseUpCommand}" />
+                                    </dxg:GridControl.InputBindings>
+                                                                       
+                                    <!--<dxg:SelectAllColumn />-->
+                                    <dxg:GridControl.Columns>
+                                        <!--<dxg:GridColumn Header="Account ID" FieldName="Id" Name="grdColumnId" />-->
+                                        <dxg:GridColumn Header="Account Code" FieldName="IQAccountCode" Name="grdColumnAccountCode" />
+                                        <dxg:GridColumn Header="Description" FieldName="Description" Name="grdColumnDescription" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView MultiSelectMode="Row" FocusedRow="{Binding selectedIQAccount,Mode=TwoWay}"
+                                                       ShowAutoFilterRow="True" Name="ImageQuixAccountView" CellStyle="{StaticResource RowStyle}"
+                                                       HorizontalScrollbarVisibility="Visible"
+                                                       ShowSearchPanelMode="{Binding imageQuixAccountSearchPanelMode,Mode=TwoWay}" EditFormShowMode="Inline"
+                                                       SearchControl="{Binding imageQuixAccountSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding imageQuixAccountShowGroupPanel,Mode=TwoWay}" AllowEditing="False">
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="RowUpdated">
+                                                    <i:InvokeCommandAction Command="{Binding RowUpdateCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgImageQuixAccounts" Path="VisibleRowCount" />
+                                            <Binding Path="selectedImageQuixAccounts.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+
+                <dxdo:LayoutGroup Grid.Row="2" Orientation="Horizontal" Name="grpPricesheets">
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group3">
+                        <dxdo:DocumentGroup  Name="Group4" SelectedTabIndex="{Binding selectedIQAccountIndex, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CaptionLocation="Top">
+                            <dxdo:LayoutPanel Caption="Price Sheets" AllowClose="False" Name="pnlPricesheets" AllowHide="False" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                    <dxg:GridControl Name="dgPricesheets" ItemsSource="{Binding dgPricesheetsData,Mode=TwoWay}" SelectedItems="{Binding selectedPricesheets,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlID2">
+                                    <dxg:GridControl.Columns>
+                                        <!--<dxg:GridColumn Header="Account ID" FieldName="IQAccountId" Name="grddColumnAccountId"  AllowEditing="True"/>-->
+                                        <dxg:GridColumn Header="IQ-PriceSheet ID" FieldName="IQPriceSheetId" Name="grdColumnIQPriceSheetID" />
+                                        <dxg:GridColumn Header="Descrption" FieldName="Description" Name="grdColumnPriceSheetDescription" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView FocusedRow="{Binding selectedPricesheet,Mode=TwoWay}" ShowAutoFilterRow="True" AllowEditing="False"
+                                                                   ShowSearchPanelMode="{Binding pricesheetsSearchPanelMode,Mode=TwoWay}" EditFormShowMode="Inline"
+                                                                   SearchControl="{Binding pricesheetsSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding pricesheetsShowGroupPanel,Mode=TwoWay}"
+                                                                   CellStyle="{StaticResource RowStyle}"
+                                                                   MultiSelectMode="Row" HorizontalAlignment="Stretch">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="RowUpdated">
+                                                    <i:InvokeCommandAction Command="{Binding RowUpdateCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+
+                                            <dxg:TableView.InputBindings>
+                                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding PricesheetsGridDoubleClickCommand}" />
+                                                <MouseBinding MouseAction="LeftClick" Command="{Binding PricesheetsMouseUpCommand}" />
+                                            </dxg:TableView.InputBindings>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Grid.Row="1" Width="250" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgPricesheets" Path="VisibleRowCount" />
+                                            <Binding Path="selectedPricesheets.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="Vando Settings" AllowClose="False" Name="pnlIQVandoSettings" AllowHide="False" AllowDrag="False">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <dxg:GridControl Name="dgIQVandoSettings" ItemsSource="{Binding dgIQVandoSettingsData,Mode=TwoWay}" SelectedItems="{Binding selectedIQVandoSettings,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlID3">
+                                        <dxg:GridControl.Columns>
+                                            <!--<dxg:GridColumn Header="Account ID" FieldName="IQAccountId" Name="grddColumnAccountId"  AllowEditing="True"/>-->
+                                            <dxg:GridColumn Header="IQ-Vando ID" FieldName="IQVandoId" Name="grdColumnIQVandoId" />
+                                            <dxg:GridColumn Header="Descrption" FieldName="Description" Name="grdColumnPriceSheetDescription1" />
+                                            <dxg:GridColumn Header="IsDefault" FieldName="IsDefault" Name="grdColumnIsDefault" />
+                                        </dxg:GridControl.Columns>
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView FocusedRow="{Binding selectedIQVandoSetting,Mode=TwoWay}" ShowAutoFilterRow="True" AllowEditing="False"
+                                                                   ShowSearchPanelMode="{Binding vandoSettingsSearchPanelMode,Mode=TwoWay}" EditFormShowMode="Inline"
+                                                                   SearchControl="{Binding vandoSettingsSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding vandoSettingsShowGroupPanel,Mode=TwoWay}"
+                                                                   CellStyle="{StaticResource RowStyle}"
+                                                                   MultiSelectMode="Row" HorizontalAlignment="Stretch">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="RowUpdated">
+                                                        <i:InvokeCommandAction Command="{Binding RowUpdateCommand}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+
+                                                <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+
+                                                <dxg:TableView.InputBindings>
+                                                    <!--<MouseBinding MouseAction="LeftDoubleClick" Command="{Binding IQVandoSettingsGridDoubleClickCommand}" />-->
+                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding IQVandoSettingsMouseUpCommand}" />
+                                                </dxg:TableView.InputBindings>
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                    <TextBlock Height="20" Grid.Row="1" Width="250" HorizontalAlignment="Left">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                                <Binding ElementName="dgIQVandoSettings" Path="VisibleRowCount" />
+                                                <Binding Path="selectedIQVandoSettings.Count" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                            </dxdo:LayoutPanel>
+                            
+                        </dxdo:DocumentGroup>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+</UserControl>

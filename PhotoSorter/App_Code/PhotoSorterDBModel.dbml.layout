@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.625, 29.125" name="PhotoSorterDBModel">
+  <DataContextMoniker Name="/PhotoSorterDBModelDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c9bbf38b-89fd-4586-89ab-d3e1b498c687" absoluteBounds="10.25, 3.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Template" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7bc1df63-31ae-4b69-912c-67e5530e8a6e" absoluteBounds="10.265, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e98a7ba7-1cbf-40a3-aea8-f6aee22af6b1" absoluteBounds="3.25, 8.625, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Group" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26ec655a-48e9-4a97-a708-57ac9c330434" absoluteBounds="3.2650000000000006, 9.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e230816a-e2cc-4090-996c-258f0556d631" absoluteBounds="8.125, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/DefaultPackage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="18efb171-14bc-4699-8b21-1ea8bf92fffd" absoluteBounds="8.14, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cefc75af-6178-4311-a2b0-ca1540c1852e" absoluteBounds="6, 8.875, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/GroupClassPhoto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38cafb40-4040-4599-9f84-645f2638fad3" absoluteBounds="6.015, 9.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e8ef38b9-36ae-466f-aefb-97838489411f" absoluteBounds="6.125, 11.625, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/GroupItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="795fc86d-3567-48cc-b93f-384aa82f7613" absoluteBounds="6.14, 12.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7507c953-5424-4500-ad7c-215fbebfdb9f" absoluteBounds="6, 6, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/MaskDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b75f4fd5-55ef-4837-84d9-409542ee91d5" absoluteBounds="6.015, 6.4600000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a263cd20-0e29-4af1-9017-4c4164bd6f14" absoluteBounds="3.25, 11.25, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Package" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d9a5e8c-1673-4f20-903e-9803cda01785" absoluteBounds="3.2650000000000006, 11.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f00a5fe3-9036-447f-b983-b3b8e1e08434" absoluteBounds="3.25, 16.75, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/PhotographyJob" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cd5ffd8e-7442-4489-8bcd-29918ec5bc74" absoluteBounds="3.2650000000000006, 17.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d7de975d-cc5f-4a71-81ae-b2adb1db9f39" absoluteBounds="3.25, 6.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/tblmask" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c6c612a1-e65b-40bb-bb85-6179e0f8aeac" absoluteBounds="3.2650000000000006, 6.5850000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="24e91fdf-0843-44fb-ad83-8e6e0c1e3ea7" absoluteBounds="3.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Setting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="861085da-aab7-4d36-8a46-1ec3400d019f" absoluteBounds="3.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="729cf920-4f08-4234-ba27-00a8aa8893d0" absoluteBounds="6, 3.75, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Renameerrorlog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c334b552-a3f7-46b0-a3fd-b1b7ea7f529f" absoluteBounds="6.0150000000000006, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 9.56814697265625); (6 : 9.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/Group/Group_GroupClassPhoto" />
+      <nodes>
+        <classShapeMoniker Id="e98a7ba7-1cbf-40a3-aea8-f6aee22af6b1" />
+        <classShapeMoniker Id="cefc75af-6178-4311-a2b0-ca1540c1852e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 10.45599609375); (8.09375 : 10.45599609375); (8.09375 : 11.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/Group/Group_GroupItem" />
+      <nodes>
+        <classShapeMoniker Id="e98a7ba7-1cbf-40a3-aea8-f6aee22af6b1" />
+        <classShapeMoniker Id="e8ef38b9-36ae-466f-aefb-97838489411f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 6.81814697265625); (6 : 6.81814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/tblmask/tblmask_MaskDetail" />
+      <nodes>
+        <classShapeMoniker Id="d7de975d-cc5f-4a71-81ae-b2adb1db9f39" />
+        <classShapeMoniker Id="7507c953-5424-4500-ad7c-215fbebfdb9f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="68f66399-befe-4106-89ce-8d6542a616d7" absoluteBounds="13.875, 13.5, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Activity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b27ab646-b9d2-442d-9bb7-dc73feec2cb8" absoluteBounds="13.89, 13.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d7f6560f-daf2-46c8-ab6c-ecb3be8896f6" absoluteBounds="13.875, 17.375, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/ActivityType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa5f293a-5fc0-4a5f-9d20-db776e1c0ffc" absoluteBounds="13.89, 17.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.25 : 16.75); (4.25 : 14.375); (9.76041666666667 : 14.375 : JumpStart); (9.92708333333333 : 14.375 : JumpEnd); (10.25 : 14.375); (10.25 : 11); (11.4166666666667 : 11 : JumpStart); (11.5833333333333 : 11 : JumpEnd); (12.3854166666667 : 11 : JumpStart); (12.5520833333333 : 11 : JumpEnd); (13.5 : 11); (13.5 : 15.0585034179688); (13.875 : 15.0585034179688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotographyJob/PhotographyJob_Activity" />
+      <nodes>
+        <classShapeMoniker Id="f00a5fe3-9036-447f-b983-b3b8e1e08434" />
+        <classShapeMoniker Id="68f66399-befe-4106-89ce-8d6542a616d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.875 : 17.375); (14.875 : 16.6170068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/ActivityType/ActivityType_Activity" />
+      <nodes>
+        <classShapeMoniker Id="d7f6560f-daf2-46c8-ab6c-ecb3be8896f6" />
+        <classShapeMoniker Id="68f66399-befe-4106-89ce-8d6542a616d7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" absoluteBounds="10.5, 11.25, 2, 8.1168440755208326">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/StudentImage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c941c3d-d594-4e51-8e01-7183c8e4df57" absoluteBounds="10.515, 11.71, 1.9700000000000002, 7.556844075520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.5 : 11.25); (11.5 : 9.56814697265625); (8 : 9.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/StudentImage/StudentImage_GroupClassPhoto" />
+      <nodes>
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+        <classShapeMoniker Id="cefc75af-6178-4311-a2b0-ca1540c1852e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.5 : 12.3181469726563); (10.3333333333333 : 12.3181469726563 : JumpStart); (10.1666666666667 : 12.3181469726563 : JumpEnd); (8.125 : 12.3181469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/StudentImage/StudentImage_GroupItem" />
+      <nodes>
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+        <classShapeMoniker Id="e8ef38b9-36ae-466f-aefb-97838489411f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4bd3651d-a315-4349-9f12-f281c13e5999" absoluteBounds="1.5, 3.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/NextOrder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="374a4cf1-1a39-4dbf-b784-c9cd6059e007" absoluteBounds="1.5150000000000006, 4.2100000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3b033135-dadd-4f42-8c23-2ff30d6dd1c7" absoluteBounds="17.25, 12.75, 2, 9.2706526692708344">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/View_Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="978e9228-add3-4649-80d2-c64b88d2844e" absoluteBounds="17.265, 13.21, 1.9700000000000002, 8.7106526692708321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ba205c23-1b05-4c33-b3e2-1858db2656d8" absoluteBounds="14.375, 27, 2, 1.3862939453125">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/IQAccount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6747a170-5a2f-4e8d-bf92-9fe4ba53da13" absoluteBounds="14.39, 27.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00f876e8-9c5d-41dd-97f0-9449555b3c43" absoluteBounds="17.125, 25.75, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/IQPriceSheet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7cee4a75-cf62-40a8-949f-ea4e34748045" absoluteBounds="17.14, 26.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(16.375 : 27.1642976888021); (17.125 : 27.1642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/IQAccount/IQAccount_IQPriceSheet" />
+      <nodes>
+        <classShapeMoniker Id="ba205c23-1b05-4c33-b3e2-1858db2656d8" />
+        <classShapeMoniker Id="00f876e8-9c5d-41dd-97f0-9449555b3c43" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="843bd2a6-14cd-43e9-a2f3-9e79c6aaf971" absoluteBounds="7.5, 18.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/StudentImport" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d05b41d7-2189-40d0-b560-3e30afc37df9" absoluteBounds="7.515, 18.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="32dae1cc-5abc-4ed6-96bf-69ce46d04e29" absoluteBounds="11.625, 27.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/IQVandoSetting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb762c65-be2e-49ff-aacd-93a043d280a2" absoluteBounds="11.64, 27.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.375 : 27.7556469726563); (13.625 : 27.7556469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/IQAccount/IQAccount_IQVandoSetting" />
+      <nodes>
+        <classShapeMoniker Id="ba205c23-1b05-4c33-b3e2-1858db2656d8" />
+        <classShapeMoniker Id="32dae1cc-5abc-4ed6-96bf-69ce46d04e29" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c9018a8c-cee5-4710-aa53-e1b7109404de" absoluteBounds="16.75, 23, 2, 1.3862939453125">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/SimplePhotoPriceSheet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e73a03cd-6ef4-498d-a1ab-f593124b7142" absoluteBounds="16.765, 23.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1b63425d-0156-4dec-ac8c-ff26f4c3b0df" absoluteBounds="10.375, 5.875, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/OrderPackage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d864cd79-317a-4dea-bf2f-df3bfbe1bacf" absoluteBounds="10.39, 6.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1040ceef-336c-4ee1-a1ec-b9640a13973c" absoluteBounds="14, 11, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b752a157-68a2-4a30-83f2-a2993eafddfb" absoluteBounds="14.015, 11.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.9375 : 12.1939925130208); (14.9375 : 13.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/User/User_Activity" />
+      <nodes>
+        <classShapeMoniker Id="1040ceef-336c-4ee1-a1ec-b9640a13973c" />
+        <classShapeMoniker Id="68f66399-befe-4106-89ce-8d6542a616d7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ec5d01e1-bfa1-4c46-9076-ef879259969f" absoluteBounds="0.5, 23.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Studio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe524cac-c8aa-4313-8a2b-f46bab54f489" absoluteBounds="0.51500000000000012, 23.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7b5571bd-2d24-4759-adab-84449fca3342" absoluteBounds="19.375, 23, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/SimplePhotoExportBatch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bcc76eb-f8ed-49d6-af7e-4d50174bcbb6" absoluteBounds="19.39, 23.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa1754a4-d046-4113-ad7c-0096e9784b05" absoluteBounds="7.5, 14.625, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/PhotoShoot" />
+      <nestedChildShapes>
+        <elementListCompartment Id="64c3623a-5ae0-4c2e-8a81-1c20e4d4e5aa" absoluteBounds="7.515, 15.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.5 : 16.2796541341146); (10.5 : 16.2796541341146)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotoShoot/PhotoShoot_StudentImage" />
+      <nodes>
+        <classShapeMoniker Id="fa1754a4-d046-4113-ad7c-0096e9784b05" />
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 17.3421541341146); (7.5 : 17.3421541341146)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotographyJob/PhotographyJob_PhotoShoot" />
+      <nodes>
+        <classShapeMoniker Id="f00a5fe3-9036-447f-b983-b3b8e1e08434" />
+        <classShapeMoniker Id="fa1754a4-d046-4113-ad7c-0096e9784b05" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="346c3153-42c8-4bac-a4c2-a0695478b0ab" absoluteBounds="4.75, 20.375, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/PhotoshootTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6610d85f-bf90-4f3f-b64a-a3fed788ff1d" absoluteBounds="4.7650000000000006, 20.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.09375 : 20.375); (6.09375 : 14.78125); (7.5 : 14.78125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotoshootTypeTable/PhotoshootTypeTable_PhotoShoot" />
+      <nodes>
+        <classShapeMoniker Id="346c3153-42c8-4bac-a4c2-a0695478b0ab" />
+        <classShapeMoniker Id="fa1754a4-d046-4113-ad7c-0096e9784b05" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2f3fbc13-0d57-42f5-aeff-755c97a5b4b0" absoluteBounds="10.875, 20.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/WorkflowCollection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="459c9042-f9f3-47ba-94dc-2b45b5cfbf65" absoluteBounds="10.89, 20.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bb9e102-257c-456d-9446-f06350aed4d5" absoluteBounds="10.875, 25.125, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/ItemClassType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28c63a97-d500-4b2a-aeb0-3e70797a4dc4" absoluteBounds="10.89, 25.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.875 : 25.125); (10.5 : 24.75); (10.5 : 22.2708968098958); (10.875 : 21.8958968098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/ItemClassType/ItemClassType_WorkflowCollection" />
+      <nodes>
+        <classShapeMoniker Id="0bb9e102-257c-456d-9446-f06350aed4d5" />
+        <classShapeMoniker Id="2f3fbc13-0d57-42f5-aeff-755c97a5b4b0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="bc2d9497-cba5-47c2-b74e-a45f760270fb" absoluteBounds="14.25, 19, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/PhotoshootWorkflowItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a27e20de-395e-4373-8c79-e3999ecf1c11" absoluteBounds="14.265, 19.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.5 : 16.2796541341146); (10.25 : 16.2796541341146); (10.25 : 19.6168440755208); (14 : 19.6168440755208); (14 : 18.75); (15.25 : 18.75); (15.25 : 19)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotoShoot/PhotoShoot_PhotoshootWorkflowItem" />
+      <nodes>
+        <classShapeMoniker Id="fa1754a4-d046-4113-ad7c-0096e9784b05" />
+        <classShapeMoniker Id="bc2d9497-cba5-47c2-b74e-a45f760270fb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5b7f2b43-a8d9-4d90-950f-84f0636fa4b2" absoluteBounds="14.25, 23.5, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/WorkflowItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="edf73d20-24f5-43eb-ac3e-a93550e9077e" absoluteBounds="14.265, 23.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.25 : 23.5); (15.25 : 22.5016097005208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/WorkflowItem/WorkflowItem_PhotoshootWorkflowItem" />
+      <nodes>
+        <classShapeMoniker Id="5b7f2b43-a8d9-4d90-950f-84f0636fa4b2" />
+        <classShapeMoniker Id="bc2d9497-cba5-47c2-b74e-a45f760270fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.875 : 25.4681748746745); (14.25 : 25.4681748746745)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/ItemClassType/ItemClassType_WorkflowItem" />
+      <nodes>
+        <classShapeMoniker Id="0bb9e102-257c-456d-9446-f06350aed4d5" />
+        <classShapeMoniker Id="5b7f2b43-a8d9-4d90-950f-84f0636fa4b2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="335b85ad-cd7d-411e-a224-68a199659eb1" absoluteBounds="10.875, 22.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/WorkflowCollectionItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ffa5708e-9835-4abf-ad1a-febe6c23feb1" absoluteBounds="10.89, 23.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.25 : 24.0104484049479); (12.875 : 24.0104484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/WorkflowItem/WorkflowItem_WorkflowCollectionItem" />
+      <nodes>
+        <classShapeMoniker Id="5b7f2b43-a8d9-4d90-950f-84f0636fa4b2" />
+        <classShapeMoniker Id="335b85ad-cd7d-411e-a224-68a199659eb1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.9062525 : 21.8958968098958); (11.9062525 : 22.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/WorkflowCollection/WorkflowCollection_WorkflowCollectionItem" />
+      <nodes>
+        <classShapeMoniker Id="2f3fbc13-0d57-42f5-aeff-755c97a5b4b0" />
+        <classShapeMoniker Id="335b85ad-cd7d-411e-a224-68a199659eb1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="986eb0cd-c084-4942-b2fd-13f98f928eb7" absoluteBounds="13.625, 2.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/OrdersImport" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a93e2c8-60e9-4c49-9e65-b7afada60fd2" absoluteBounds="13.64, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03b920e2-98ec-44ac-803a-052828f42210" absoluteBounds="8.125, 20.875, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Student" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5d81e86c-c8bc-43d7-b1c3-95040ddab48f" absoluteBounds="8.14, 21.335, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.84375 : 20.875); (9.84375 : 13.1995489794922); (10.1666666666667 : 13.1995489794922 : JumpStart); (10.3333333333333 : 13.1995489794922 : JumpEnd); (10.5 : 13.1995489794922)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/Student/Student_StudentImage" />
+      <nodes>
+        <classShapeMoniker Id="03b920e2-98ec-44ac-803a-052828f42210" />
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.96875 : 19.0978011067708); (3.96875 : 24.3501611328125); (8.125 : 24.3501611328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/PhotographyJob/PhotographyJob_Student" />
+      <nodes>
+        <classShapeMoniker Id="f00a5fe3-9036-447f-b983-b3b8e1e08434" />
+        <classShapeMoniker Id="03b920e2-98ec-44ac-803a-052828f42210" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.8125 : 20.2804996744792); (8.8125 : 20.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/StudentImport/StudentImport_Student" />
+      <nodes>
+        <classShapeMoniker Id="843bd2a6-14cd-43e9-a2f3-9e79c6aaf971" />
+        <classShapeMoniker Id="03b920e2-98ec-44ac-803a-052828f42210" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" absoluteBounds="0.625, 14.75, 2, 7.5399397786458326">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/School" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6fae02e0-ab20-45d7-a613-890c3530823d" absoluteBounds="0.64000000000000012, 15.21, 1.9700000000000002, 6.979939778645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.226560625 : 14.75); (1.226560625 : 9.60659912109375); (1.47526010416667 : 9.60659912109375 : JumpStart); (1.64192677083333 : 9.60659912109375 : JumpEnd); (3.25 : 9.60659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_Group" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="e98a7ba7-1cbf-40a3-aea8-f6aee22af6b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(0.8945283125 : 14.75); (0.8945283125 : 12.2315991210938); (0.977211135416667 : 12.2315991210938 : JumpStart); (1.30989395833333 : 12.2315991210938 : JumpEnd); (1.47526010416667 : 12.2315991210938 : JumpStart); (1.64192677083333 : 12.2315991210938 : JumpEnd); (2.03971538541667 : 12.2315991210938 : JumpStart); (2.20638205208333 : 12.2315991210938 : JumpEnd); (3.25 : 12.2315991210938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_Package" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="a263cd20-0e29-4af1-9017-4c4164bd6f14" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 17.9239005533854); (3.25 : 17.9239005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_PhotographyJob" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="f00a5fe3-9036-447f-b983-b3b8e1e08434" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.5585934375 : 14.75); (1.5585934375 : 6.81814697265625); (3.25 : 6.81814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_tblmask" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="d7de975d-cc5f-4a71-81ae-b2adb1db9f39" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.12304871875 : 14.75); (2.12304871875 : 11.125); (8.01041666666667 : 11.125 : JumpStart); (8.17708333333333 : 11.125 : JumpEnd); (10.1666666666667 : 11.125 : JumpStart); (10.3333333333333 : 11.125 : JumpEnd); (11.4166666666667 : 11.125 : JumpStart); (11.5833333333333 : 11.125 : JumpEnd); (12.3854166666667 : 11.125 : JumpStart); (12.5520833333333 : 11.125 : JumpEnd); (13.25 : 11.125); (13.25 : 15.0585034179688); (13.875 : 15.0585034179688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_Activity" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="68f66399-befe-4106-89ce-8d6542a616d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.12304871875 : 14.75); (2.12304871875 : 13.8253491210938); (10.1666666666667 : 13.8253491210938 : JumpStart); (10.3333333333333 : 13.8253491210938 : JumpEnd); (10.5 : 13.8253491210938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_StudentImage" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 19.720400390625); (3.88541666666667 : 19.720400390625 : JumpStart); (4.05208333333333 : 19.720400390625 : JumpEnd); (6.01041666666667 : 19.720400390625 : JumpStart); (6.17708333333333 : 19.720400390625 : JumpEnd); (7.5 : 19.720400390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_StudentImport" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="843bd2a6-14cd-43e9-a2f3-9e79c6aaf971" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.5625 : 23.125); (1.5625 : 22.2899397786458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/Studio/Studio_School" />
+      <nodes>
+        <classShapeMoniker Id="ec5d01e1-bfa1-4c46-9076-ef879259969f" />
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7424c031-775a-4344-9a6a-f1ecc76b675f" absoluteBounds="17.25, 0.625, 2, 10.809064127604165">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e22dadc2-6a4b-4e4b-b112-823e0fa1b1a1" absoluteBounds="17.265, 1.085, 1.9700000000000002, 10.249064127604166" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.625 : 3.10659912109375); (17.25 : 3.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/OrdersImport/OrdersImport_Order" />
+      <nodes>
+        <classShapeMoniker Id="986eb0cd-c084-4942-b2fd-13f98f928eb7" />
+        <classShapeMoniker Id="7424c031-775a-4344-9a6a-f1ecc76b675f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="44bcaffa-3894-42e4-82a5-b20d60ecd952" absoluteBounds="14.125, 4.75, 2, 5.0400211588541657">
+      <DataClassMoniker Name="/PhotoSorterDBModelDataContext/StudentPhotoOrder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d3b4cf5-a247-4678-be84-837a1235fca8" absoluteBounds="14.14, 5.21, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(17.25 : 7.27001057942708); (16.125 : 7.27001057942708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/Order/Order_StudentPhotoOrder" />
+      <nodes>
+        <classShapeMoniker Id="7424c031-775a-4344-9a6a-f1ecc76b675f" />
+        <classShapeMoniker Id="44bcaffa-3894-42e4-82a5-b20d60ecd952" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.06054446875 : 14.75); (1.06054446875 : 8.42390055338542); (1.47526010416667 : 8.42390055338542 : JumpStart); (1.64192677083333 : 8.42390055338542 : JumpEnd); (14.125 : 8.42390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/School/School_StudentPhotoOrder" />
+      <nodes>
+        <classShapeMoniker Id="2ab7eee9-90a0-4ba1-b817-3fbeca31dd9c" />
+        <classShapeMoniker Id="44bcaffa-3894-42e4-82a5-b20d60ecd952" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.46875 : 11.25); (12.46875 : 9.02727626302083); (14.125 : 9.02727626302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhotoSorterDBModelDataContext/StudentImage/StudentImage_StudentPhotoOrder" />
+      <nodes>
+        <classShapeMoniker Id="53a6500b-0de5-47d7-a8ad-d55406cb48c3" />
+        <classShapeMoniker Id="44bcaffa-3894-42e4-82a5-b20d60ecd952" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="PhotoForce.WorkPlace.UserControls.Schools"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             xmlns:MVVM="clr-namespace:PhotoForce.MVVM" 
+             xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+             Height="auto" Width="Auto" IsVisibleChanged="UserControl_IsVisibleChanged_1" DataContext="{Binding SchoolsViewModelBase,Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>		
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter"/>
+    </UserControl.Resources>
+    <dxdo:DockLayoutManager Name="dockSchools" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+        <dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" Name="SchoolsGroup" AllowHide="False">
+            <dxdo:LayoutGroup.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding SchoolsGroupFocusCommand}"/>
+            </dxdo:LayoutGroup.InputBindings>
+            <dxdo:LayoutGroup Orientation="Horizontal" Name="Group1">
+                <dxdo:LayoutGroup ItemWidth="3*" Name="Group2">
+                    <dxdo:LayoutPanel Name="Panel1" AllowClose="False" Caption="Schools" AllowHide="False"  AllowSizing="True" AllowMove="True" AllowDrag="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <dxg:GridControl Name="dgSchools" ItemsSource="{Binding dgSchoolsData,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlerID"
+							SelectedItems="{Binding selectedSchools,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <dxg:GridControl.InputBindings>
+                                    <!--<MouseBinding MouseAction="LeftDoubleClick" Command="{Binding SchoolNameGridDoubleClick}"/>-->
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding SchoolTableMouseUpCommand}"/>
+                                </dxg:GridControl.InputBindings>
+                                <dxg:GridControl.ColumnGeneratorStyle>
+                                    <Style TargetType="dxg:GridColumn">
+                                        <Setter Property="Visible" Value="False" />
+                                        <Setter Property="EditFormVisible" Value="True" />
+                                    </Style>
+                                </dxg:GridControl.ColumnGeneratorStyle>
+                                <dxg:GridControl.Columns>
+                                    <!-- <dxg:SelectAllColumn VisibleIndex="0" />-->
+                                    <dxg:GridColumn Header="School Number" FieldName="ID" Name="grdColumnSchoolId" ReadOnly="True" VisibleIndex="0"/>
+                                    <dxg:GridColumn FieldName="SchoolName" Header="School Name" Name="grdColumnSchoolName" VisibleIndex="1"/>
+									<dxg:GridColumn FieldName="Studio.StudioName" Header="Studio Name" Name="grdColumnStudioName" EditFormVisible="False" VisibleIndex="2"/>
+									<dxg:GridColumn FieldName="Visit" Header="Visit" Name="grdColumnVisit" VisibleIndex="32"/>
+                                    <dxg:GridColumn FieldName="Students" Header="Students" Name="grdColumnStudents" VisibleIndex="3" />
+                                    <dxg:GridColumn FieldName="Rating" Header="Rating" Name="grdColumnRating" VisibleIndex="4" />
+                                    <dxg:GridColumn FieldName="Notes" Header="Notes" Name="grdColumnNotes" VisibleIndex="5" />                                    
+                                    <dxg:GridColumn FieldName="City" Header="City" Name="grdColumnCity" VisibleIndex="6"/>
+                                    <dxg:GridColumn FieldName="State" Header="State" Name="grdColumnState" VisibleIndex="7" />
+                                    <dxg:GridColumn FieldName="Zip" Header="Zip" Name="grdColumnZip" VisibleIndex="8"/>
+                                    <dxg:GridColumn FieldName="Address1" Header="Address1" Name="grdColumnAddress1" VisibleIndex="9"/>
+                                    <dxg:GridColumn FieldName="Address2" Header="Address2" Name="grdColumnAddress2" Visible="False" EditFormVisible="True" VisibleIndex="10" />
+                                    <dxg:GridColumn FieldName="Address3" Header="Address3" Name="grdColumnAddress3" Visible="False" EditFormVisible="True" VisibleIndex="11" />
+                                    <dxg:GridColumn FieldName="folderPath" Header="Folder Path" Name="grdColumnfolderPath" Visible="False" EditFormVisible="True" VisibleIndex="12" />
+                                    <dxg:GridColumn FieldName="IsActive" Header="IsActive" Name="grdColumnActive" VisibleIndex="13" />                                   
+                                    <dxg:GridColumn Header="ID Required" FieldName="IDRequired" Name="grdChkID" VisibleIndex="14" />
+                                    <dxg:GridColumn Header="YearBook  Required" FieldName="YearBookRequired" Name="grdChkyearbook" VisibleIndex="15" />                                    
+                                    <dxg:GridColumn FieldName="IDCards" Header="ID Cards" Name="grdColumnIDCards" VisibleIndex="16" />                                   
+                                    <dxg:GridColumn Header="Calendars" FieldName="Calendars" Name="grdCalendars" VisibleIndex="17" />
+                                    <dxg:GridColumn Header="Pencils" FieldName="Pencils" Name="grdPencils" VisibleIndex="18" />
+                                    <dxg:GridColumn Header="Contract Expiration" FieldName="ContractExpiration" Name="grdPContractExpiration" VisibleIndex="19" />
+
+                                    <dxg:GridColumn Header="Contact1 Name" FieldName="Contact1Name" Name="grdColumnContact1Name" VisibleIndex="20" />
+                                    <dxg:GridColumn Header="Contact1 Type" FieldName="Contact1Type" Name="grdColumnContact1Type" VisibleIndex="21" />
+                                    <dxg:GridColumn Header="Contact1 Email" FieldName="Contact1Email" Name="grdColumnContact1Email" VisibleIndex="22" />
+                                    <dxg:GridColumn Header="Contact1 Notes" FieldName="Contact1Notes" Name="grdColumnContact1Notes" VisibleIndex="23" />
+
+                                    <dxg:GridColumn Header="Contact2 Name" FieldName="Contact2Name" Name="grdColumnContact2Name" VisibleIndex="24" />
+                                    <dxg:GridColumn Header="Contact2 Type" FieldName="Contact2Type" Name="grdColumnContact2Type" VisibleIndex="25" />
+                                    <dxg:GridColumn Header="Contact2 Email" FieldName="Contact2Email" Name="grdColumnContact2Email" VisibleIndex="26" />
+                                    <dxg:GridColumn Header="Contact2 Notes" FieldName="Contact2Notes" Name="grdColumnContact2Notes" VisibleIndex="27" />
+
+                                    <dxg:GridColumn Header="Contact3 Name" FieldName="Contact3Name" Name="grdColumnContact3Name" VisibleIndex="28" />
+                                    <dxg:GridColumn Header="Contact3 Type" FieldName="Contact3Type" Name="grdColumnContact3Type" VisibleIndex="29" />
+                                    <dxg:GridColumn Header="Contact3 Email" FieldName="Contact3Email" Name="grdColumnContact3Email" VisibleIndex="30" />
+                                    <dxg:GridColumn Header="Contact3 Notes" FieldName="Contact3Notes" Name="grdColumnContact3Notes" VisibleIndex="31" />
+                                    <dxg:GridColumn Header="Affiliation" FieldName="Affiliation" Name="grdAffiliation" VisibleIndex="32" />
+
+                                    <!--<dxg:GridColumn Header="School Year" FieldName="SchoolYear" Name="grdColumnSchoolYear" VisibleIndex="3" />-->
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView MultiSelectMode="Row" ShowAutoFilterRow="True" AllowEditing = "False" FocusedRow="{Binding selectedSchool,Mode=TwoWay}" Name="SchoolTableView"
+                                        ShowSearchPanelMode="{Binding schoolTableSearchPanelMode,Mode=TwoWay}" SearchControl="{Binding schoolTableSearchControl,Mode=TwoWay}" EditFormShowMode="Inline"
+                                       ShowGroupPanel="{Binding schoolTableShowGroupPanel,Mode=TwoWay}" CellStyle="{StaticResource RowStyle}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="RowUpdated">
+                                                <i:InvokeCommandAction Command="{Binding RowUpdateCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+									<TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                                <Binding ElementName="dgSchools" Path="VisibleRowCount"/>
+                                                <Binding Path="selectedSchools.Count"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                        </Grid>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+            </dxdo:LayoutGroup>
+            <!--We are not using activities (maybe we include in future)-->
+            <!--<dxdo:LayoutGroup Grid.Row="2" Orientation="Horizontal" Name="SchoolActivitiesGroup">
+                <dxdo:LayoutGroup.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding SchoolActivitiesGroupFocusCommand}"/>
+                </dxdo:LayoutGroup.InputBindings>
+                <dxdo:LayoutGroup ItemWidth="3*">
+                    <dxdo:LayoutPanel Caption="School Activities" AllowClose="False" Name="pnlSchoolActivities" AllowHide="False" AllowDrag="False">
+                        <dxg:GridControl Name="dgSchoolActivities" ItemsSource="{Binding dgSchoolActivitiesData,Mode=TwoWay}" SelectedItems="{Binding selectedActivities,Mode=TwoWay}">
+                            <dxg:GridControl.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ActivitiesGridDoubleClickCommand}"/>
+                            </dxg:GridControl.InputBindings>
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="Subject" Name="grdColumnSubject" AllowEditing="False" VisibleIndex="0" />
+                                <dxg:GridColumn FieldName="ActivityType.Type" Header="Activity Type"  Name="grdColumnType" AllowEditing="False" VisibleIndex="1" />
+                                <dxg:GridColumn FieldName="Status" Name="grdColumnStatus" AllowEditing="False" VisibleIndex="2" />
+                                <dxg:GridColumn FieldName="ActivityDate" Header="Activity Date" Name="grdColumnDate" AllowEditing="False" VisibleIndex="3" />
+                                <dxg:GridColumn FieldName="User.UserName" Header="User Name" Name="grdColumnUName" AllowEditing="False" VisibleIndex="4" />
+                            </dxg:GridControl.Columns>
+
+                            <dxg:GridControl.View>
+                                <dxg:TableView NavigationStyle="Row" MultiSelectMode="Row" ShowAutoFilterRow="True" FocusedRow="{Binding selectedActivity,Mode=TwoWay}"
+								CellStyle="{StaticResource RowStyle}"
+                                Name="activitesTableView" AllowEditing="False" Focusable="False" ShowGroupPanel="False">
+                                </dxg:TableView>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+            </dxdo:LayoutGroup>-->
+        </dxdo:LayoutGroup>
+    </dxdo:DockLayoutManager>
+</UserControl>

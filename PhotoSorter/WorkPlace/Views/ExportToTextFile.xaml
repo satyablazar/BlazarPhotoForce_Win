@@ -1,0 +1,28 @@
+﻿<Window x:Class="PhotoForce.WorkPlace.ExportToTextFile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Export Data" Height="260" Width="647" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="White">
+
+    <!--xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"-->
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <!--<GroupBox Header="Output Settings" Height="170" Margin="10,10,10,0" Name="groupBox1" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Grid >
+                <RadioButton Content="Export All Students" IsChecked="{Binding isExportAllChecked,Mode=TwoWay}" Height="16" HorizontalAlignment="Left" Margin="10,4,0,0" GroupName="selectRows" Name="rbAllRows" VerticalAlignment="Top" />
+                <RadioButton Content="Export Selected Students" Height="16" HorizontalAlignment="Left" Margin="165,5,0,0" GroupName="selectRows" Name="rbSelectedRow" VerticalAlignment="Top" />
+                <Label Content="Output Folder" Height="28" HorizontalAlignment="Left" Margin="10,37,0,0" Name="label1" VerticalAlignment="Top" />
+                <CheckBox Content="Remove rows where the image file is missing" Height="16" HorizontalAlignment="Left" Margin="108,94,0,0" Name="chkRemoveImagesMissing" IsChecked="{Binding isRemoveImageMissing,Mode=TwoWay}" VerticalAlignment="Top" />
+                <CheckBox Content="Remove rows where the image a class photo" Height="16" HorizontalAlignment="Left" Margin="108,116,0,0" IsEnabled="False" Name="chkRemoveClassPhotos" VerticalAlignment="Top" />
+                <TextBox Height="23" HorizontalAlignment="left" Margin="108,66,0,0" Name="txtFileName" Text="{Binding fileName,Mode=TwoWay}" VerticalAlignment="Top" Width="180" />
+                <Label Content="Export file name" Height="28" HorizontalAlignment="Left" Margin="10,65,0,0" Name="label2" VerticalAlignment="Top" />
+                <Label Content="{Binding fullPathContent,Mode=TwoWay}" Foreground="Red" Height="28" HorizontalAlignment="Left" Margin="108,38,0,0" Name="lblFullPath" VerticalAlignment="Top" />
+                <TextBox Height="23" HorizontalAlignment="right" Margin="0,37,10,0" Text="{Binding folderName,Mode=TwoWay}" Name="txtfoldname" VerticalAlignment="Top" Width="100" />
+            </Grid>
+        </GroupBox>
+        <Button Content="Export" Height="23" HorizontalAlignment="Right" Margin="0,190,95,0" Name="btnExport" VerticalAlignment="Top" Width="75" Command="{Binding ExportCommand}" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,190,10,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Command="{Binding WindowCloseCommand}"/>-->
+    </Grid>
+</Window>

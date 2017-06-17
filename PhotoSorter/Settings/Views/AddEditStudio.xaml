@@ -1,0 +1,54 @@
+﻿<Window x:Class="PhotoForce.Settings.AddEditStudio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:local="clr-namespace:PhotoForce.Extensions"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Add/Edit Studio" Height="350" Width="320" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Name="lblPFStudioId" Content="PF-Studio Id :" Grid.Row="1" Margin="20,0,0,0" Height="24"/>
+        <TextBox Name="txtPFStudioId" Text="{Binding pfStudioId, Mode=TwoWay}" Grid.Row="1" Height="24" Grid.Column="1" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblStudioName" Content="Studio Name :" Grid.Row="2" Margin="16,0,0,0" Height="24"/>
+        <TextBox Name="txtStudioName" Text="{Binding studioName, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblPrimaryContact" Content="Primary Contact :" Grid.Row="3" Height="24"/>
+        <TextBox Name="txtPrimaryContact" Text="{Binding primaryContact, Mode=TwoWay}" Grid.Row="3" Height="24" Grid.Column="1" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblEmail" Content="Email Address :" Grid.Row="4" Margin="10,0,0,0" Height="24"/>
+        <TextBox Name="txtEmail" Text="{Binding emailAddress, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblAddress" Content="Address :" Grid.Row="5" Margin="40,0,0,0" Height="24"/>
+        <TextBox Name="txtAddress" Text="{Binding address, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblCity" Content="City :" Grid.Row="6" Margin="61,0,0,0" Height="24"/>
+        <TextBox Name="txtCity" Text="{Binding city, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblState" Content="State :" Grid.Row="7" Margin="55,0,0,0" Height="24"/>
+        <TextBox Name="txtState" Text="{Binding state, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblPhone" Content="Phone :" Grid.Row="8" Margin="47,0,0,0" Height="24"/>
+        <TextBox Name="txtPhone" Text="{Binding phone, Mode=TwoWay}" Grid.Row="8" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        <Label Name="lblZip" Content="Zip :" Grid.Row="9" Margin="63,0,0,0" Height="24"/>
+        <TextBox Name="txtZip" Text="{Binding zip, Mode=TwoWay}" Grid.Row="9" Grid.Column="1" Height="24" TextWrapping="Wrap" Margin="0,2,8,2" Grid.ColumnSpan="2" />
+        
+        <Button Name="btnSaveNClose" Content="Save &amp; Close" Grid.Row="10" Grid.Column="1" Height="24" Margin="24,3,35,3" Command="{Binding SaveAndCloseCommand}" />
+        <Button Name="btnCancel" Content="Cancel" Grid.Row="10" Grid.Column="1" Margin="119,3,8,3" Height="24" Grid.ColumnSpan="2" Command="{Binding WindowCloseCommand}" />
+    </Grid>
+</Window>

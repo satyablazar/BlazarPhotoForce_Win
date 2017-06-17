@@ -1,0 +1,77 @@
+﻿<Window x:Class="PhotoForce.StudentImageManagement.BulkRenameStudentImage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="{Binding windowName,Mode=TwoWay}" Height="320" ResizeMode="NoResize" Width="400" WindowStartupLocation="CenterScreen"  Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid>
+            <!--<Label Content="Packages" Name="packages" Margin="2,6,0,0" Width="70" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top" ></Label>
+            <dxg:LookUpEdit Name="lookUpEditType" Margin="90,6,0,0" HorizontalAlignment="Left"
+                        DisplayMember="Package" ValueMember="SimplePhotoItemId"
+                        AutoPopulateColumns="False" AutoComplete="True"
+                        IncrementalFiltering="True"
+                        ImmediatePopup="True"
+                        PopupMaxWidth="120"
+                        IsPopupAutoWidth="False"
+                        VerticalAlignment="Top" 
+                        ItemsSource="{Binding packagesList, Mode=TwoWay}"
+                        SelectedItem="{Binding cbSelectedPackage,Mode=TwoWay}"                                         
+                                               Height="22" Width="121">
+                <dxg:LookUpEdit.StyleSettings>
+                    <dxg:SearchLookUpEditStyleSettings/>
+                </dxg:LookUpEdit.StyleSettings>
+                <dxg:LookUpEdit.PopupContentTemplate>
+                    <ControlTemplate>
+                        <dxg:GridControl Name="PART_GridControl">
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="Package" Header="Package Name"/>
+                                <dxg:GridColumn FieldName="SimplePhotoItemId" Header="Billing Code"/>
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView AutoWidth="True"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </ControlTemplate>
+                </dxg:LookUpEdit.PopupContentTemplate>
+            </dxg:LookUpEdit>
+            <Label Content="Quantity" Name="lblQuantity" Width="54" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top" Margin="216,6,0,0"></Label>
+            <TextBox Name="txtQuantity" Text="{Binding quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Margin="270,6,10,0" IsTabStop="True" TabIndex="0"></TextBox>-->
+            <!--<TextBox Name="txtPackages" Text="{Binding package,Mode=TwoWay}" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Padding="0" Height="22"   Margin="90,6,10,0" IsTabStop="True" TabIndex="0"></TextBox>-->
+
+            <Label Content="Custom 1" Name="Custom1" Margin="2,5,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtCustom1" Text="{Binding custom1}" Margin="90,5,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="1"></TextBox>
+            <Label Content="Custom 2" Name="Custom2" Margin="2,30,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtCustom2" Text="{Binding custom2}" Margin="90,30,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="2"></TextBox>
+            <Label Content="Custom 3" Name="Custom3" Margin="2,55,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtCustom3" Text="{Binding custom3}" Margin="90,55,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="3"></TextBox>
+            <Label Content="Custom 4" Name="Custom4" Margin="2,80,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtCustom4" Text="{Binding custom4}" Margin="90,80,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="4"></TextBox>
+            <Label Content="Custom 5" Name="Custom5" Margin="2,105,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtCustom5" Text="{Binding custom5}" Margin="90,105,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="5"></TextBox>
+
+            <Label Content="Home Room" Name="HomeRoom" Margin="2,130,0,0" Width="80" HorizontalAlignment="Left" Padding="0,2,0,0" VerticalAlignment="Top"></Label>
+            <TextBox Name="txtHomeroom" Text="{Binding homeRoom}" Margin="90,130,10,0" IsTabStop="True" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Top" TabIndex="6"></TextBox>
+            <Label Content="Rating" HorizontalAlignment="Left" Margin="2,155,0,0" Name="lblRating" Padding="0,2,0,0" VerticalAlignment="Top" Width="80" />
+            <ComboBox Name="cmbxRating" SelectedValue="{Binding selectedRating,Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="90,155,10,0" Padding="0" Height="22" VerticalAlignment="Top"  IsTabStop="True" TabIndex="7"
+              DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding ratingData}"/>
+            <Label Content="Ticket Code" Name="TicketCode" Margin="2,180,0,0" Width="80" Padding="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
+            <TextBox Name="txtTicketcode" Text="{Binding ticketCode,Mode=TwoWay}" HorizontalAlignment="Stretch" Padding="0" Height="22"  VerticalAlignment="Top"  Margin="90,180,10,0" IsTabStop="True" TabIndex="8"></TextBox>
+            <Label Content="Yearbook" HorizontalAlignment="Left" Margin="2,207,0,0" Padding="0,2,0,0" Name="label3" VerticalAlignment="Top" Width="80" />
+            <RadioButton Content="Yes" IsChecked="{Binding isYearBookSelected,Mode=TwoWay}" Command="{Binding YearBookCommand}" CommandParameter="true" Height="25" HorizontalAlignment="Stretch" Margin="90,207,228,0" GroupName="yearbook" Name="rbYearBookYes" VerticalAlignment="Top" TabIndex="9" />
+            <RadioButton Content="No" IsChecked="{Binding isYearBookNotSelected,Mode=TwoWay}" Command="{Binding YearBookCommand}" CommandParameter="false" Height="25" HorizontalAlignment="Stretch" Margin="90,227,228,0" GroupName="yearbook" Name="rbYearBookNo" VerticalAlignment="Top" TabIndex="10" SnapsToDevicePixels="False" />
+            <Label Content="Admin CD" HorizontalAlignment="Left" Margin="185,207,0,0" Padding="0,2,0,0" Name="lbladmincd" VerticalAlignment="Top" Width="80" />
+            <RadioButton Content="Yes" IsChecked="{Binding isAdminCDSelected}" Command="{Binding AdminCDCommand}" CommandParameter="true" Height="25" HorizontalAlignment="Stretch" Margin="258,207,57,0" GroupName="admincd" Name="rbAdmincdYes" VerticalAlignment="Top" TabIndex="11" />
+            <RadioButton Content="No" IsChecked="{Binding isAdminCDNotSelected}" Command="{Binding AdminCDCommand}" CommandParameter="false" Height="25" HorizontalAlignment="Stretch" Margin="258,227,57,0" GroupName="admincd" Name="rbAdmincdNo" VerticalAlignment="Top" TabIndex="12" SnapsToDevicePixels="False" />
+        </Grid>
+        <Button Content="{Binding saveButtonContent,Mode=TwoWay}"  HorizontalAlignment="Right" Margin="0,0,73,5" Name="btnBulkRename" VerticalAlignment="Bottom" Command="{Binding BulkRenameCommand}" TabIndex="13" />
+        <Button Content="Cancel"  HorizontalAlignment="Right" Margin="0,0,10,6" Name="btnCancel" VerticalAlignment="Bottom" Width="60" Command="{Binding WindowCloseCommand}" TabIndex="14" />
+    </Grid>
+</Window>
+
+

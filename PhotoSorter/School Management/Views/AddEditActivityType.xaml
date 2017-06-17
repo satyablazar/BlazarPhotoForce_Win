@@ -1,0 +1,16 @@
+﻿<Window x:Class="PhotoForce.School_Management.AddEditActivityType"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}" 
+        Title="Activity Type" Height="150" Width="365" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Height="120" Width="355">
+        <TextBlock HorizontalAlignment="Left" Margin="10,24,0,0" Text="Activity Type" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding activityType}" Height="23" Margin="106,21,0,0" Name="txtType" VerticalAlignment="Top" Width="236"/>
+        <Button Name="btnAdd" Content="Add" Height="23" Width="80" Command="{Binding AddActivityTypeCommand}" Margin="180,55,95,42"  />
+        <Button Name="btnCancel" Content="Cancel" Height="23" Width="80" Command="{Binding WindowCloseCommand}" Margin="265,55,10,42"/>
+    </Grid>
+</Window>

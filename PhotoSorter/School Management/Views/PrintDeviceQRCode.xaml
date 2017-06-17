@@ -1,0 +1,25 @@
+﻿<Window x:Class="PhotoForce.School_Management.PrintDeviceQRCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        Title="Print Device QR Code" Height="600" Width="700" ResizeMode="NoResize" Loaded="Window_Loaded" KeyDown="Window_KeyDown" >
+    <Window.Resources>
+        <DataTemplate x:Key="StudentName">
+            <Grid >
+                <StackPanel Orientation="Vertical">
+                    <dxe:TextEdit Text="{Binding Path=Content.SchoolName, Mode=OneWay}" FontSize="18" />
+                    <dxe:TextEdit Height="20" />
+                    <dxe:TextEdit Text="{Binding Path=Content.Date, Mode=OneWay}" FontSize="18" />
+                    <dxe:TextEdit Height="40" />
+                    <dxe:TextEdit Text="{Binding Path=Content.IDQRcode, Mode=OneWay}" FontSize="60" FontFamily="MW6 Matrix"/>
+                    <dxe:TextEdit Text="{Binding Path=Content.ID, Mode=OneWay}"   FontSize="18" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+    <dxp:DocumentPreview Name="preview" />
+</Window>
+
+

@@ -1,0 +1,69 @@
+﻿<Window x:Class="PhotoForce.WorkPlace.GeneratePDF"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Multi Pose Order Form" Height="512" Width="680" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" WindowStartupLocation="CenterScreen" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <WorkPlace:IntToEnableConveter x:Key="IntToEnableConveter"/>
+        <WorkPlace:IntToEnableConveter2 x:Key="IntToEnableConveter2"/>
+        <WorkPlace:GeneratePDFMultiValueConverter x:Key="GeneratePDFMultiValueConverter"/>
+    </Window.Resources>
+    <Grid Height="500">
+
+        <GroupBox Header="Select to generate PDFs" Height="174" HorizontalAlignment="Stretch" Margin="20,4,20,0" Name="groupBox1" VerticalAlignment="Top" >
+            <Grid HorizontalAlignment="Stretch" >
+                <RadioButton Content="Print All Students" Height="22" HorizontalAlignment="Left" Margin="31,8,0,0" GroupName="students" Name="rbAllStudents" IsChecked="{Binding isAllStudentsChecked,Mode=TwoWay}" VerticalAlignment="Top" />
+                <RadioButton Content="Print Selected Students" Height="22" HorizontalAlignment="Left" Margin="181,8,0,0" GroupName="students" Name="rbSelectedStudent" IsEnabled="{Binding grpIdCount,Converter={StaticResource IntToEnableConveter}}" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="201,38,0,0" Name="cmbTemplate" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectedValue="{Binding templateSelectValue}" ItemsSource="{Binding templateData,Mode=TwoWay}" DisplayMemberPath="templateCode" SelectedValuePath="Id"/>
+                <Label Content="Select Template" Height="23" HorizontalAlignment="Left" Margin="49,38,0,0" Name="lblTemplate" VerticalAlignment="Top" />
+                <DatePicker Height="25" HorizontalAlignment="Left" Margin="201,71,0,0" SelectedDate="{Binding deadLine,Mode=TwoWay}" Name="datePickerDeadline" VerticalAlignment="Top" Width="195" />
+                <Label Content="Deadline" Height="25" HorizontalAlignment="Left" Margin="49,71,0,0" Name="label3" VerticalAlignment="Top" />
+                <CheckBox Content="Create a separate folder for each teacher" Height="23" Name="chkForSeperateFolder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,114,0,0" Width="284" IsChecked="{Binding isSeperateFolderChecked, Mode=TwoWay}"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Review Pricing" Height="23" HorizontalAlignment="Right" Margin="0,189,20,0" Name="btReviewPricing" VerticalAlignment="Top"  Command="{Binding ReviewPricingCommand}" />
+
+        <GroupBox Header="Export Path:" Height="210" HorizontalAlignment="Stretch" Margin="20,218,20,0" Name="groupBox2" VerticalAlignment="Top">
+            <Grid>
+                <RadioButton Name="rbExport" GroupName="ExportPathGroup" IsEnabled="{Binding grpIdCount,Converter={StaticResource IntToEnableConveter}}" IsChecked="{Binding isExportChecked,Mode=TwoWay}" Content="Export using the school path" Margin="31,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></RadioButton>
+                <TextBlock Name="lblFullPath" HorizontalAlignment="Left" Text="{Binding fullPath}" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="559" Margin="49,36,0,0" />
+                <Button Content="Open School Folder" Height="23" HorizontalAlignment="Right" x:Name="btnOpenFolder" IsEnabled="{Binding IsChecked, ElementName=rbExport}" VerticalAlignment="Top" Command="{Binding OpenSchoolFolderCommand}" Margin="0,7,4,0" />
+                <Label Content="Export sub-folder (can be changed) " Name="lblExportPath" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="49,65,0,0" Height="25"></Label>
+                <TextBox Name="txtSubFolderDateTime" Text="{Binding subFolderText}" IsEnabled="{Binding IsChecked,ElementName=rbExport}" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="246,65,0,0" Width="136" Height="25" ></TextBox>
+
+                <RadioButton Name="rbAlternateFolder" IsChecked="{Binding isAlternateFolder,Mode=TwoWay}" GroupName="ExportPathGroup" Content="Browse for an alternative folder" Margin="31,97,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></RadioButton>
+                <TextBox  Name="txtAlternateFullPath" Text="{Binding alternateFullPath}" IsEnabled="{Binding ElementName=rbAlternateFolder,Path=IsChecked}" TextWrapping="Wrap"  HorizontalAlignment="Stretch"  VerticalScrollBarVisibility="Auto" Margin="31,120,0,0"   VerticalAlignment="Top">
+                    <!--<TextBox.IsEnabled>
+                        <MultiBinding Converter="{StaticResource GeneratePDFMultiValueConverter}">
+                            <Binding ElementName="rbAlternateFolder" Path="IsChecked"/>
+                            <Binding Path="grpIdCount"/>
+                        </MultiBinding>
+                    </TextBox.IsEnabled>-->
+                </TextBox>
+                <Button Content="Browse..." Height="23" HorizontalAlignment="Right" Margin="0,151,0,0" Name="btnAlternateFolder" VerticalAlignment="Top" Width="100" Command="{Binding AlternateFolderCommand}" IsEnabled="{Binding ElementName=rbAlternateFolder,Path=IsChecked}" >
+                    <!--<Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource GeneratePDFMultiValueConverter}">
+                            <Binding ElementName="rbAlternateFolder" Path="IsChecked"/>
+                            <Binding Path="grpIdCount"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>-->
+                </Button>
+            </Grid>
+        </GroupBox>
+        <!--<ProgressBar Height="24" HorizontalAlignment="Stretch" Margin="20,0,31,74" Name="ProgressBar1" Visibility="Hidden"    VerticalAlignment="Bottom" />-->
+        <ProgressBar Value="{Binding currentProgress}" HorizontalAlignment="Left" Visibility="{Binding isProgressBarVisible}" Minimum="{Binding minValue}" Maximum="{Binding maxValue}" Height="24" Margin="20,0,0,32" Width="520" VerticalAlignment="Bottom"/>
+        <!--<Label Content="{Binding lblStopContent}" Height="30" Foreground="Red" HorizontalAlignment="Left" Margin="20,0,0,15" Name="labelstop" VerticalAlignment="Bottom" />-->
+        <!--<Label Content="{Binding processingContent}" Height="28" HorizontalAlignment="Left" Margin="20,0,0,27" Name="lblProcessing" Visibility="Visible" VerticalAlignment="Bottom" />-->
+        <Button Content="Generate" Height="23" HorizontalAlignment="Right" Margin="0,0,20,32" IsEnabled="{Binding generateEnable,Mode=TwoWay}" Name="btnGeneratePDF" VerticalAlignment="Bottom" Width="75" Command="{Binding GeneratePDFCommand}" />
+
+        <Button Content="Error Log" Height="23" HorizontalAlignment="Right" Margin="0,0,101,32" Name="btnErrorLog" VerticalAlignment="Bottom" Visibility="{Binding btnErrorLogVisibility}" Width="75" Command="{Binding ErrorLogCommand}" />
+        <Label Content="PDF Generation Completed with errors. Click on the button to see the error details."  Visibility="{Binding lblShowErrorLogVisibility}" HorizontalAlignment="right" Margin="0,0,181,32" Name="lblShowErrorLog" Foreground="Red" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

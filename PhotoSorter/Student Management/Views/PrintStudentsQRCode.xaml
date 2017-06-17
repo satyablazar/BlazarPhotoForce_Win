@@ -1,0 +1,31 @@
+﻿<Window x:Class="PhotoForce.Student_Management.PrintStudentsQRCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+        Title="Print Students QR Code" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="StudentName">
+            <Grid Height="265">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="280" >
+                        <dxe:TextEdit Text="{Binding Path=Content.ID, Mode=OneWay}"  FontSize="49" FontFamily="3 of 9 Barcode"   />
+                        <dxe:TextEdit Text="{Binding Path=Content.FirstLastName, Mode=OneWay}"  Height="25"   FontWeight="Bold"   FontSize="17" />
+                        <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade, Mode=OneWay}"  Height="25"   FontSize="17" />
+                        <dxe:TextEdit Text="{Binding Path=Content.SchoolName, Mode=OneWay}"  Height="25"     FontSize="17" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TeacherName">
+            <Grid Height="1060">
+                <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade, Mode=OneWay}"  Height="25" FontSize="17"    />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <dxp:DocumentPreview Name="preview"/>
+</Window>
+

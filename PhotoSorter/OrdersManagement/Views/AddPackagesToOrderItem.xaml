@@ -1,0 +1,71 @@
+﻿<Window x:Class="PhotoForce.OrdersManagement.AddPackagesToOrderItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Add/Edit Package" Height="143" Width="280" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="2"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Package" Height="20" Grid.Row="1" Width="50" HorizontalAlignment="Left" Margin="20,4,0,4"/>
+        <!--<ComboBox Height="24" Width="178" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding cbOrderPackagesData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  DisplayMemberPath="Package" SelectedValuePath="Item"
+                  SelectedItem="{Binding selectedOrderPackage, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Left" Name="txtBillingCode"/>-->
+        <dxg:LookUpEdit Name="lookUpEditType" HorizontalAlignment="Left"
+                        DisplayMember="Package" ValueMember="Item"
+                        AutoPopulateColumns="False" AutoComplete="True"
+                        IncrementalFiltering="False"
+                        ImmediatePopup="True"
+                        PopupMaxWidth="240"
+                        IsPopupAutoWidth="False"
+                        VerticalAlignment="Center"
+                        FilterCondition = "Equals"
+                        ItemsSource="{Binding cbOrderPackagesData, Mode=TwoWay}"
+                        SelectedItem="{Binding selectedOrderPackage,Mode=TwoWay}"                                         
+                                               Height="24" Width="178" Grid.Row="1" Grid.Column="1" >
+            <dxg:LookUpEdit.StyleSettings>
+                <dxg:SearchLookUpEditStyleSettings/>
+            </dxg:LookUpEdit.StyleSettings>
+            <dxg:LookUpEdit.PopupContentTemplate>
+                <ControlTemplate>
+                    <dxg:GridControl Name="PART_GridControl">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="Item" Header="Package"/>
+                            <dxg:GridColumn FieldName="Package" Header="Package Name" AllowSearchPanel="False"/>
+                            <dxg:GridColumn FieldName="SimplePhotoItemId" Header="Billing Code" Visible="False" AllowSearchPanel="False"/>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView AutoWidth="True" ShowAutoFilterRow="True" SearchDelay="0"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </ControlTemplate>
+            </dxg:LookUpEdit.PopupContentTemplate>
+        </dxg:LookUpEdit>
+        <TextBlock Text="Quantity" Height="20" Grid.Row="2" Width="50" HorizontalAlignment="Left" Margin="20,6,0,3"/>
+        <TextBox Height="24" Width="176" Grid.Row="2" Grid.Column="1" Text="{Binding quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Left" Name="txtquantity" Margin="2,2,0,2">
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <i:InvokeCommandAction Command="{Binding AddPackagesQuantityCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        </TextBox>
+        <Button Height="24" Width="70" Content="Save" Grid.Row="4" Grid.Column="1" Command="{Binding AddPackagesQuantityCommand}" VerticalAlignment="Center" HorizontalAlignment="Right" Name="btnPackages" Margin="0,2,75,2"/>
+        <Button Height="24" Width="70" Content="Cancel" Grid.Row="4" Grid.Column="1" Command="{Binding WindowCloseCommand}" VerticalAlignment="Center" HorizontalAlignment="Right" Name="btnClose" Margin="0,2"/>
+    </Grid>
+</Window>

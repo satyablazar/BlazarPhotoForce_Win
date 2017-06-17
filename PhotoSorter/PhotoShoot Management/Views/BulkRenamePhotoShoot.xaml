@@ -1,0 +1,24 @@
+﻿<Window x:Class="PhotoForce.PhotoShoot_Management.BulkRenamePhotoShoot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Bulk Rename PhotoShoot" Height="170" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Height="130" Width="382">
+        <Grid >
+            <Label Content="School Year" Height="28" HorizontalAlignment="Left" Padding="0,2,0,0" Margin="2,7,0,0" Name="lblSchoolYear" VerticalAlignment="Top" Width="68" VerticalContentAlignment="Center"  />
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,11,0,0" DisplayMemberPath="JobName" SelectedValuePath="ID" Name="cbPhotographyJob" SelectedValue="{Binding selectedJobId,Mode=TwoWay}" ItemsSource="{Binding cbPhotographyJobData,Mode=TwoWay}" Width="139" Padding="0" Height="22" Focusable="True" KeyboardNavigation.TabIndex="0"/>
+            <Button Content="New School Year" HorizontalAlignment="left" Name="btnNewSchoolYear" VerticalAlignment="Top" Margin="264,11,0,0" Width="113" Command="{Binding NewSchoolYearCommand}" TabIndex="1"/>
+            <Label Content="Photo Shoot Name" Name="lblPhotoShootName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Padding="0,2,0,0"  Margin="2,38,0,0"  ></Label>
+            <TextBox Name="txtPhotoShootName" Text="{Binding photoShootName,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="123,38,5,0" Height="22" Padding="0" TabIndex="2" ></TextBox>
+            <Label Content="Photo Shoot Date" Name="lblPhotoShootDate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112"  Margin="2,66,0,0" Padding="0,2,0,0"  ></Label>
+            <DatePicker  HorizontalAlignment="Stretch" Margin="123,66,5,0"  Name="dpPhotoShootDate" SelectedDate="{Binding photoShootDate,Mode=TwoWay}" VerticalAlignment="Top" Height="22" Padding="0" TabIndex="3"/>
+        </Grid>
+        <Button Content="Bulk Rename" HorizontalAlignment="Right"  Margin="0,0,67,13" Name="Update" VerticalAlignment="Bottom" Command="{Binding SaveAndCloseCommand}"/>
+        <Button Content="Cancel"  HorizontalAlignment="Right" Margin="0,0,4,13" Name="Cancel" VerticalAlignment="Bottom" Width="60" Command="{Binding WindowCloseCommand}"/>
+    </Grid>
+</Window>
+

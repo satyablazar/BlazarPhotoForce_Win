@@ -1,0 +1,871 @@
+﻿<Window x:Class="PhotoForce.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+        xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+        xmlns:local="clr-namespace:PhotoForce"
+        xmlns:WorkPlaceC="clr-namespace:PhotoForce.WorkPlace.UserControls"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:LicenseManagement="clr-namespace:PhotoForce.License_Management"
+        xmlns:GroupManagement="clr-namespace:PhotoForce.GroupManagement"
+        xmlns:SettingsC="clr-namespace:PhotoForce.Settings.UserControls"
+        xmlns:ViewPhotoShootC="clr-namespace:PhotoForce.View_Management.UserControls"
+        xmlns:OrderManagement="clr-namespace:PhotoForce.OrdersManagement"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        Height="575" Width="1060" Name="PhotoForce" Title="PhotoForce" Icon="/PhotoForce;component/images/PS4.ico" WindowState="Maximized" WindowStartupLocation="CenterScreen" Closing="PhotoSorter_Closing_1">
+
+    <Window.Resources>
+        <LicenseManagement:IntToBoolConverter x:Key="IntToBoolConverter"/>
+        <WorkPlace:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <WorkPlace:TabControlBoolToVisibilityConverter x:Key="TabControlVisibleConverter"/>
+        <WorkPlace:BoolToIsVisibileConverter x:Key="BoolToIsVisibileConverter"/>
+        <!--<WorkPlace:BoolToIsVisibileConverter2 x:Key="BoolToIsGroupSectionVisibleConverter"/> BoolToVisibilityMultiConverter -->
+        <WorkPlace:BoolToVisibilityMultiConverter x:Key="BoolToVisibilityMultiConverter"/>
+        <WorkPlace:BoolToIsVisibileConverter3 x:Key="BoolToGroupVisibleConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <dxb:BarManager Name="ps3MainBarManager" >
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem Content="New" LargeGlyph="/PhotoForce;component/images/newButton.png" IsEnabled="{Binding Path=isNewVisible,Source={x:Static Application.Current}}" Name="bNew" Command="{Binding NewCommand}"/>
+                <dxb:BarButtonItem Content="Edit" LargeGlyph="/PhotoForce;component/images/edit.png" Name="bEdit" IsEnabled="{Binding Path=isEditVisible,Source={x:Static Application.Current}}" Command="{Binding EditCommand}"/>
+                <dxb:BarButtonItem Content="Delete" LargeGlyph="/PhotoForce;component/images/delete.png" x:Name="bDelete" Command="{Binding DeleteCommand}" IsEnabled="{Binding Path=isDeleteVisible,Source={x:Static Application.Current}}" />
+                <dxb:BarButtonItem Content="Delete All" LargeGlyph="/PhotoForce;component/images/delete.png" IsVisible="{Binding Path=isDeleteAllVisible,Source={x:Static Application.Current}}" x:Name="bDeleteAll" Command="{Binding DeleteAllCommand}"/>
+                <dxb:BarButtonItem Content="Remove" LargeGlyph="/PhotoForce;component/images/deleteFromGroup.png" x:Name="bRemoveFromGroup" IsVisible="{Binding Path=isRemoveFromGrpVisible,Source={x:Static Application.Current}}" Command="{Binding RemoveFromGroupCommand}"/>
+                <dxb:BarButtonItem Content="Drag" LargeGlyph="/PhotoForce;component/images/drag.png" x:Name="bGroupGrid" IsEnabled="{Binding Path=isDragVisible,Source={x:Static Application.Current}}" Command="{Binding DragCommand}"/>
+                <dxb:BarButtonItem Content="Search" LargeGlyph="/PhotoForce;component/images/search.ico" x:Name="bSearchGrid" IsEnabled="{Binding Path=isSearchVisible,Source={x:Static Application.Current}}" Command="{Binding SearchCommand}"/>
+                <dxb:BarButtonItem Content="Import File" LargeGlyph="/PhotoForce;component/images/import.png" x:Name="bImportFile" IsVisible="{Binding Path=isImportFileVisible,Source={x:Static Application.Current}}" Command="{Binding ImportFileCommand}"/>
+                <dxb:BarButtonItem Content="Import Images" LargeGlyph="/PhotoForce;component/images/importqrfile2.png" IsVisible="{Binding isDashboardVisible, Mode=TwoWay}" x:Name="bImportQRFile" Command="{Binding UploadImagesCommand}"/>
+                <dxb:BarButtonItem Content="Import Students" LargeGlyph="/PhotoForce;component/images/import.png" IsVisible="{Binding isStudentVisible, Mode=TwoWay}" x:Name="bStudentImport" Command="{Binding ImportStudentsCommand}"/>
+                <!--<dxb:BarButtonItem Content="Import Orders" LargeGlyph="/PhotoForce;component/images/import-orders.png" IsVisible="{Binding Path=isOrderButtonsVisible,Source={x:Static Application.Current}}" x:Name="bOrdersImport" Command="{Binding ImportOrdersCommand}"/>-->
+                <dxb:BarButtonItem Content="Import Orders" LargeGlyph="/PhotoForce;component/images/import-orders.png" IsVisible="{Binding Path=isImportOrdersVisible,Source={x:Static Application.Current}}" x:Name="bOrdersWithDownImport" Command="{Binding ImportOrdersCommand}"/>
+                <dxb:BarButtonItem Content="ShipRush Tracking" LargeGlyph="/PhotoForce;component/images/shiprush.png" IsVisible="{Binding Path=isImportOrdersVisible,Source={x:Static Application.Current}}" x:Name="bShiprushTraching" Command="{Binding ShiprushTrackingCommand}"/>
+                <dxb:BarButtonItem Content="Refresh" LargeGlyph="/PhotoForce;component/images/refresh.png" x:Name="bRefresh" IsEnabled="{Binding Path=isRefreshVisible,Source={x:Static Application.Current}}" Command="{Binding RefreshCommand}"/>
+                <dxb:BarButtonItem Content="Generate Multi Pose Order Form" LargeGlyph="/PhotoForce;component/images/mpof.ico" x:Name="bGeneratePDF" IsVisible="{Binding isGroupVisible, Mode=TwoWay}" Command="{Binding MPOFCommand}"/>
+                <dxb:BarButtonItem Content="Export Photos" LargeGlyph="/PhotoForce;component/images/copy.png" x:Name="bExport" Command="{Binding ExportPhotosCommand}">
+                    <dxb:BarButtonItem.IsVisible>
+                        <MultiBinding Converter="{StaticResource BoolToVisibilityMultiConverter}">
+                            <Binding Path="isGroupVisible"/>
+                            <Binding Path="isOrdersVisible"/>
+                            <Binding Path="isViewOrderByGalleryGroupVisible"/>
+                            <Binding Path="isSearchOrdersVisible"/>
+                            <Binding Source="ExportPhotos"/>
+                        </MultiBinding>
+                    </dxb:BarButtonItem.IsVisible>
+                </dxb:BarButtonItem>
+                <dxb:BarButtonItem Content="Bulk Edit" LargeGlyph="/PhotoForce;component/images/rename.png" x:Name="bBulkRename" IsEnabled="{Binding Path=isBulkRenameVisible,Source={x:Static Application.Current}}" Command="{Binding BulkRenameCommand}"/>
+                <!--<dxb:BarButtonItem Content="Count Images" LargeGlyph="/PhotoForce;component/images/count.png" x:Name="bCountImages" Command="{Binding CountImagesCommand}" IsVisible="{Binding isDashboardVisible, Mode=TwoWay}"/>-->
+                <dxb:BarButtonItem Content="Count Duplicate Students" LargeGlyph="/PhotoForce;component/images/count.png" Name="bCountStudents" Command="{Binding CountImagesCommand}" IsVisible="{Binding isStudentVisible,Mode=TwoWay}"/>
+                <!--<dxb:BarButtonItem Content="Export to CSV" LargeGlyph="/PhotoForce;component/images/export.png"  Name="bExportToCsv" IsVisible="False"/>-->
+                <dxb:BarButtonItem Content="Add to Group" LargeGlyph="/PhotoForce;component/images/addToGroups.png" Name="bAddToGroup" IsEnabled="{Binding Path=isAddToGroupVisible,Source={x:Static Application.Current}}" Command="{Binding AddToGroupCommand}" />
+                <dxb:BarButtonItem Content="Generate Password" LargeGlyph="/PhotoForce;component/images/passwordGenerate.png" Name="bGeneratePassword" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding GeneratePasswordCommand}"/>
+                <dxb:BarButtonItem Content="Select Group Photo" LargeGlyph="/PhotoForce;component/images/groupPhoto.png" Name="bGroupClass"  IsVisible="{Binding isGroupVisible,Mode=TwoWay}" Command="{Binding GroupPhotoCommand}"/>
+                <dxb:BarButtonItem Content="Export Students" LargeGlyph="/PhotoForce;component/images/export.png" x:Name="bStudentExport" IsVisible="{Binding isStudentVisible, Mode=TwoWay}" Command="{Binding ExportStudentsCommand}"/>
+                <dxb:BarButtonItem Content="Get Photo Rating" LargeGlyph="/PhotoForce;component/images/rating.png" x:Name="bPhotoRating" IsVisible="{Binding isDashboardVisible, Mode=TwoWay}" Command="{Binding RatingCommand}"/>
+                <!--<dxb:BarButtonItem IsVisible="False"  Content="Check All Students" LargeGlyph="/PhotoForce;component/images/checkbox_checked.png"  Name="bCheckAllStudent"/>
+                <dxb:BarButtonItem IsVisible="False" Content="Uncheck All Students" LargeGlyph="/PhotoForce;component/images/checkbox_unchecked.png"  Name="bUncheckAllStudent"/>-->
+                <dxb:BarButtonItem Content="Update Yearbook" LargeGlyph="/PhotoForce;component/images/yearBook.png" IsVisible="False"  Name="bUpdateYearbook"/>
+                <dxb:BarButtonItem Content="Create Teacher Groups" LargeGlyph="/PhotoForce;component/images/autoGroup.png" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Name="bAutoCreateGroup" Command="{Binding CreateTeacherGroupsCommand}"/>
+                <!--<dxb:BarButtonItem Content="Rename Source Images" LargeGlyph="/PhotoForce;component/images/renameImages.png" Name="bRenameSourceImages" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding RenameSourceImagesCommand}"/>-->
+                <dxb:BarButtonItem Content="Rename Source Images" LargeGlyph="/PhotoForce;component/images/renameImages.png" Name="bRenameSourceImages" IsEnabled="{Binding Path=isRenameSourceImagesVisible,Source={x:Static Application.Current}}" Command="{Binding RenameSourceImagesCommand}"/>
+                <dxb:BarButtonItem Content="Generate Reduced Images" LargeGlyph="/PhotoForce;component/images/reducedimages.png" x:Name="bGenerateReducedImages" IsVisible="{Binding isDashboardVisible, Mode=TwoWay}" Command="{Binding GenerateReducedImagesCommand}"/>
+                <dxb:BarButtonItem Content="Generate Reduced Images All" LargeGlyph="/PhotoForce;component/images/ReducedAll.png" Name="bGenerateReducedImagesAll" IsVisible="False" Command="{Binding GenerateReducedImagesAllCommand}"/>
+                <!--<dxb:BarButtonItem Content="Students Without Images" LargeGlyph="/PhotoForce;component/images/StudentWithoutImage.png" Name="bstudentwithoutimage" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" IsEnabled="{Binding Path=isStuWithOutImageVisible,Source={x:Static Application.Current}}" Command="{Binding StudentsWithoutImageCommand}"/>-->
+                <!--<dxb:BarButtonItem Content="Images Without Students" LargeGlyph="/PhotoForce;component/images/NoStudent.png" Name="bimagewithoutstudent" IsVisible="{Binding Path=isImageWithOutStuVisible,Source={x:Static Application.Current}}" />-->
+                <dxb:BarButtonItem Content="Open Folder" LargeGlyph="/PhotoForce;component/images/openFolder.png" IsEnabled="{Binding Path=isOpenFolderVisible,Source={x:Static Application.Current}}" Name="bOpenFolder" Command="{Binding OpenFolderCommand}"/>
+                <dxb:BarButtonItem Content="Sync Deleted Images" LargeGlyph="/PhotoForce;component/images/synch.png" Name="bSyncDelImages" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding SyncDeletedImagesCommand}"/>
+                <dxb:BarButtonItem Content="Re-sync Image Name" LargeGlyph="/PhotoForce;component/images/ResyncImage.png" Name="bReSyncImagesNam" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding ReSyncImageNamesCommand}"/>
+                <!--<dxb:BarButtonItem Content="Re-Assign Photoshoot to Schoool Year" LargeGlyph="/PhotoForce;component/images/imgReassignPhotoshoots.png" Name="bReAssignPhotoshootToSeason" Command="{Binding ReAssignPhotoshootToSchoolYearCommand}"/>-->
+                <dxb:BarButtonItem Content="About" LargeGlyph="/PhotoForce;component/images/about.png" Name="bAboutUs" Command="{Binding AboutUsCommand}"/>
+                <dxb:BarButtonItem Content="Generate QRcode" LargeGlyph="/PhotoForce;component/images/qrcode.png" Name="bGenerateQRcode" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding GenerateQRCodeCommand}"/>
+                <dxb:BarButtonItem Content="Add To Orders" LargeGlyph="/PhotoForce;component/images/add_to_orders.png" Name="bAddToOrders" Command="{Binding AddToOrdersCommand}">
+                    <dxb:BarButtonItem.IsVisible>
+                        <MultiBinding Converter="{StaticResource BoolToVisibilityMultiConverter}">
+                            <Binding Path="isGroupVisible"/>
+                            <Binding Path="isOrdersVisible"/>
+                            <Binding Path="isViewOrderByGalleryGroupVisible"/>
+                            <Binding Path="isSearchOrdersVisible"/>
+                            <Binding Source="AddToOrders"/>
+                        </MultiBinding>
+                    </dxb:BarButtonItem.IsVisible>
+                </dxb:BarButtonItem>
+                <dxb:BarButtonItem Content="Assign Student" LargeGlyph="/PhotoForce;component/images/AssignStudents.png" Name="bAssignStudent" IsVisible="{Binding Path=isAssignStudentVisible,Source={x:Static Application.Current}}" Command="{Binding AssignStudentCommand}"/>
+                <dxb:BarButtonItem Content="Deactivate Students" LargeGlyph="/PhotoForce;component/images/Deactivate1.png" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Name="bDeactivateStudent" Command="{Binding DeactivateStudentCommand}"/>
+                <dxb:BarButtonItem Content="Activate Students" LargeGlyph="/PhotoForce;component/images/Activate.png" IsVisible="{Binding isActivateStudentVisible,Mode=TwoWay}" Name="bActivateStudent" Command="{Binding ActivateStudentCommand}"/>
+                <dxb:BarButtonItem Content="Print Device QR Code" LargeGlyph="/PhotoForce;component/images/deviceqr.png"  Name="bPrintDeviceQR" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding PrintDeviceQRCommand}"/>
+                <!--<dxb:BarButtonItem Content="Validate Admin CD"  LargeGlyph="/PhotoForce;component/images/Countadmincd.png" Name="bCountAdminCD" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding CountAdminCDCommand}"/>-->
+                <!--<dxb:BarButtonItem Content="Validate YearBook" LargeGlyph="/PhotoForce;component/images/CountyearBook.png" Name="bCountYearbook" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding CountYearbookCommand}"/>-->
+                <!--<dxb:BarButtonItem Content="Validate Photoshoots" LargeGlyph="/PhotoForce;component/images/validate-photoshoot.png" Name="bValidatePhotshoots" IsVisible="{Binding isDashboardVisible,Mode=TwoWay}" Command="{Binding ValidatePhotoshootsCommand}"/>-->
+                <dxb:BarButtonItem Content="Validate Data File" LargeGlyph="/PhotoForce;component/images/validatedatafile.png" Name="bValidateDataFile" IsEnabled="{Binding isUniversalStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToIsVisibileConverter}}" Command="{Binding ValidateDataFileCommand}"/>
+                <dxb:BarButtonItem Content="Check Renamed  Photoshoots" LargeGlyph="/PhotoForce;component/images/edit-validated.png" Name="bCheckForRenamePhotoshoots" IsEnabled="{Binding isUniversalStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToIsVisibileConverter}}" Command="{Binding CheckForRenamePhotoshootsCommand}"/>
+                <dxb:BarButtonItem Content="Set Default School" LargeGlyph="/PhotoForce;component/images/default school2.png"  Name="bDefaultSchool" IsEnabled="{Binding isUniversalStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToIsVisibileConverter}}" Command="{Binding DefaultSchoolCommand}"/>
+                <dxb:BarButtonItem Content="Default Package" IsVisible="{Binding isSchoolsVisible,Mode=TwoWay}" LargeGlyph="/PhotoForce;component/images/default price3.png"  Name="bDefaultPackage" Command="{Binding DefaultPackageCommand}"/>
+                <dxb:BarButtonItem Content="Write Passwords To Images" LargeGlyph="/PhotoForce;component/images/IPTC.png" Name="bJIF" IsVisible="{Binding Path=isIPTCVisible,Source={x:Static Application.Current}}" Command="{Binding IPTCCommand}"/>
+                <dxb:BarButtonItem Content="Add Credits" LargeGlyph="/PhotoForce;component/images/add_credit.png" Name="bAddCredits" Command="{Binding AddCreditsCommand}"/>
+                <dxb:BarButtonItem Content="Open Database" LargeGlyph="/PhotoForce;component/images/db_update.png" Name="bOpenDatabase" Command="{Binding OpenDatabaseCommand}"/>
+                <dxb:BarButtonItem Content="Re-Import Students" LargeGlyph="/PhotoForce;component/images/button-import-excel.png" Name="bReImportStudents" IsEnabled="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding ReImportStudentsCommand}"/>
+                <dxb:BarButtonItem Content="Auto-assign group photo" LargeGlyph="/PhotoForce;component/images/AddGroupImage.png" Name="bPhotosToBeAddedToGroup" IsVisible="{Binding Path=isAutoAssignClassVisible,Source={x:Static Application.Current}}" Command="{Binding AutoAssignClassPhotosCommand}"/>
+                <dxb:BarButtonItem Content="Add group photo" LargeGlyph="/PhotoForce;component/images/autoGroup.png" Name="bAddGroupPhoto" IsVisible="{Binding Path=isAddGroupPhotobtnVisible,Source={x:Static Application.Current}}" Command="{Binding AddGroupPhotoCommand}"/>
+                <dxb:BarButtonItem Content="Auto create group photos" LargeGlyph="/PhotoForce;component/images/auto_create_group_photo.png" Name="bAutoCreateGroupPhoto" IsVisible="{Binding Path=isOrderButtonsVisible,Source={x:Static Application.Current}}" Command="{Binding AutoCreateGroupPhotosCommand}"/>
+                <dxb:BarButtonItem Content="Restore source images" LargeGlyph="/PhotoForce;component/images/restoreIcon.png" Name="bRestoreSourceImages" IsVisible="{Binding isGroupVisible,Mode=TwoWay}" Command="{Binding RestoreSourceImagesCommand}"/>
+                <dxb:BarButtonItem Content="Edit OrderItem Billing Code" LargeGlyph="/PhotoForce;component/images/editorderitem.png" Name="bBillingCode" IsVisible="{Binding Path=isOrderButtonsVisible,Source={x:Static Application.Current}}" Command="{Binding EditBillingCodesCommand}"/>
+                <dxb:BarButtonItem Content="Send Log File" LargeGlyph="/PhotoForce;component/images/sendlog.png" Name="bSendLog" Command="{Binding SendLogFileCommand}"/>
+                <dxb:BarButtonItem Content="File Locations" LargeGlyph="/PhotoForce;component/Images/settings.png" Name="bFileLocationSettings" Command="{Binding FileLocationSettingsCommand}"/>
+                <dxb:BarButtonItem Content="Order Missing Images"  LargeGlyph="/PhotoForce;component/images/missingimages.png" Name="bHasMissingImages" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding HasMissingImagesCommand}"/>
+                <dxb:BarButtonItem Content="Update Tracking"  LargeGlyph="/PhotoForce;component/images/editorder.png" Name="bEditOrders" IsVisible="{Binding isEditOrdersVisible,Source={x:Static Application.Current}}" Command="{Binding EditOrdersCommand}"/>
+                <dxb:BarButtonItem Content="Assign Order Image"  LargeGlyph="/PhotoForce;component/images/assign-order-image.png" Name="bAssignOrderImage" IsVisible="{Binding isAssignOrderVisible,Source={x:Static Application.Current}}" Command="{Binding AssignOrderImagesCommand}"/>
+                <dxb:BarButtonItem Content="Copy Retouch Images"  LargeGlyph="/PhotoForce;component/images/copyretouch.png" Name="bCopyRetouchImages" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding CopyRetouchImagesCommand}"/>
+                <dxb:BarButtonItem Content="DataBase Backup" LargeGlyph="/PhotoForce;component/images/dbbackup.png" Name="bDataBaseBackUp" Command="{Binding DataBaseBackUpCommand}"/>
+                <dxb:BarButtonItem Content="Images Without Orders"  LargeGlyph="/PhotoForce;component/images/imageswithoutorders.png" Name="bImagesWithoutOrders" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding ImagesWithoutOrdersCommand}"/>
+                <dxb:BarButtonItem Content="Import Yearbook Choice"  LargeGlyph="/PhotoForce;component/images/yearbookchoice.png" Name="bImportYearbookChoice" IsVisible="{Binding isGroupVisible,Mode=TwoWay}" Command="{Binding ImportYearbookChoiceCommand}"/>
+                <dxb:BarButtonItem Content="Update Vendor Order Number"  LargeGlyph="/PhotoForce;component/images/updatevendororderid.png" Name="bUpdateOrdersThroughExcel" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding UpdateOrdersThroughExcelCommand}"/>
+                <dxb:BarButtonItem Content="Missing Orders"  LargeGlyph="/PhotoForce;component/images/ordertracking.png" Name="bMissingOrders" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding MissingOrdersCommand}"/>
+                <dxb:BarButtonItem Content="Merge Schools"  LargeGlyph="/PhotoForce;component/images/mergeschool.png" Name="bMergeSchools" IsVisible="{Binding isSchoolsVisible,Mode=TwoWay}" Command="{Binding MergeSchoolsCommand}"/>
+                <dxb:BarButtonItem Content="{Binding manageCollection, Mode=TwoWay}"  LargeGlyph="/PhotoForce;component/images/mergeschool.png" Name="bAddCollections" IsVisible="{Binding Path=isAddCollectionButtonVisible,Source={x:Static Application.Current}}" Command="{Binding AddCollectionsCommand}"/>
+				<dxb:BarButtonItem Content="{Binding manageEquipmentItems, Mode=TwoWay}"  LargeGlyph="/PhotoForce;component/images/mergeschool.png" Name="bAddEquipmentItems" IsVisible="{Binding Path=isAddEquipmentItemsButtonVisible,Source={x:Static Application.Current}}" Command="{Binding AddEquipmentItemsCommand}"/>
+                <!--<dxb:BarButtonItem Content="Has Notes"  LargeGlyph="/PhotoForce;component/images/edit.jpg" Name="bHasNotes" IsVisible="{Binding isOrdersVisible,Mode=TwoWay}" Command="{Binding HasNotesCommand}"/>-->
+                <dxb:BarButtonItem Content="Switch Names" LargeGlyph="/PhotoForce;component/images/swapStudentFLNames.png" Name="bSwitchTheNames" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding SwitchStudentFLNamesCommand}"/>
+                <dxb:BarButtonItem Content="Delete Manual Students" LargeGlyph="/PhotoForce;component/images/DeleteManulStudents.png" Name="bDeleteManulStudents" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding DeleteManulStudentsCommand}"/>
+                <dxb:BarButtonItem Content="Track Students" LargeGlyph="/PhotoForce;component/images/Track_Students.png" Name="bTrackStudents" IsVisible="{Binding isStudentVisible,Mode=TwoWay}" Command="{Binding TrackStudentsacrossYearsCommand}"/>
+				
+				<dxb:BarButtonItem Content="Clear Batches" LargeGlyph="/PhotoForce;component/images/ClearBatches.png" Name="bClearStudents" IsVisible="{Binding Path=isClearStudentsVisible,Source={x:Static Application.Current}}" Command="{Binding ClearingCorrectStudentsCommand}"/>
+								
+				<!--<dxb:BarButtonItem Content="Manage User Roles" LargeGlyph="/PhotoForce;component/images/UserRoles.png" Name="bUserRoles" IsVisible="{Binding Path=isUserRolesVisible,Source={x:Static Application.Current}}" Command="{Binding ManageUserRolesCommand}"/>-->																												   
+				
+                <dxb:BarButtonItem Content="{Binding statusInfo}" IsVisible="true" Name="bStatusInfo" GlyphSize="Large" Focusable="False"/>
+				<dxb:BarButtonItem Content="{Binding studioInfo}" IsVisible="true" Name="bStudioInfo" GlyphSize="Large" Focusable="False"/>
+				<dxb:BarButtonItem Content="Auto Create PhotoShoots"  LargeGlyph="/PhotoForce;component/images/AutoCretatePhotoshoots.png" Name="bDuplicatePhotoShoots" IsVisible="{Binding Path=isDuplicatePhotoShootsButtonVisible,Source={x:Static Application.Current}}" Command="{Binding DuplicatePhotoShootsCommand}"/>
+            </dxb:BarManager.Items>
+
+            <DockPanel Name="ps3MainDockPanel">
+
+                <dxr:RibbonControl RibbonStyle="Office2010" ApplicationButtonText="{Binding userName}" Name="ps3MainRibbonControl" DockPanel.Dock="Top" RibbonTitleBarVisibility="Collapsed" ShowApplicationButton="True" ToolbarShowMode="Hide">
+                    <dxr:RibbonControl.ApplicationMenu>
+                        <dxr:ApplicationMenu RightPaneWidth="300" ShowRightPane="False">
+                            <dxr:ApplicationMenu.ItemLinks>
+                                <dxb:BarButtonItemLink BarItemName="bAddCredits"/>
+                                <dxb:BarItemLinkSeparator/>
+                                <dxb:BarButtonItemLink BarItemName="bOpenDatabase"/>
+                                <dxb:BarItemLinkSeparator/>
+                                <dxb:BarButtonItemLink BarItemName="bDataBaseBackUp" />
+                                <dxb:BarItemLinkSeparator/>
+                                <dxb:BarButtonItemLink BarItemName="bSendLog" />
+                                <dxb:BarItemLinkSeparator/>
+                                <dxb:BarButtonItemLink BarItemName="bFileLocationSettings"/>
+                                <dxb:BarItemLinkSeparator/>
+                                <dxb:BarButtonItemLink BarItemName="bAboutUs"/>
+                                <dxb:BarItemLinkSeparator/>
+                            </dxr:ApplicationMenu.ItemLinks>
+                        </dxr:ApplicationMenu>
+                    </dxr:RibbonControl.ApplicationMenu>
+
+                    <dxr:RibbonDefaultPageCategory Caption="DefaultPageCategory" Name="ps3DefaultPageCategory">
+
+                        <dxr:RibbonPage Caption="DashBoard" Name="ps3RibbonPageHome">
+                            <dxr:RibbonPageGroup Caption="Editing" MergeOrder="-1" MergeType="MergeItems" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                                <dxb:BarButtonItemLink BarItemName="bNew"/>
+                                <dxb:BarButtonItemLink BarItemName="bEdit"/>
+                                <dxb:BarButtonItemLink BarItemName="bDelete"/>
+                                <dxb:BarButtonItemLink BarItemName="bDeleteAll"/>
+                                <dxb:BarButtonItemLink BarItemName="bRemoveFromGroup"/>
+                                <dxb:BarButtonItemLink BarItemName="bDefaultSchool" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}"/>
+                            </dxr:RibbonPageGroup>
+
+                            <dxr:RibbonPageGroup Caption="Grid Controls" MergeOrder="-1" MergeType="MergeItems" 
+                                                 IsVisible="{Binding isFileLocationVisible,Mode=TwoWay,Converter={StaticResource BoolToIsVisibileConverter}}"
+                                                 IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}" >
+                                <dxb:BarButtonItemLink BarItemName="bGroupGrid" />
+                                <dxb:BarButtonItemLink BarItemName="bSearchGrid" />
+                                <dxb:BarButtonItemLink BarItemName="bRefresh" />
+                                <dxb:BarButtonItemLink BarItemName="bOpenFolder" />
+                            </dxr:RibbonPageGroup>
+
+                            <dxr:RibbonPageGroup Name="rbnDataOperations" Caption="Data Operations" MergeOrder="-1" MergeType="MergeItems"
+                                                 IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                                <dxb:BarButtonItemLink BarItemName="bBulkRename"/>
+                                <dxb:BarButtonItemLink BarItemName="bImportQRFile"/>
+                                <dxb:BarButtonItemLink BarItemName="bGeneratePDF"/>
+                                <dxb:BarButtonItemLink BarItemName="bExport"/>
+                                <dxb:BarButtonItemLink BarItemName="bAddToOrders"/>
+                                <dxb:BarButtonItemLink BarItemName="bStudentImport"/>
+                                <!--<dxb:BarButtonItemLink BarItemName="bOrdersImport"/>-->
+                                <dxb:BarButtonItemLink BarItemName="bOrdersWithDownImport"/>
+                                <dxb:BarButtonItemLink BarItemName="bShiprushTraching"/>
+                                <dxb:BarButtonItemLink BarItemName="bGeneratePassword"/>
+                                <dxb:BarButtonItemLink BarItemName="bStudentExport"/>
+                                <dxb:BarButtonItemLink BarItemName="bPhotoRating"/>
+                                <dxb:BarButtonItemLink BarItemName="bUpdateYearbook" />
+                                <dxb:BarButtonItemLink BarItemName="bRenameSourceImages"/>
+                                <dxb:BarButtonItemLink BarItemName="bGenerateReducedImages"  />
+                                <dxb:BarButtonItemLink BarItemName="bGenerateReducedImagesAll"  />
+                                <!--<dxb:BarButtonItemLink BarItemName="bimagewithoutstudent"  />-->
+                                <dxb:BarButtonItemLink BarItemName="bGenerateQRcode" />
+                                <dxb:BarButtonItemLink BarItemName="bAssignStudent" />
+                                <dxb:BarButtonItemLink BarItemName="bDeactivateStudent" />
+                                <dxb:BarButtonItemLink BarItemName="bActivateStudent" />
+                                <dxb:BarButtonItemLink BarItemName="bPrintDeviceQR" />
+                                <!--<dxb:BarButtonItemLink BarItemName="bSendLog" />-->
+                                <dxb:BarButtonItemLink BarItemName="bBillingCode" />
+                                <dxb:BarButtonItemLink BarItemName="bDefaultPackage" />
+                                <dxb:BarButtonItemLink BarItemName="bJIF"/>
+                                <dxb:BarButtonItemLink BarItemName="bEditOrders" />
+                                <dxb:BarButtonItemLink BarItemName="bAssignOrderImage" />
+                                <dxb:BarButtonItemLink BarItemName="bUpdateOrdersThroughExcel" />
+                                <dxb:BarButtonItemLink BarItemName="bAddCollections"/>
+								<dxb:BarButtonItemLink BarItemName="bAddEquipmentItems"/>
+                                <dxb:BarButtonItemLink BarItemName="bSwitchTheNames"/>
+                                <dxb:BarButtonItemLink BarItemName="bDeleteManulStudents"/>
+                                <dxb:BarButtonItemLink BarItemName="bTrackStudents"/>
+								<dxb:BarButtonItemLink BarItemName="bClearStudents"/>
+								<dxb:BarButtonItemLink BarItemName="bUserRoles"/>
+								<dxb:BarButtonItemLink BarItemName="bDuplicatePhotoShoots"/>
+                            </dxr:RibbonPageGroup>
+
+                            <dxr:RibbonPageGroup Caption="Groups" Name="grpGroup"  MergeOrder="-1" MergeType="MergeItems" >
+                                <dxr:RibbonPageGroup.IsVisible>
+                                    <MultiBinding Converter="{StaticResource BoolToGroupVisibleConverter}">
+                                        <Binding Path="isStudentVisible"/>
+                                        <Binding Path="isDashboardVisible"/>
+                                        <Binding Path="isGroupVisible"/>
+                                        <Binding Path="isOrdersVisible"/>
+                                    </MultiBinding>
+                                </dxr:RibbonPageGroup.IsVisible>
+                                <dxb:BarButtonItemLink BarItemName="bAddGroupPhoto"/>
+                                <dxb:BarButtonItemLink BarItemName="bAutoCreateGroupPhoto"/>
+                                <dxb:BarButtonItemLink BarItemName="bAddToGroup"/>
+                                <dxb:BarButtonItemLink BarItemName="bAutoCreateGroup"/>
+                                <dxb:BarButtonItemLink BarItemName="bPhotosToBeAddedToGroup"/>
+                                <dxb:BarButtonItemLink BarItemName="bGroupClass"/>
+                                <dxb:BarButtonItemLink BarItemName="bImportYearbookChoice"/>
+                                <dxb:BarButtonItemLink BarItemName="bMissingOrders"/>
+                            </dxr:RibbonPageGroup>
+
+                        </dxr:RibbonPage>
+
+                        <dxr:RibbonPage Caption="Validation" Name="ribbonValidation" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                            <dxr:RibbonPageGroup Caption="Validation" MergeOrder="-1" MergeType="MergeItems" >
+                                <!--<dxb:BarButtonItemLink BarItemName="bCountImages" />-->
+                                <dxb:BarButtonItemLink BarItemName="bCountStudents" />
+                                <!--<dxb:BarButtonItemLink BarItemName="bstudentwithoutimage" />-->
+                                <!--<dxb:BarButtonItemLink BarItemName="bCountAdminCD"/>-->
+                                <!--<dxb:BarButtonItemLink BarItemName="bCountYearbook"/>-->
+                                <!--<dxb:BarButtonItemLink BarItemName="bValidatePhotshoots"/>-->
+                                <dxb:BarButtonItemLink BarItemName="bValidateDataFile"/>
+                                <dxb:BarButtonItemLink BarItemName="bCheckForRenamePhotoshoots"/>
+                                <dxb:BarButtonItemLink BarItemName="bHasMissingImages"/>
+                                <!--<dxb:BarButtonItemLink BarItemName="bHasNotes"/>-->
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+
+                        <dxr:RibbonPage Caption="Maintenance" Name="ribbonMaintenance" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                            <dxr:RibbonPageGroup Caption="Maintenance" MergeOrder="-1" MergeType="MergeItems" >
+                                <dxb:BarButtonItemLink BarItemName="bReSyncImagesNam"  />
+                                <dxb:BarButtonItemLink BarItemName="bSyncDelImages"  />
+                                <dxb:BarButtonItemLink BarItemName="bReImportStudents"/>
+                                <dxb:BarButtonItemLink BarItemName="bRestoreSourceImages"/>
+                                <dxb:BarButtonItemLink BarItemName="bCopyRetouchImages"/>
+                                <dxb:BarButtonItemLink BarItemName="bImagesWithoutOrders"/>
+                                <dxb:BarButtonItemLink BarItemName="bMergeSchools"/>
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
+
+                    </dxr:RibbonDefaultPageCategory>
+
+                </dxr:RibbonControl>
+
+                <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom"  Name="ps3RibbonStatusBarControl">
+                    <dxr:RibbonStatusBarControl.LeftItemLinks>
+                        <dxb:BarItemLink BarItemName="bStatusInfo"/>
+						<dxb:BarItemLink BarItemName="bStudioInfo"/>
+                    </dxr:RibbonStatusBarControl.LeftItemLinks>
+                </dxr:RibbonStatusBarControl>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Background="LightGray" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Universal Search" Name="tbUniversalStudentSearch" HorizontalAlignment="Left" Height="20" Margin="3,5,0,1" />
+                        <TextBox Name="txtUniversalStudentSearch" HorizontalAlignment="Left" Width="206" Grid.Row="0" Margin="101,2,0,0" >
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding UniversalStudentSearchCommand}" CommandParameter="{Binding ElementName=txtUniversalStudentSearch,Path=Text}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Label Name="txtTestConnection" HorizontalAlignment="Center" Width="235" Grid.Row="0" Margin="353,3,464,-2" Visibility="{Binding txtTestConnectionVisibility, Mode=TwoWay}" Content="{Binding txtTestConnection, Mode=TwoWay}" FontWeight="Bold" FontSize="16" Foreground="Red" />
+                        <Image Name="imgSearch" Grid.Row="0" Source="/PhotoForce;component/Images/universalStudent.png" Width="30" HorizontalAlignment="Left" Margin="307,2,0,0">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding UniversalStudentSearchCommand}" CommandParameter="{Binding ElementName=txtUniversalStudentSearch,Path=Text}"/>
+                            </Image.InputBindings>
+                        </Image>
+                    </Grid>
+
+                    <!--Visibility="{Binding isDockViewsSettingsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}"-->
+                    <dxdo:DockLayoutManager Name="ps3DockLayoutManager" Grid.Row="1" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}" >
+
+                        <dxdo:DockLayoutManager.LayoutRoot>
+                            <dxdo:LayoutGroup Caption="LayoutRoot">
+                                <dxdo:LayoutGroup ItemWidth=".15*" HorizontalAlignment="Left" AllowHide="False" AllowFloat="False">
+                                    <dxdo:LayoutPanel Caption="Menu" AllowClose="False" AllowHide="False">
+                                        <dxn:NavBarControl Name="ps3NavBarControl">
+                                            <dxn:NavBarControl.View>
+                                                <dxn:NavigationPaneView Orientation="Vertical" IsExpandButtonVisible="True" MaxVisibleGroupCount="20" Name="ps4NavBarView" IsOverflowPanelVisible="False" IsSplitterVisible="True"/>
+                                            </dxn:NavBarControl.View>
+                                            <dxn:NavBarControl.Groups >
+                                                <!--Active Group was set in code behind-->
+                                                <dxn:NavBarGroup Header="DashBoard" Name="navDashBoard" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/home.png"  Command="{Binding DashBoardVisibilityCommand}" CommandParameter="0">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="My Work" SelectedItemIndex="{Binding dashBoardViewIndex,Mode=TwoWay}">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <!--Command="{Binding DashBoardVisibilityCommand}" CommandParameter="0"-->
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/dashboard.png" Content="Dashboard" IsSelected="True" Name="menuPhotoShoots" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="0"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/validate-photoshoot.png" Content="Validate Photoshoots" Name="menuValidatePhotshoots" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="1"/>
+                                                                        <!--<dxn:NavBarItem ImageSource="/PhotoForce;component/Images/student.png" Content="Students" Name="menuStudents" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="1"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/group.png" Content="Groups" Name="menuGroups" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="2"/>-->
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/workflow.png" Content="Workflows" Name="menuWorkflows" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="2"/>
+																		<dxn:NavBarItem ImageSource="/PhotoForce;component/images/photoShoot.png" Content="PhotoShoots Without Workflows" Name="menuPhotoshootsWOWF" Command="{Binding DashBoardVisibilityCommand}" CommandParameter="3"/>
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                                <dxn:NavBarGroup Header="Schools" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/school.png" Command="{Binding MenuSchoolsCommand}">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Program">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/school.png" Content="Schools" Name="menuSchools" Command="{Binding MenuSchoolsCommand}"/>
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+												<dxn:NavBarGroup Header="Studios" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/Studio.png" Command="{Binding MenuStudiosCommand}">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Program">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/Studio.png" Content="Studios" Name="menuStudios" Command="{Binding MenuStudiosCommand}"/>
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                                <dxn:NavBarGroup Header="Views" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/views2.png" Command="{Binding MenuPhotographyJobCommand}" CommandParameter="1">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Views" SelectedItemIndex="{Binding viewIndex,Mode=TwoWay}">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/photoJob.png" Content="School Years" Name="menuPhotographyJob" Command="{Binding MenuPhotographyJobCommand}" CommandParameter="0"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/photoShoot.png" Content="Photo Shoots" Name="menuPhotoShoot" Command="{Binding MenuViewPhotoShootsCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/locked.png" Content="Locked Photos" Name="menuLockPhotos" Command="{Binding MenuLockedPhotosCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/Deactivate.png" Content="Deactivated Students" Name="menuActivateStudents" Command="{Binding MenuActivateStudentsCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/importbatches.png" Content="Student Import Batches" Name="menuStudentImportBatches" CommandParameter="students" Command="{Binding MenuImportBatchesCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/importbatches.png" Content="Order Import Batches" Name="menuOrderImportBatches" CommandParameter="orders" Command="{Binding MenuImportBatchesCommand}"/>                                                                        
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                                <dxn:NavBarGroup Header="Activities" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/activities.png" Command="{Binding MenuActivitiesCommand}" CommandParameter="All">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View >
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Program" SelectedItemIndex="{Binding activityIndex,Mode=TwoWay}">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/activities_all.png" Content="All Activities" Command="{Binding MenuActivitiesCommand}" CommandParameter="All" Name="menuAllActivities"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/activities_my.png" Content="My Activities" Command="{Binding MenuActivitiesCommand}" CommandParameter="My" Name="menuMyActivities"/>
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                                <dxn:NavBarGroup Header="Settings" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/settings.png" CommandParameter="1" Command="{Binding MenuMaskSettingsCommand}">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Program" SelectedItemIndex="{Binding settingsIndex,Mode=TwoWay}">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <!--<dxn:NavBarItem ImageSource="/PhotoForce;component/Images/locationSetting.png" Content="File Locations" Name="menuFileLocSettings" Command="{Binding MenuFileLocationSettingsCommand}"/>-->
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/maskSettings.png" Content="Mask" Name="menuMaskSettings" Command="{Binding MenuMaskSettingsCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/price.png" Content="Order Form Default Pricing" Name="menupricingSettings" Command="{Binding MenuOrderFormDefaultPricingGroupCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/workflow.png" Content="Workflows" Name="menuWorkflowItems" Command="{Binding MenuWorkflowCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/workflowcollection.png" Content="Workflow Collections" Name="menuWorkflowCollections" CommandParameter="workflows" Command="{Binding WorkflowCollectionsCommand}" />
+																		<dxn:NavBarItem ImageSource="/PhotoForce;component/images/workflow.png" Content="Equipments" Name="menuEquipmentsItems" Command="{Binding MenuEquipmentCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/workflowcollection.png" Content="Equipment Collections" Name="menuEquipmentCollections" CommandParameter="equipments" Command="{Binding WorkflowCollectionsCommand}" />
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/images/Image_Quix.png" Content="Image Quix" Name="menuImageQuixAccounts" Command="{Binding MenuImageQuixCommand}" />
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/Manage_Users.png" Content="Manage Users" Name="menuManageUsers" Command="{Binding MenuManageUsersCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/SPPriceSheet.png" Content="SimplePhoto Price Lists" Name="menuSPPriceSheet" Command="{Binding MenuSPPriceSheetCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/Studio.png" Content="Studio" Name="menuStudio" Command="{Binding MenuStudioCommand}"/>
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                                                                               
+                                                <dxn:NavBarGroup Header="Orders" DisplaySource="Content" ImageSource="/PhotoForce;component/Images/add-to-cart.png" Command="{Binding MenuOrdersCommand}">
+                                                    <dxn:NavBarGroup.Content>
+                                                        <dxn:NavBarControl Margin="1,0,1,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                            <dxn:NavBarControl.View>
+                                                                <dxn:ExplorerBarView />
+                                                            </dxn:NavBarControl.View>
+                                                            <dxn:NavBarControl.Groups>
+                                                                <dxn:NavBarGroup Header="Program" SelectedItemIndex="{Binding orderIndex, Mode=TwoWay}">
+                                                                    <dxn:NavBarGroup.Items>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/add-to-cart.png" Content="Orders" Name="menuOrders" Command="{Binding MenuOrdersCommand}"/>
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/order-packages.png" Content="Order Packages" Name="menuOrderPackages" Command="{Binding MenuOrderPackagesCommand}" />
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/ordersbystudent.png" Content="Orders By Student" Name="menuOrdersByStudent" Command="{Binding MenuViewOrdersByStudentCommand}" />
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/orderbygallery.png" Content="Orders By Gallery Group" Name="menuOrdersByGalleryGroup" Command="{Binding MenuViewOrdersByGalleryGroupCommand}" />
+                                                                        <dxn:NavBarItem ImageSource="/PhotoForce;component/Images/searchorders.png" Content="Search Orders" Name="menuSearchOrders" Command="{Binding MenuSearchOrdersCommand}" />
+                                                                    </dxn:NavBarGroup.Items>
+                                                                </dxn:NavBarGroup>
+                                                            </dxn:NavBarControl.Groups>
+                                                        </dxn:NavBarControl>
+                                                    </dxn:NavBarGroup.Content>
+                                                </dxn:NavBarGroup>
+                                            </dxn:NavBarControl.Groups>
+                                        </dxn:NavBarControl>
+                                    </dxdo:LayoutPanel>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="tabDashboard" Visibility="{Binding isDockViewsSettingsVisible,Mode=TwoWay,Converter={StaticResource TabControlVisibleConverter}}">
+                                    <dxdo:LayoutPanel AllowClose="False" Name="pnlTabDashboard" AllowHide="False" AllowDrag="False">
+                                        <dx:DXTabControl  SelectedIndex="{Binding selectedIndex, Mode=TwoWay}" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                                            <dx:DXTabItem Header="PhotoShoots" >
+                                                <dx:DXTabItem.ContentTemplate >
+                                                    <DataTemplate>
+                                                        <Border Padding="5,0,5,5" Margin="-12" Background="Gray">
+                                                            <WorkPlaceC:DashBoard />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dx:DXTabItem.ContentTemplate>
+                                            </dx:DXTabItem>
+
+                                            <dx:DXTabItem Header="Students" >
+                                                <dx:DXTabItem.ContentTemplate>
+                                                    <DataTemplate>
+                                                        <Border Padding="5,0,5,5" Margin="-12" Background="Gray">
+                                                            <WorkPlaceC:Students/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dx:DXTabItem.ContentTemplate>
+                                            </dx:DXTabItem>
+
+                                            <dx:DXTabItem Header="Groups" >
+                                                <dx:DXTabItem.ContentTemplate>
+                                                    <DataTemplate>
+                                                        <Border Padding="5,0,5,5" Margin="-12" Background="Gray">
+                                                            <GroupManagement:ManageGroups/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dx:DXTabItem.ContentTemplate>
+                                            </dx:DXTabItem>
+
+                                        </dx:DXTabControl>
+                                    </dxdo:LayoutPanel>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="universalStudentGroup" Visibility="{Binding isUniversalStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelUniversalStudent" AllowHide="False" AllowDrag="False">
+                                        <DockPanel Name="dockPanelUniversalStudent">
+                                            <Border Padding="5,0,5,5" Background="Gray">
+                                                <WorkPlaceC:UniversalStudentSearch/>
+                                            </Border>
+                                        </DockPanel>
+                                    </dxdo:LayoutPanel>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="universalImageGroup" Visibility="{Binding isUniversalImageVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelUniversalImage" AllowHide="False" AllowDrag="False">
+                                        <DockPanel Name="dockPanelUniversalImage">
+                                            <Border Padding="5,0,5,5" Background="Gray">
+                                                <WorkPlaceC:UniversalImageSearch/>
+                                            </Border>
+                                        </DockPanel>
+                                    </dxdo:LayoutPanel>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="schoolGroup" Visibility="{Binding isSchoolsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelSchool" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelSchool">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:Schools/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="PhotographyGroup" Visibility="{Binding isPhotographyJobVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelPhotographyJob" AllowHide="False" AllowDrag="False">
+                                            <DockPanel Name="dockPanelPhotoGraphyJob">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:PhotographyJob/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <!--<dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="fileLocSettingGroup" Visibility="{Binding isFileLocationVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelFileLoc" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelFileLoc">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <SettingsC:FileLocation/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>-->
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="MaskSettingGroup" Visibility="{Binding isMaskSettingsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelMask" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelMask">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <SettingsC:Mask/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="DefaultpriceGroup" Visibility="{Binding isDefaultPriceGroupVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelDefaultpackage" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelDefaultprice">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:OrderformDefaultPricing/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="SPPriceSheetGroup" Visibility="{Binding isSPPriceSheetVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelSPPriceSheet" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelSPPriceSheet">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:SPPriceSheet/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="StudioGroup" Visibility="{Binding isStudiosVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelStudio" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelStudio">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ActiveStudios/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewPhotoShootsGroup" Visibility="{Binding isPhotoShootVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelPhotoShoots" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelPhotoShoots">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <ViewPhotoShootC:ViewPhotoShoot/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewLockedPhotosGroup" Visibility="{Binding isLockedPhotosVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelLockedPhotos" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelLockedPhotos">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:LockedPhotos/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewDeactivateStudentsGroup" Visibility="{Binding isActivateStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelDeactivateStudents" AllowHide="False" AllowDrag="False">
+                                            <DockPanel Name="dockPanelDeactivateStudents">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ActivateStudents/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="Activities" Visibility="{Binding isActivitiesVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelActivities" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelActivities">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:Activities/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <!--not in use-->
+                                <!--<dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Stretch" Name="StudentWithoutImage" Visibility="Collapsed">
+                                <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                    <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelStudentWithoutImage" AllowDrag="False" AllowHide="False">
+                                        <DockPanel Name="dockpanelStudentWithoutImage"></DockPanel>
+                                    </dxdo:LayoutPanel>
+                                </dxdo:LayoutGroup>
+                            </dxdo:LayoutGroup>-->
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="tabOrders" Visibility="{Binding isOrdersVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel AllowClose="False" Name="pnlOrders" AllowHide="False" AllowDrag="False">
+                                            <DockPanel Name="dockPanelOrders">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:Orders/>
+                                                </Border>
+                                            </DockPanel>
+                                            <!--Don't Delete-->
+                                            <!--<dx:DXTabControl SelectedIndex="{Binding ordersSelectedIndex,Mode=TwoWay}" IsEnabled="{Binding credits,Converter={StaticResource IntToBoolConverter}}">
+                                            <dx:DXTabItem Header="Orders View" >
+                                                <dx:DXTabItem.ContentTemplate >
+                                                    <DataTemplate>
+                                                        <Border Padding="5,0,5,5" Margin="-12" Background="Gray">
+                                                            <WorkPlaceC:Orders />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dx:DXTabItem.ContentTemplate>
+                                            </dx:DXTabItem>
+
+                                            <dx:DXTabItem Header="Order Details" >
+                                                <dx:DXTabItem.ContentTemplate>
+                                                    <DataTemplate>
+                                                        <Border Padding="5,0,5,5" Margin="-12" Background="Gray">
+                                                            <WorkPlaceC:OrderItemsView/>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </dx:DXTabItem.ContentTemplate>
+                                            </dx:DXTabItem>
+
+                                        </dx:DXTabControl>-->
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewImportBatches" Visibility="{Binding isImportBatchVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelImportBatches" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelImportBatches">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ImportBatches/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewManageUsers" Visibility="{Binding isManageUsersVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelManageUsers" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelManageUsers">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ManageUsers/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="OrderPackages" Visibility="{Binding isOrderPackagesVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelOrderPackages" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelOrderPackages">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:OrderPackages/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ValidatePhotoShoots" Visibility="{Binding isValidatePhotoshootsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelValidatePhotoShoots" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelValidatePhotoShoots">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ValidatePhotoShoots/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewOrderByStudent" Visibility="{Binding isViewOrderByStudentVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelViewOrderByStudent" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelViewOrderByStudent">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:OrdersWithStudets/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ViewOrderByGalleryGroup" Visibility="{Binding isViewOrderByGalleryGroupVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelViewOrderByGalleryGroup" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelViewOrderByGalleryGroup">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:Orders/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="layoutSearchOrders" Visibility="{Binding isSearchOrdersVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelSearchOrders" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelSearchOrders">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:SearchOrders/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="WorkflowItems" Visibility="{Binding isWorkflowItemsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelWorkflowItems" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelWorkflowItems">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:WorkflowItems/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="WorkflowCollections" Visibility="{Binding isWorkflowCollectionsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelWorkflowCollections" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelWorkflowCollections">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:WorkflowCollections/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="EquipmentItems" Visibility="{Binding isEquipmentItemsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelEquipmentItems" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelEquipmentItems">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:EquipmentItems/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+                                
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="Workflows" Visibility="{Binding isDashboardWorkflowsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelDashBoardWorkflows" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelDashBoardWorkflows">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:DashBoardWorkflowItems/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                                <dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="ImageQuixAccounts" Visibility="{Binding isImageQuixAccountsVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Settings" AllowClose="False" Name="panelisImageQuixAccounts" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockPanelisImageQuixAccounts">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:ImageQuixAccounts/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+								
+								<dxdo:LayoutGroup Orientation="Vertical" HorizontalAlignment="Stretch" Name="PhotoShootsWithoutWorkflowsAtt" Visibility="{Binding isDashboardPhotoshootsWOWFVisible,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <dxdo:LayoutGroup HorizontalAlignment="Stretch">
+                                        <dxdo:LayoutPanel Caption="Menu" AllowClose="False" Name="panelDashBoardPhotoShootsWOWF" AllowDock="True" AllowDrag="False" AllowHide="False">
+                                            <DockPanel Name="dockpanelDashBoardPhotoShootsWOWF">
+                                                <Border Padding="5,0,5,5" Background="Gray">
+                                                    <WorkPlaceC:PhotoShootsWithoutWorkflows/>
+                                                </Border>
+                                            </DockPanel>
+                                        </dxdo:LayoutPanel>
+                                    </dxdo:LayoutGroup>
+                                </dxdo:LayoutGroup>
+
+                            </dxdo:LayoutGroup>
+
+                        </dxdo:DockLayoutManager.LayoutRoot>
+                    </dxdo:DockLayoutManager>
+
+                </Grid>
+
+            </DockPanel>
+
+        </dxb:BarManager>
+    </Grid>
+</Window>
+
+

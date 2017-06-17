@@ -1,0 +1,22 @@
+﻿<Window x:Class="PhotoForce.School_Management.DeviceScanning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Print School Sync Sheet" Height="160" Width="400"  WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Margin="5,0,5,0" >
+        <Label Content="School Name" Name="lblSchoolName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="2,10,0,0" Padding="0,2,0,0"/>
+        <TextBox Name="txtSchoolName" HorizontalAlignment="Stretch" Text="{Binding schoolName,Mode=TwoWay}" VerticalAlignment="Top" Margin="107,10,7,0" Padding="0" Height="22"  IsReadOnly="True" RenderTransformOrigin="0.507,0.182"/>
+        <Label Content="Date" Name="lbldate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,39,0,0" Padding="0,2,0,0" Width="84"/>
+        <DatePicker Name="txtDate"  HorizontalAlignment="Stretch" SelectedDate="{Binding date,Mode=TwoWay}" VerticalAlignment="Top" Margin="107,39,7,0" Padding="0" Height="22" />
+        <Label Content="Scanner Name/ID" Name="lblScanSync" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,2,0,0" Margin="2,67,0,0" VerticalContentAlignment="Center"/>
+        <!--//mohan have to write validation part txtscnsyc_TextChanged-->
+        <TextBox  Name="txtScannerId" Text="{Binding syncText,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="107,67,7,0"></TextBox>
+        <Button Content="Print" Name="btnprint" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="70" Margin="0,0,83,6" Command="{Binding PrintCommand}"></Button>
+        <Button Content="Cancel" Name="btncancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="70" Margin="0,0,7,6" Command="{Binding WindowCloseCommand}"></Button>
+    </Grid>
+</Window>
+

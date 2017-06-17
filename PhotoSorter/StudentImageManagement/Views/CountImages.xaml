@@ -1,0 +1,44 @@
+﻿<Window x:Class="PhotoForce.StudentImageManagement.CountImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v15.2"
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Count Images" Height="350" ResizeMode="NoResize" Width="600" WindowStartupLocation="CenterScreen" Name="windowCountImages" Background="White" Loaded="windowCountImages_Loaded_1" Closing="windowCountImages_Closing_1">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}" />
+    </Window.InputBindings>
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockCountStudnetNImages">
+            <dxdo:LayoutGroup ItemWidth="3*">
+                <dxdo:LayoutGroup Orientation="Vertical">
+                    <dxdo:LayoutPanel AllowClose="False" x:Name="pnlCountImages" AllowDock="False" AllowHide="False" AllowFloat="False" VerticalAlignment="Stretch">
+                        <dxg:GridControl x:Name="dgCountImages" ItemsSource="{Binding dgCountImagesData, Mode=TwoWay}">
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="Name" Header="Student Name" x:Name="grdColumnName" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Total" Header="Total" x:Name="grdColumnTotal" AllowEditing="False" />
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" MultiSelectMode="Row" ShowGroupPanel="False" x:Name="CountImagesTable" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel AllowDock="False" AllowHide="False" AllowFloat="False" AllowClose="False" ItemHeight="50" VerticalAlignment="Stretch">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="28" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Create groups where count is greater than :" Grid.Row="1" Height="22" Width="238" HorizontalAlignment="Left" Margin="5,4,0,2" />
+                            <TextBox Height="26" Width="45" Text="{Binding countToCreateGroup}" HorizontalAlignment="Center" Margin="248,0,293,2" Grid.Row="1" />
+                            <Button Height="27" Name="btnGroup" Content="Create Groups" Width="100" HorizontalAlignment="Right" Command="{Binding CreateGroupsCommand}" Grid.Row="1" Margin="0,0,90,1" />
+                            <Button Name="btnClose" Content="Close" Height="27" Width="80" HorizontalAlignment="Right" Command="{Binding WindowCloseCommand}" Margin="0,0,5,1" Grid.Row="1" />
+                        </Grid>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+</Window>

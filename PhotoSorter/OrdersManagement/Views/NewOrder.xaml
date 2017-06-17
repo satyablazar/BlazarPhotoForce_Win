@@ -1,0 +1,108 @@
+﻿<Window x:Class="PhotoForce.OrdersManagement.NewOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Add/Edit Order" Height="360" Width="520" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+        <!--Hema-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="230"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="txbShippingTracking" Text="Tracking No" Height="23" Grid.Row="1" Width="71" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="24,3,0,3"/>
+        <TextBox Name="txtShippingTracking" Text="{Binding shippingTrackingNo,Mode=TwoWay}" IsEnabled="{Binding isFromEditOrder, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"  Margin="0,2,5,3" />
+        <TextBlock Name="txbVendorDate" Text="Order Date" Height="23" Grid.Row="1" Grid.Column="2" Margin="28,3,5,3"/>
+        <DatePicker Name="dpOrderDate"  SelectedDate="{Binding selectedVendorDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" Margin="0,2,5,3" />
+        <GroupBox Grid.Row="2" Header="Customer Address" Grid.ColumnSpan="2" Margin="5"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Address" Margin="0,2,0,3" Name="lblCustAddress" />
+                <TextBox Text="{Binding custAddress, Mode=TwoWay}" Name="txtCustAddress" Margin="0,2,0,3" Grid.Column="1" />
+                <Label Content="City" Margin="0,2,0,3" Name="lblCustCity" Grid.Row="1" />
+                <TextBox Text="{Binding custCity, Mode=TwoWay}" Name="txtCustCity" Margin="0,2,0,3" Grid.Row="1" Grid.Column="1" />
+                <Label Content="Postal Code" Margin="0,2,0,3" Name="lblCustPostalCode" Grid.Row="2" />
+                <TextBox Text="{Binding custPostalCode, Mode=TwoWay}" Name="txtCustPostalCode" Margin="0,2,0,3" Grid.Row="2" Grid.Column="1" />
+                <Label Content="Country" Margin="0,2,0,3" Name="lblCustCountry" Grid.Row="3" />
+                <TextBox Text="{Binding custCountry, Mode=TwoWay}" Name="txtCustCountry" Margin="0,2,0,3" Grid.Row="3" Grid.Column="1" />
+                <Label Content="State" Margin="0,2,0,3" Name="lblCustState" Grid.Row="4" />
+                <TextBox Text="{Binding custState, Mode=TwoWay}" Name="txtCustState" Margin="0,2,0,3" Grid.Row="4" Grid.Column="1" />
+                <Label Content="Phone" Margin="0,2,0,3" Name="lblCustPhone" Grid.Row="5" />
+                <TextBox Text="{Binding custPhone, Mode=TwoWay}" Name="txtCustPhone" Margin="0,2,0,3" Grid.Row="5" Grid.Column="1" />
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Grid.Column="2" Header="Shipping Address" Grid.ColumnSpan="2" Margin="5"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Address" Margin="0,2,0,3" Name="lblShipAddress" />
+                <TextBox Text="{Binding shipAddress, Mode=TwoWay}" Name="txtShipAddress" Margin="0,2,0,3" Grid.Column="1" />
+                <Label Content="City" Margin="0,2,0,3" Name="lblShipCity" Grid.Row="1" />
+                <TextBox Text="{Binding shipCity, Mode=TwoWay}" Name="txtShipCity" Margin="0,2,0,3" Grid.Row="1" Grid.Column="1" />
+                <Label Content="Postal Code" Margin="0,2,0,3" Name="lblShipPostalCode" Grid.Row="2" />
+                <TextBox Text="{Binding shipPostalCode, Mode=TwoWay}" Name="txtShipPostalCode" Margin="0,2,0,3" Grid.Row="2" Grid.Column="1" />
+                <Label Content="Country" Margin="0,2,0,3" Name="lblShipCountry" Grid.Row="3" />
+                <TextBox Text="{Binding shipCountry, Mode=TwoWay}" Name="txtShipCountry" Margin="0,2,0,3" Grid.Row="3" Grid.Column="1" />
+                <Label Content="State" Margin="0,2,0,3" Name="lblShipState" Grid.Row="4" />
+                <TextBox Text="{Binding shipState, Mode=TwoWay}" Name="txtShipState" Margin="0,2,0,3" Grid.Row="4" Grid.Column="1" />
+                <Label Content="Phone" Margin="0,2,0,3" Name="lblShipPhone" Grid.Row="5" />
+                <TextBox Text="{Binding shipPhone, Mode=TwoWay}" Name="txtShipPhone" Margin="0,2,0,3" Grid.Row="5" Grid.Column="1" />
+            </Grid>
+        </GroupBox>
+
+        <CheckBox Content="Clear" Height="23" Name="chkClearCustom5" IsChecked="{Binding isClearVendorOrderNo}" IsEnabled="{Binding isFromEditOrder, Mode=TwoWay}" Grid.Row="3" Grid.Column="2"  Margin="00,4,23,3" />
+
+        <TextBlock Name="txbVendorOrderNo" Text="Order No" Height="24" Grid.Row="3" Width="71" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="24,3,0,3"/>
+        <TextBox Name="txtVendorOrderNo" Text="{Binding vendorOrderNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" IsEnabled="{Binding isFromEditOrder,Mode=TwoWay}" Grid.Row="3" Grid.Column="1"  Margin="0,2,5,3"/>
+
+        <CheckBox Name="cbFulFill" Height="23" Grid.Row="3" Content="Fulfilled" IsEnabled="{Binding isFulfillEnable,Mode=TwoWay}" IsChecked="{Binding isFulfillChecked,Mode=TwoWay}" Grid.Column="3" Margin="0,5,0,0"/>
+        <Button Name="btnSave" Width="80" Grid.Row="5" Height="23" Grid.Column="2" Grid.ColumnSpan="2" Content="Save" Command="{Binding SaveCommand}"  Margin="95,0,75,2"/>
+        <Button Name="btnCancel" Height="23" Width="70" Grid.Row="5" Grid.Column="3" Content="Cancel" Command="{Binding WindowCloseCommand}"  Margin="75,0,0,2"/>
+    </Grid>
+</Window>

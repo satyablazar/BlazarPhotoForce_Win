@@ -1,0 +1,42 @@
+﻿<Window x:Class="PhotoForce.Student_Management.GetImagesWithoutStudent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        Title="Images Without Student" Height="Auto" Width="Auto" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <dxg:GridControl Name="dgImagesWithoutStudent" ItemsSource="{Binding dgImagesWithoutStudentData,Mode=TwoWay}">
+            <dxg:GridControl.Columns>
+                <!--<dxg:SelectAllColumn/>-->
+                <dxg:GridColumn Header="Image" FieldName="ImageName" Name="grdColumnImageName" AllowEditing="False"/>
+                <dxg:GridColumn Header="First Name" FieldName="FirstName" Name="grdColumnFirstName" AllowEditing="False"/>
+                <dxg:GridColumn Header="Last Name" FieldName="Lastname" Name="grdColumnLastname" AllowEditing="False"/>
+                <dxg:GridColumn Header="Teacher" FieldName="Teacher" Name="grdColumnTeacher" AllowEditing="False"/>
+                <dxg:GridColumn Header="Grade" FieldName="Grade" Name="grdColumnGrade" AllowEditing="False"/>
+                <dxg:GridColumn Header="Rating" FieldName="Rating" Name="grdChkRating" AllowEditing="False"/>
+                <dxg:GridColumn Header="YearBook" FieldName="yearbook" Name="grdChkyearbook" AllowEditing="False"/>
+                <dxg:GridColumn Header="Quixie ID" FieldName="QuixieID" Name="grdColumnQuixieID" AllowEditing="False"/>
+                <dxg:GridColumn Header="Student ID" FieldName="StudentID" Name="grdColumnStudentID" AllowEditing="False"/>
+                <dxg:GridColumn Header="Home Room" FieldName="HomeRoom" Name="grdColumnHomeRoom" AllowEditing="False"/>
+                <dxg:GridColumn Header="DOB" FieldName="DOB" Name="grdColumnDob" AllowEditing="False"/>
+                <dxg:GridColumn Header="Address" FieldName="Address" Name="grdColumnAddress" AllowEditing="False"/>
+                <dxg:GridColumn Header="City" FieldName="City" Name="grdColumnCityy" AllowEditing="False"/>
+                <dxg:GridColumn Header="State" FieldName="State" Name="grdColumnStatee" AllowEditing="False"/>
+                <dxg:GridColumn Header="Zip" FieldName="Zip" Name="grdColumnZip" AllowEditing="False"/>
+                <dxg:GridColumn Header="Phone" FieldName="Phone" Name="grdColumnPhone" AllowEditing="False"/>
+                <dxg:GridColumn Header="Packages" FieldName="Packages" Name="grdColumnPackages" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 1" FieldName="Custom1" Name="grdColumnCustom1" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 2" FieldName="Custom2" Name="grdColumnCustom2" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 3" FieldName="Custom3" Name="grdColumnCustom3" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 4" FieldName="Custom4" Name="grdColumnCustom4" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 5" FieldName="Custom5" Name="grdColumnCustom5" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 6" FieldName="Custom6" Name="grdColumnCustom6" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 7" FieldName="Custom7" Name="grdColumnCustom7" AllowEditing="False"/>
+                <dxg:GridColumn Header="Custom 8" FieldName="Custom8" Name="grdColumnCustom8" AllowEditing="False"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowGroupPanel="False" ShowAutoFilterRow="True"  MultiSelectMode="Row" Name="ImagesWithoutStudentsTable" HorizontalAlignment="Stretch">
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

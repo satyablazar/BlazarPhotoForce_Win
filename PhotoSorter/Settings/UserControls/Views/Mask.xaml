@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="PhotoForce.Settings.UserControls.Mask"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="730" Name="Masks" DataContext="{Binding MaskViewModelBase,Source={StaticResource ViewModelLocator}}" Loaded="Mask_Loaded_1" Unloaded="Masks_Unloaded_1">
+    <UserControl.Resources>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>
+    </UserControl.Resources>
+    <dxdo:DockLayoutManager Name="dockMask">
+        <dxdo:LayoutGroup ItemWidth=".70*">
+            <dxdo:LayoutPanel Caption="Masks" Name="pnlMasks" AllowClose="False" AllowHide="False" AllowDrag="False" AllowMove="False">
+                <Grid>
+                    <dxg:GridControl Name="dgAllMaskDetails" ItemsSource="{Binding dgAllMaskDetailsData,Mode=TwoWay}" SelectedItems="{Binding selectedMasks,Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,5,0">
+                        <dxg:GridControl.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding MaskDetailsGridDoubleClickCommand}"/>
+                        </dxg:GridControl.InputBindings>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="MaskID" Name="MaskID" Visible="False">
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="ID" Name="SchoolID" Visible="False">
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Mask Name" FieldName="maskName" Name="gdMaskName">
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Mask Details" FieldName="maksDetail" Name="gdMaskDetail">
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Width="70" Visible="False">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Name="btndelete" Width="70" Command="{Binding DeleteCommand}"></Button>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" ShowGroupPanel="{Binding maskDetailShowGroupPanel,Mode=TwoWay}" FocusedRow="{Binding selectedMask,Mode=TwoWay}"
+                                           ShowSearchPanelMode="{Binding maskDetailSearchPanelMode,Mode=TwoWay}" SearchControl="{Binding maskDetailSearchControl,Mode=TwoWay}" 
+                                     MultiSelectMode="Row" Name="AllMaskDetTableView" CellStyle="{StaticResource RowStyle}"
+                                     AllowEditing="False" Focusable="False">
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </dxdo:LayoutPanel>
+        </dxdo:LayoutGroup>
+    </dxdo:DockLayoutManager>
+</UserControl>

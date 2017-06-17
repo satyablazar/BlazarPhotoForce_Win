@@ -1,0 +1,26 @@
+﻿<Window x:Class="PhotoForce.StudentImageManagement.RestoreRetouchImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Restore Retouch Images" ResizeMode="NoResize" Height="280" Width="690" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Height="250">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="67"/>
+            <RowDefinition Height="127"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="tbWarningText" TextWrapping="WrapWithOverflow" Text="{Binding warningText,Mode=TwoWay}" Margin="13,9,5,7" />
+        <GroupBox Header="Select Folder" Grid.Row="1" Name="grpbxSelectFolder" Margin="11,4,11,10">
+            <Grid Width="630" Height="90">
+                <TextBox Name="txtRestoreFolder" Text="{Binding restoreFolder,Mode=TwoWay}" IsEnabled="False" Height="27" Margin="10,12,10,51"/>
+                <Button Name="btnBrowseFolder" Content="Browse..." Command="{Binding BrowseImageFolderCommand}" Height="27" Width="100" Margin="520,50,10,13" />
+            </Grid>
+        </GroupBox>
+        <Button Name="btnContinue" Content="Proceed" Grid.Row="2" Command="{Binding RestoreImagesCommand}" Height="27" Margin="515,8,87,20"/>
+        <Button Name="btnCancel" Content="Cancel" Grid.Row="2" Command="{Binding WindowCloseCommand}" Height="27" Margin="600,8,10,20"/>
+    </Grid>
+</Window>

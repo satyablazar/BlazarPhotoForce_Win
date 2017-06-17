@@ -1,0 +1,135 @@
+﻿<Window x:Class="PhotoForce.Student_Management.StudentQRCodeEightStudentsGroupByTeacher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+        Title="Student QRCode Eight Students Per Page Group By Teacher" Height="350" Width="680" ResizeMode="NoResize" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+        <DataTemplate x:Key="CategoryTemplate">
+            <DockPanel Height="820">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <dxe:TextEdit Text="{Binding Path=Content.Name, Mode=OneWay}" Grid.Row="0" 
+                          FontWeight="Bold" FontSize="20" Foreground="SteelBlue" 
+                          dxp:ExportSettings.Bookmark="{Binding Content.Name}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <dxe:TextEdit Text="{Binding Path=Content.Name, Mode=OneWay}" 
+                          FontWeight="Bold" FontSize="20" Foreground="SteelBlue" Grid.Row="2"
+                          dxp:ExportSettings.Bookmark="{Binding Content.Name}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                </Grid>
+
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="QRDetails">
+            <Grid ShowGridLines="False" Height="850" Width="620">
+                <StackPanel Orientation="Vertical">
+                    <Grid ShowGridLines="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="83"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--Custom5-->
+                        <dxe:TextEdit Text="{Binding Path=Content.SheetNumber, Mode=TwoWay}" HorizontalAlignment="Left" Padding="10,0,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="40" Width="100" ShowBorder="True" FontFamily="Times New Roman" Grid.Row="0"/>
+                        <dxe:TextEdit Text="DO NOT FOLD OR BEND" HorizontalAlignment="Center" Padding="45,0,0,0" VerticalAlignment="Top" FontSize="32" FontWeight="Bold" Height="40" Width="485" ShowBorder="True" FontFamily="Times New Roman" Grid.Row="0"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.Custom5, Mode=OneWay}" HorizontalAlignment="Right" Height="Auto" Padding="25,0,0,0" Margin="210,0,0,0" Width="100" BorderBrush="Black" BorderThickness="2" FontSize="70" Grid.Row="0"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.ID, Mode=OneWay}" Padding="10,0,0,0" HorizontalAlignment="Center" FontSize="50" FontFamily="MW6 Matrix" Grid.Row="2"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.FirstLastName, Mode=OneWay}" Padding="140,0,0,0" Height="29" FontWeight="Bold" Width="Auto"  FontSize="24" Grid.Row="3"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade, Mode=OneWay}" Padding="140,0,0,0" Height="25" FontSize="17" Width="Auto" Grid.Row="4"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.SchoolNameYear, Mode=OneWay}" Padding="140,0,0,0" Height="25" FontSize="17" Width="Auto" Grid.Row="5"/>
+                        <dxe:TextEdit Text="{Binding Path=Content.FirstLastName, Mode=OneWay}" HorizontalAlignment="Center" FontSize="45" FontWeight="Bold" VerticalAlignment="Bottom" Height="50" Width="520"  ShowBorder="True" FontFamily="Times New Roman" Grid.Row="7"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <!--<DataTemplate x:Key="ProductTemplate">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="280" >
+                    <dxe:TextEdit   FontSize="49" FontFamily="3 of 9 Barcode"
+                        dxp:ExportSettings.BookmarkParentName="TeacherName" 
+                              dxp:ExportSettings.Bookmark="{Binding Content.Name}"  Text="{Binding Path=Content.ID, Mode=OneWay}"/>
+                    <dxe:TextEdit Text="{Binding Path=Content.FirstLastName, Mode=OneWay}"  Height="25"   FontWeight="Bold"   FontSize="17"  />
+                    <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade, Mode=OneWay}"  Height="25"   FontSize="17" />
+                    <dxe:TextEdit Text="{Binding Path=Content.SchoolName, Mode=OneWay}"  Height="25"     FontSize="17" />
+
+                    <dxe:TextEdit Text="{Binding Path=Content.ID, Mode=OneWay}"  FontSize="49" FontFamily="3 of 9 Barcode"   />
+                    <dxe:TextEdit Text="{Binding Path=Content.FirstLastName, Mode=OneWay}"  Height="25"   FontWeight="Bold"   FontSize="17" />
+                    <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade, Mode=OneWay}"  Height="25"   FontSize="17" />
+                    <dxe:TextEdit Text="{Binding Path=Content.SchoolName, Mode=OneWay}"  Height="25"     FontSize="17" />
+                </StackPanel>
+                <StackPanel>
+                    <dxe:TextEdit Width="70" ></dxe:TextEdit>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Width="280"  >
+                    <dxe:TextEdit   FontSize="49" FontFamily="3 of 9 Barcode"
+                        dxp:ExportSettings.BookmarkParentName="TeacherName" 
+                              dxp:ExportSettings.Bookmark="{Binding Content.Name}" 
+                               Text="{Binding Path=Content.ID1, Mode=OneWay}"/>
+                    <dxe:TextEdit 
+                              Text="{Binding Path=Content.FirstLastName1, Mode=OneWay}"  Height="25"   FontWeight="Bold"   FontSize="17" 
+                                  />
+                    <dxe:TextEdit 
+                              Text="{Binding Path=Content.TeacherGrade1, Mode=OneWay}"  Height="25"   FontSize="17"
+                              />
+                    <dxe:TextEdit Text="{Binding Path=Content.SchoolName1, Mode=OneWay}"  Height="25"     FontSize="17" />
+
+
+                    <dxe:TextEdit Text="{Binding Path=Content.ID1, Mode=OneWay}"  FontSize="49" FontFamily="3 of 9 Barcode"   />
+                    <dxe:TextEdit Text="{Binding Path=Content.FirstLastName1, Mode=OneWay}" FontWeight="Bold" Height="25"   FontSize="17" />
+                    <dxe:TextEdit Text="{Binding Path=Content.TeacherGrade1, Mode=OneWay}" Height="25" FontSize="17" />
+                    <dxe:TextEdit Text="{Binding Path=Content.SchoolName1, Mode=OneWay}" Height="25" FontSize="17"   />
+                </StackPanel>
+                <StackPanel>
+                    <Label Name="lblmargin" Content="{Binding Path=Content.SchoolName1, Mode=OneWay}" Height="10"></Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="dxe:TextEdit">
+                        <Setter Property="Padding" Value="3,0,3,0" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="250"/>
+                        <ColumnDefinition MinWidth="120"/>
+                        <ColumnDefinition MinWidth="70"/>
+                    </Grid.ColumnDefinitions>
+                    <dxe:TextEdit dxp:ExportSettings.BookmarkParentName="CategoryEdit" 
+                              dxp:ExportSettings.Bookmark="{Binding Content.Name}" 
+                              BorderBrush="LightGray" BorderThickness="1,0,0,1" 
+                              Grid.Column="0" Text="{Binding Path=Content.Name}"/>
+                    <dxe:TextEdit BorderBrush="LightGray" BorderThickness="1,0,0,1" Grid.Column="1" 
+                              Text="{Binding Path=Content.InStock}" HorizontalContentAlignment ="Right"/>
+                    <dxe:TextEdit BorderBrush="LightGray" BorderThickness="1,0,1,1" Grid.Column="2" 
+                              Text="{Binding Path=Content.UnitPrice}" 
+                              HorizontalContentAlignment ="Right" MaskUseAsDisplayFormat="True" 
+                              MaskType="Numeric" Mask="c2"/>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>-->
+
+    </Window.Resources>
+
+    <Grid >
+
+        <dxp:DocumentPreview Name="preview" />
+
+    </Grid>
+</Window>

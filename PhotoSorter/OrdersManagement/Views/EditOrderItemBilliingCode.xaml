@@ -1,0 +1,63 @@
+﻿<Window x:Class="PhotoForce.OrdersManagement.EditOrderItemBilliingCode"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        Title="Edit Order Item Billiing Code" Height="420" Width="950" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White"
+        Loaded="EditOrderItem_Loaded_1" Unloaded="EditOrderItem_UnLoaded_1">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <dxg:GridControl HorizontalAlignment="Stretch" ItemsSource="{Binding lstStudentPhotoOrders,Mode=TwoWay}" Margin="0,0,0,50" Name="dgEditOrderItems" SelectedItems="{Binding selectedStudentPhotoOrders,Mode=TwoWay}"
+                         VerticalAlignment="Stretch">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="Image Name" FieldName="StudentImage.ImageName" Name="grdColumnImageName" AllowEditing="False" VisibleIndex="0" />
+                <dxg:GridColumn Header="Name" FieldName="sp_Name" Name="grdColumnName" AllowEditing="False" VisibleIndex="1" />
+                <dxg:GridColumn Header="Password" FieldName="sp_Password" Name="grdColumnPassword" AllowEditing="False" VisibleIndex="2" />
+                <dxg:GridColumn Header="Group Name" FieldName="sp_GroupName" Name="grdColumnGroupName" AllowEditing="False" VisibleIndex="3"/>
+                <dxg:GridColumn Header="Item Label" FieldName="sp_ItemDescription" Name="grdColumnOrdeLabel" AllowEditing="False" VisibleIndex="4"/>
+                <dxg:GridColumn Header="Billing Code" Width="180" FieldName="sp_SimplePhotoBillingCode" Name="grdColumnBillingCode" AllowEditing="True" VisibleIndex="5">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxg:LookUpEdit 
+								Name="PART_Editor" 
+                                ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window, AncestorLevel=1}, Path=DataContext.billingCodes}"
+								DisplayMember="Package" AutoPopulateColumns="False" PopupMinWidth="260"
+								ValueMember="SimplePhotoItemId">
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl Name="PART_GridControl">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="Package" Header="Packages"/>
+                                                <dxg:GridColumn FieldName="SimplePhotoItemId" Header="Billing Code"/>
+                                            </dxg:GridControl.Columns>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                            </dxg:LookUpEdit>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="PriceList Name" FieldName="sp_PriceListName" Name="grdColumnPriceListName" AllowEditing="False" VisibleIndex="6"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView MultiSelectMode="Row" Name="tableManageDBConnections" FocusedRow="{Binding selectedOrderItem,Mode=TwoWay}" 
+                               ShowAutoFilterRow="True" ShowGroupPanel="False" CellStyle="{StaticResource RowStyle}" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <Button Content="Update" Name="btnUpdate" Width="70" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,86,15" Command="{Binding UpdateCommand}"></Button>
+        <Button Content="Close" Height="25" HorizontalAlignment="Right" Margin="0,0,10,15" Name="btnClose" VerticalAlignment="Bottom" Width="71" Command="{Binding WindowCloseCommand}" />
+    </Grid>
+</Window>

@@ -1,0 +1,368 @@
+﻿<Window x:Class="PhotoForce.OrdersManagement.NewManualOrders"
+      xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"        
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:PhotoForce.Extensions"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"        
+    Title="Create Manual Orders" Height="800" Width="1150" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter" />
+        <Style TargetType="dxdo:LayoutPanel">
+            <Setter Property="Appearance">
+                <Setter.Value>
+                    <dxdo:Appearance>
+                        <dxdo:Appearance.Normal>
+                            <dxdo:AppearanceObject Background="White" Foreground="Black"/>
+                        </dxdo:Appearance.Normal>
+                        <dxdo:Appearance.Active>
+                            <dxdo:AppearanceObject Background="LightGray" Foreground="Black"/>
+                        </dxdo:Appearance.Active>
+                    </dxdo:Appearance>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockManualOrders" Background="White" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True">
+            <!--Main Layout group-->
+            <dxdo:LayoutGroup  Name="Group1">
+                <dxdo:LayoutGroup Orientation="Vertical"  ItemWidth="3*" Name="Group2">
+
+                    <dxdo:LayoutPanel Name="Panel1" Caption="Order Information" ItemHeight="105" AllowClose="False" AllowHide="False">
+                        <Grid Height="80" Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!--<TextBlock Height="18" Foreground="Black" Text="PS Id" Name="tblStudentId" Margin="9,2,39,0"/>
+                            <TextBlock Height="18" Foreground="Black" Text="PS Id" Name="tblStudentId12" Margin="142,2,50,0" Grid.ColumnSpan="2"/>-->
+                            <RadioButton Foreground="Black" Content="All Students" Name="tblStudentId" IsChecked="{Binding isAllStudentsChecked, Mode=TwoWay}" Margin="9,-2,55,0"/>
+                            <RadioButton Foreground="Black" Content="Students haven't ordered" Name="tblStudentId12" Margin="106,-2,56,0" Grid.ColumnSpan="2"/>
+                            <dxg:LookUpEdit Name="studentLookUpEditType" VerticalAlignment="Center" HorizontalAlignment="Left" DisplayMember="ID" ValueMember="ID" 
+											AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="False" ImmediatePopup="True" FilterCondition="StartsWith" 
+                                            ItemsSource="{Binding cbStudentData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                 
+												SelectedItem="{Binding selectedStudent,Mode=TwoWay}" PopupWidth="520" Height="26" MinWidth="150" dx:DXSerializer.StoreLayoutMode="All" Grid.Row="1" Margin="8,3,0,1" Grid.ColumnSpan="2" Width="264" >
+                                <dxg:LookUpEdit.StyleSettings>
+                                    <dxg:SearchLookUpEditStyleSettings/>
+                                </dxg:LookUpEdit.StyleSettings>
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl Name="PART_GridControl">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="ID" Name="grdColumnID" Header="PS Id" Width="80"/>
+                                                <dxg:GridColumn FieldName="FirstName" Name="grdColumnFName" Header="First Name" AllowSearchPanel="False"/>
+                                                <dxg:GridColumn FieldName="Lastname" Name="grdColumnLName" Header="Last Name" AllowSearchPanel="False"/>
+                                                <dxg:GridColumn Header="School Name" FieldName="PhotographyJob.School.SchoolName" x:Name="grdColumnstudentSchoolName" ReadOnly="True"/>
+                                                <dxg:GridColumn Header="School Year" FieldName="PhotographyJob.JobName" x:Name="grdColumnstudentJobName" ReadOnly="True"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView AutoWidth="True" ShowSearchPanelMode="Never" ShowAutoFilterRow="True" SearchDelay="100" />
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                                <i:Interaction.Behaviors>
+                                    <MVVM:ActivateBehavior HasInitialFocus="True" IsFocused="{Binding studentIdFocused}" IsSelectAll="True"/>
+                                </i:Interaction.Behaviors>
+                            </dxg:LookUpEdit>
+                            <!--Order Date-->
+                            <TextBlock Height="18" Foreground="Black" Text="Date" Name="tblOrderDate" Width="70" Grid.Column="1" Margin="121,-1,139,3" Grid.ColumnSpan="2"/>
+                            <DatePicker Height="26" Name="txtOrderDate" SelectedDate="{Binding orderDate,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Width="135" Margin="121,3,74,1" Grid.ColumnSpan="2"/>
+                            <!--Order ID-->
+                            <!-- Commented by hema has to conform -->
+                            <!--<TextBlock Height="18" Text="Order #" Foreground="Black" Name="tblOrderId" Grid.Column="4" Margin="10,2,81,0"/>
+                            <TextBox Height="26" Name="txtOrderId" IsReadOnly="True" Text="{Binding orderId,Mode=TwoWay}" Grid.Row="1" Grid.Column="4" Margin="10,2,51,2"/>-->
+                            <!--Batch Name-->
+                            <!--PopupClosed="lookUpEditType_PopupClosed" PopupOpened="lookUpEditType_PopupOpened"-->
+                            <TextBlock Height="18" Text="Batch" Foreground="Black" Name="tblBatch" Width="70" Grid.Column="3" Margin="110,0,90,2" Grid.ColumnSpan="2"/>
+                            <dxg:LookUpEdit Name="BatchlookUpEditType" VerticalAlignment="Center" HorizontalAlignment="Left"
+												DisplayMember="Description" ValueMember="Id" AutoPopulateColumns="False" AutoComplete="True"
+												IncrementalFiltering="False" ImmediatePopup="True" IsPopupAutoWidth="True"
+												FilterCondition = "Equals" PopupWidth="430"
+												ItemsSource="{Binding cbExistingBatchData, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+												SelectedItem="{Binding selectedExistingBatch,Mode=TwoWay}"                                         
+																	   Height="26" Width="150" Grid.Row="1" Grid.Column="3" Margin="109,3,0,1" Grid.ColumnSpan="2">
+                                <dxg:LookUpEdit.StyleSettings>
+                                    <dxg:SearchLookUpEditStyleSettings/>
+                                </dxg:LookUpEdit.StyleSettings>
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl Name="PART_GridControl">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="Id" Header="Batch no" Width="80"/>
+                                                <dxg:GridColumn FieldName="CreatedOn" Header="Created On" Width="120" AllowSearchPanel="False"/>
+                                                <dxg:GridColumn FieldName="SchoolName" Header="School" AllowSearchPanel="False"/>
+                                                <dxg:GridColumn FieldName="Description" Header="Description" AllowSearchPanel="False"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView AutoWidth="True" ShowSearchPanelMode="Never" ShowAutoFilterRow="True" SearchDelay="0" />
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                            </dxg:LookUpEdit>
+                            <!--Create NewBatch  -->
+                            <Button Height="26" Name="btnNewBatch" Content="New Batch" Command="{Binding CreateNewBatchCommand}" Grid.Row="1" Grid.Column="4" Width="80" HorizontalAlignment="Left" Margin="106,3,0,1" Grid.ColumnSpan="2" />
+
+                            <!--SimplePhoto Order number -->
+                            <TextBlock Foreground="Black" Text="Simple Photo Order Number" Name="tblSimplePhotoOrdernumber" Grid.Column="2" Margin="109,-1,58,1" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtSimplePhotoOrderNumber" Text="{Binding simplePhotoOrderNumber,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Margin="109,3,63,1" Grid.ColumnSpan="2"/>
+
+                            <!-- Student details based on student Id -->
+                            <TextBox Height="24" Name="txtStudentDetails" BorderBrush="White" Visibility="{Binding studentDeteilsEnabled, Mode=TwoWay}" Text="{Binding psStudentDetails,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Grid.Row="2" Grid.ColumnSpan="4" FontWeight="Bold" FontSize="14" Margin="9,4,31,2" />
+
+                        </Grid>
+                    </dxdo:LayoutPanel>
+
+
+                    <dxdo:LayoutPanel Name="Panel121" Caption="Shipping Information" ItemHeight="80" AllowClose="False" AllowHide="False">
+                        <Grid Height="60" Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Shipping First Name-->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping First Name" Name="lblShippingName" Margin="8,2,33,0"/>
+                            <TextBox Height="26" Name="txtShippingName" Text="{Binding shippingFirstName,Mode=TwoWay}" Grid.Row="1" Margin="4,2,14,2"/>
+                            <!--Shipping Last Name-->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping Last Name" Name="lblShippingLastName" Margin="144,2,25,0" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtShippingLastName" Text="{Binding shippingLastName,Mode=TwoWay}" Grid.Row="1" Margin="143,2,25,2" Grid.ColumnSpan="2"/>
+                            <!--Shipping Address -->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping City" Name="lblShippingCity" Grid.Column="1" Margin="133,2,65,0" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtShippingCity" Text="{Binding shippingCity,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="132,2,36,2" Grid.ColumnSpan="2"/>
+
+                            <!--Shipping First Name-->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping State" Name="lblShippingState" Grid.Row="0" Margin="124,2,67,0" Grid.Column="2" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtShippingState" Text="{Binding shippingState,Mode=TwoWay}" Grid.Row="1" Margin="120,2,48,2" Grid.Column="2" Grid.ColumnSpan="2"/>
+                            <!--Shipping Last Name-->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping Address" Name="lblShippingAddress" Grid.Row="0" Margin="109,2,73,0" Grid.Column="3" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtShippingAddress" Text="{Binding shippingAddress,Mode=TwoWay}" Grid.Row="1" Margin="108,2,60,2" Grid.Column="3" Grid.ColumnSpan="2"/>
+                            <!--Shipping Address -->
+                            <TextBlock Height="18" Foreground="Black" Text="Shipping Postal Code" Name="lblShippingPostalCode" Grid.Row="0" Grid.Column="4" Margin="96,2,74,0" Grid.ColumnSpan="2"/>
+                            <TextBox Height="26" Name="txtShippingPostalCode" Text="{Binding shippingPostalCode,Mode=TwoWay}" Grid.Row="1" Grid.Column="4" Margin="95,2,73,2" Grid.ColumnSpan="2"/>
+
+                        </Grid>
+                    </dxdo:LayoutPanel>
+
+
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Panel2">
+                        <!--Photos of a student-->
+                        <dxdo:LayoutPanel Caption="Matching Student Images" x:Name="pnlStudentPhotos" AllowClose="False" AllowHide="False" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl x:Name="dgStudentPhotos" ItemsSource="{Binding dgStudentPhotosData, Mode=TwoWay}" SelectedItems="{Binding selectedStudentPhotos, Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlID">
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Image" FieldName="ImageName" Name="grdColumnImageName"  />
+                                        <dxg:GridColumn Header="Image Number" FieldName="ImageNumber" Name="grdColumnImageNumber" />
+                                        <dxg:GridColumn Header="PS ID" FieldName="StudentIDPK" x:Name="grdColumnPFID"/>
+                                        <dxg:GridColumn Header="School Name" FieldName="School.SchoolName" Name="grdColumnstudentSchoolName" ReadOnly="True"/>
+                                        <dxg:GridColumn Header="First Name" FieldName="Student.FirstName" Name="grdColumnFirstName"  />
+                                        <dxg:GridColumn Header="Last Name" FieldName="Student.Lastname" Name="grdColumnLastname" />
+                                        <dxg:GridColumn Header="Teacher" FieldName="Student.Teacher" Name="grdColumnTeacher"  />
+                                        <dxg:GridColumn Header="Grade" FieldName="Grade" Name="grdColumnGrade"  />
+                                        <dxg:GridColumn Header="Rating" FieldName="Rating" Name="grdChkRating"  />
+                                        <dxg:GridColumn Header="YearBook" FieldName="yearbook" Name="grdChkyearbook"  />
+                                        <dxg:GridColumn Header="Admin CD" FieldName="Admincd" Name="grdChkadmincd"  />
+                                        <dxg:GridColumn Header="Quixie ID" FieldName="QuixieID" Name="grdColumnQuixieID" />
+                                        <dxg:GridColumn Header="Home Room" FieldName="HomeRoom" Name="grdColumnHomeRoom" />
+                                        <dxg:GridColumn Header="DOB" FieldName="DOB" Name="grdColumnDob"  />
+                                        <dxg:GridColumn Header="Address" FieldName="Address" Name="grdColumnAddress" />
+                                        <dxg:GridColumn Header="City" FieldName="City" Name="grdColumnCityy"  />
+                                        <dxg:GridColumn Header="State" FieldName="State" Name="grdColumnStatee" />
+                                        <dxg:GridColumn Header="Zip" FieldName="Zip" Name="grdColumnZip"  />
+                                        <dxg:GridColumn Header="Phone" FieldName="Phone" Name="grdColumnPhone"  />
+                                        <dxg:GridColumn Header="Packages" FieldName="Packages" Name="grdColumnPackages"  />
+                                        <dxg:GridColumn Header="Custom 1" FieldName="Custom1" Name="grdColumnCustom1"  />
+                                        <dxg:GridColumn Header="Custom 2" FieldName="Custom2" Name="grdColumnCustom2"  />
+                                        <dxg:GridColumn Header="Custom 3" FieldName="Custom3" Name="grdColumnCustom3"  />
+                                        <dxg:GridColumn Header="Custom 4" FieldName="Custom4" Name="grdColumnCustom4" />
+                                        <dxg:GridColumn Header="Custom 5" FieldName="Custom5" Name="grdColumnCustom5" />
+                                        <dxg:GridColumn Header="Custom 6" FieldName="Custom6" Name="grdColumnCustom6" />
+                                        <dxg:GridColumn Header="Custom 7" FieldName="Custom7" Name="grdColumnCustom7" />
+                                        <dxg:GridColumn Header="Custom 8" FieldName="Custom8" Name="grdColumnCustom8"  />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowAutoFilterRow="True" FocusedRow="{Binding selectedStudentPhoto, Mode=TwoWay}" ShowGroupPanel="False"
+                                                       x:Name="studentPhotosTable" HorizontalAlignment="Stretch" CellStyle="{StaticResource RowStyle}" AllowEditing="False">
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewKeyDown">
+                                                    <i:InvokeCommandAction Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="PreviewKeyUp">
+                                                    <i:InvokeCommandAction Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgStudentPhotos" Path="VisibleRowCount" />
+                                            <Binding Path="selectedStudentPhotos.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+
+
+                    <dxdo:LayoutGroup Name="Group3">
+                        <!--Photos of a student-->
+                        <dxdo:LayoutPanel Caption="Order Items" x:Name="pnlOrderItems" AllowClose="False" AllowHide="False" AllowDrag="False">
+                            <dxg:GridControl x:Name="dgOrderItems" ItemsSource="{Binding dgOrderItemsData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItems="{Binding selectedOrderItems, Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlID2">
+                                <dxg:GridControl.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding OrderItemsMouseUpCommand}" />
+                                    <KeyBinding Modifiers="Control" Key="S" Command="{Binding CreateOrderItemCommand}" />
+                                    <KeyBinding Modifiers="Control" Key="Delete" Command="{Binding DeleteOrderItemCommand}" />
+                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OrderItemDoubleClickCommand}" />
+                                </dxg:GridControl.InputBindings>
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn FieldName="sp_SimplePhotoBillingCode" Header="Package" x:Name="grdsp_SimplePhotoBillingCode" AllowEditing="True" >
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxg:LookUpEditSettings ItemsSource="{Binding orderPackagesData}" AutoPopulateColumns="False" AutoComplete="True" FilterCondition = "Equals"
+											ImmediatePopup="True" DisplayMember="Item" ValueMember="SimplePhotoItemId">
+                                                <dxg:LookUpEditSettings.PopupContentTemplate>
+                                                    <ControlTemplate>
+                                                        <dxg:GridControl Name="PART_GridControl">
+                                                            <dxg:GridControl.Columns>
+                                                                <dxg:GridColumn FieldName="Item" Header="Package"/>
+                                                                <dxg:GridColumn FieldName="Package" Header="Package Name" AllowSearchPanel="False"/>
+                                                            </dxg:GridControl.Columns>
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TableView AutoWidth="True" ShowAutoFilterRow="True" SearchDelay="0"/>
+                                                            </dxg:GridControl.View>
+                                                        </dxg:GridControl>
+                                                    </ControlTemplate>
+                                                </dxg:LookUpEditSettings.PopupContentTemplate>
+                                            </dxg:LookUpEditSettings>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                    <dxg:GridColumn FieldName="StudentImage.ImageName" Header="Image" x:Name="grdImage" AllowEditing="False"/>
+                                    <dxg:GridColumn FieldName="LabCost" Header="Unit Price" x:Name="grdLabCost" AllowEditing="True" />
+                                    <dxg:GridColumn FieldName="Quantity" Header="Quantity" x:Name="grdQuantity" AllowEditing="True" />
+                                    <dxg:GridColumn FieldName="Amount" Header="Amount" x:Name="grdAmount" AllowEditing="False" 
+                                                    AllowUnboundExpressionEditor="True" IsSmart="True" UnboundType="Decimal" UnboundExpression="[Quantity]*[LabCost]"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem SummaryType="Sum" FieldName="Amount" DisplayFormat="Total : {0}"/>
+                                </dxg:GridControl.TotalSummary>
+
+                                <dxg:GridControl.View>
+                                    <dxg:TableView NewItemRowPosition="Top" MultiSelectMode="Row" ShowAutoFilterRow="False" FocusedRow="{Binding selectedOrderItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                        CellStyle="{StaticResource RowStyle}" x:Name="OrderItemsTable" ShowGroupPanel="False" ShowTotalSummary="True">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PreviewKeyDown">
+                                                <i:InvokeCommandAction Command="{Binding OrderItemsMouseUpCommand}"  CommandParameter="false"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="PreviewKeyUp">
+                                                <i:InvokeCommandAction Command="{Binding OrderItemsMouseUpCommand}"  CommandParameter="false"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+
+                    <!--Payment Method and Total-->
+                    <dxdo:LayoutPanel Name="Panel3" Background="White" ItemHeight="80" AllowClose="False" AllowHide="False">
+                        <Grid Height="60" Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Payment Method-->
+                            <TextBlock Height="18" Foreground="Black" Text="Payment Method" Name="tblPaymentMethod" Width="120" Margin="14,1,46,1"/>
+                            <ComboBox ItemsSource="{Binding Source={local:EnumBindingSource {x:Type local:PaymentMethods}}}" SelectedItem="{Binding selectedPaymentMethod, Mode=TwoWay}" Grid.Row="1" Height="27" Width="160"/>
+                            <!--Amount-->
+                            <TextBlock Height="18" Foreground="Black" Text="Amount" Name="tblAmount" Width="60" Grid.Column="1" Margin="44,1,76,1"/>
+                            <TextBox Height="27" Name="txtAmount" Text="{Binding amount,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Width="100"/>
+                            <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Width="300" HorizontalAlignment="Right">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="05"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button Name="btnSaveAndNew" Content="Save &amp; New" Width="90" Height="27" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Command="{Binding SaveAndNewCommand}" />
+                                <Button Name="btnSaveAndClose" Content="Save &amp; Close" Grid.Column="2" Height="27" Grid.Row="1"  Margin="5,1,2,1" Command="{Binding SaveAndCloseCommand}" />
+                                <Button Name="btnCancel" Content="Cancel" Grid.Column="3" Width="75" Height="27" Grid.Row="1" Command="{Binding WindowCloseCommand}" />
+                            </Grid>
+                        </Grid>
+                    </dxdo:LayoutPanel>
+
+                </dxdo:LayoutGroup>
+
+                <dxdo:LayoutGroup Orientation="Vertical" Name="Group4" >
+                    <dxdo:LayoutPanel Caption="Group Photo" Name="Panel4" Background="White" AllowClose="False" AllowHide="False" AllowDrag="False" ItemWidth="0.53*">
+                        <Image x:Name="imgGroupPhostoPreview" Source="{Binding groupImageSource, Mode=TwoWay}">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StudentImagePreviewCommand}" />
+                            </Image.InputBindings>
+                        </Image>
+                    </dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel Name="Panel5" Caption="Photo Preview" Background="White" AllowClose="False" AllowHide="False" AllowDrag="False">
+                        <Image Name="imgStudentPhotoPreview" Source="{Binding studentImageSource,Mode=TwoWay}">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StudentImagePreviewCommand}" />
+                            </Image.InputBindings>
+                        </Image>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+            </dxdo:LayoutGroup>
+
+
+        </dxdo:DockLayoutManager>
+    </Grid>
+</Window>

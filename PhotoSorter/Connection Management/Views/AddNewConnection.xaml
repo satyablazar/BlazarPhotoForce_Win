@@ -1,0 +1,39 @@
+﻿<Window x:Class="PhotoForce.Connection_Management.AddNewConnection"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        xmlns:ConnectionManagement="clr-namespace:PhotoForce.Connection_Management"
+        Title="Add New Connection" Height="388" Width="560" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <GroupBox Name="grpNewConnection" Header="New Connection" Height="275" VerticalAlignment="Top" Padding="0,0,0,-155" Margin="24,10,24,0" >
+            <Grid Margin="0,5,10,97">
+                <Label Content="Connection Name" Height="27" HorizontalAlignment="Left" Name="lblConnectionName" VerticalAlignment="Top" Width="108" VerticalContentAlignment="Center" Margin="14,12,0,0"/>
+                <TextBox  Name="txtConnectionName" Text="{Binding connectionName,Mode=TwoWay, ValidatesOnDataErrors=True}" TextWrapping="Wrap"  HorizontalAlignment="Left" Margin="174,17,0,0" Width="283"  VerticalAlignment="Top"></TextBox>
+                <Label Content="Server Name" Height="27" HorizontalAlignment="Left" x:Name="lblServerName" VerticalAlignment="Top" Width="108" VerticalContentAlignment="Center" Margin="14,50,0,0"/>
+                <TextBox  x:Name="txtServerName"  Text="{Binding serverName,Mode=TwoWay, ValidatesOnDataErrors=True}" TextWrapping="Wrap"  HorizontalAlignment="Left"  Margin="174,55,0,0" Width="283"  VerticalAlignment="Top"/>
+                <Label Content="Database Name" Height="27" HorizontalAlignment="Left" x:Name="lblDatabaseName" VerticalAlignment="Top" Width="108" VerticalContentAlignment="Center" Margin="14,89,0,0"/>
+                <TextBox  x:Name="txtDatabaseName" Text="{Binding databaseName,Mode=TwoWay, ValidatesOnDataErrors=True}" TextWrapping="Wrap"  HorizontalAlignment="Left"  Margin="174,95,0,0" Width="283"  VerticalAlignment="Top"/>
+                <Label Content="User Name" Height="27" HorizontalAlignment="Left" x:Name="lblUserName" VerticalAlignment="Top" Width="108" VerticalContentAlignment="Center" Margin="14,130,0,0"/>
+                <TextBox  x:Name="txtUserName" Text="{Binding userName,Mode=TwoWay, ValidatesOnDataErrors=True}" TextWrapping="Wrap"  HorizontalAlignment="Left"  Margin="174,135,0,0" Width="283"  VerticalAlignment="Top"/>
+                <Label Content="Password" Height="27" HorizontalAlignment="Left" x:Name="lblPassword" VerticalAlignment="Top" Width="108" VerticalContentAlignment="Center" Margin="14,170,0,0"/>
+                <TextBox  x:Name="txtPassword" Text="{Binding password,Mode=TwoWay, ValidatesOnDataErrors=True}" HorizontalAlignment="Left"  Margin="174,175,0,0" Width="283"  VerticalAlignment="Top"/>
+                <Button Name="btnTestConnection" Command="{Binding TestConnectionCommand}" Height="25" Content="Test Connection" Margin="335,213,28,68" Padding="5,2,3,5"  />
+            </Grid>
+        </GroupBox>
+        <Button Name="btnOK" Content="OK" Height="25" Width="70" Command="{Binding ConnectionOKCommand}" Margin="367,293,105,30"/>
+        <Button Name="btnCancel" Command="{Binding WindowCloseCommand}" Height="25" Content="Cancel" Width="70" Margin="443,293,29,30"/>
+    </Grid>
+</Window>

@@ -1,0 +1,1476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C79CDDBD-473A-4642-B753-FA85E07FAA48}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhotoForce</RootNamespace>
+    <AssemblyName>PhotoForce</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\PS4.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v15.2.Core">
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Charts.v15.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v15.2">
+      <HintPath>..\..\..\Sw\Sw\DevExpress.CodeParser.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Data.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.2">
+      <HintPath>..\..\..\Sw\Sw\DevExpress.DataAccess.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.2.UI">
+      <HintPath>..\..\..\Sw\Sw\DevExpress.DataAccess.v15.2.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Images.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Printing.v15.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="devexpress.xpf.carousel.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="devexpress.xpf.controls.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Controls.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Core.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2010Black.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013DarkGray.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Seven.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Themes.Seven.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraEditors.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraGrid.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraPrinting.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraReports.v15.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.2.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <HintPath>C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCodeFontNet, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\QRCodeFontNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RandomLicenseGenerator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RandomLicenseGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftekBarcodeLib3, Version=7.6.1.4, Culture=neutral, PublicKeyToken=f2573896a24c4790, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SoftekBarcodeLib3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App_Code\clsActivities.cs" />
+    <Compile Include="App_Code\clsConnectionString.cs" />
+    <Compile Include="App_Code\clsGroup.cs" />
+    <Compile Include="App_Code\clsImageQuix.cs" />
+    <Compile Include="App_Code\clsLicensing.cs" />
+    <Compile Include="App_Code\clsOrders.cs" />
+    <Compile Include="App_Code\clsPhotoShoot.cs" />
+    <Compile Include="App_Code\clsSchool.cs" />
+    <Compile Include="App_Code\clsStatic.cs" />
+    <Compile Include="App_Code\clsStudent.cs" />
+    <Compile Include="App_Code\clsUsers.cs" />
+    <Compile Include="App_Code\clsVersion.cs" />
+    <Compile Include="App_Code\clsWorkflows.cs" />
+    <Compile Include="App_Code\GetTemplateCoordinates.cs" />
+    <Compile Include="App_Code\PhotoSorterDBModel.cs">
+      <DependentUpon>PhotoSorterDBModel.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\PhotoSorterDBModel.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhotoSorterDBModel.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\WCFSQLHelper.cs" />
+    <Compile Include="Connection Management\ViewModels\AddNewConnectionViewModel.cs" />
+    <Compile Include="Connection Management\ViewModels\DataBaseBackUpViewModel.cs" />
+    <Compile Include="Connection Management\Views\AddNewConnection.xaml.cs">
+      <DependentUpon>AddNewConnection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Connection Management\Views\DataBaseBackUp.xaml.cs">
+      <DependentUpon>DataBaseBackUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Error Management\ImportImagesException.cs" />
+    <Compile Include="Error Management\ViewModels\ShowErrorsViewModel.cs" />
+    <Compile Include="Error Management\Views\ShowErrors.xaml.cs">
+      <DependentUpon>ShowErrors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ComboBoxItem.cs" />
+    <Compile Include="Extensions\Converters\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Extensions\Converters\StringToEnumConverter.cs" />
+    <Compile Include="Extensions\CountImagesNStudents.cs" />
+    <Compile Include="Extensions\EnumBindingSourceExtension.cs" />
+    <Compile Include="Extensions\GroupExtraColumn.cs" />
+    <Compile Include="Extensions\JsonFileData.cs" />
+    <Compile Include="Extensions\MaskDetailsItem.cs" />
+    <Compile Include="Extensions\Enums\PaymentMethods.cs" />
+    <Compile Include="GroupManagement\ViewModels\AddGroupViewModel.cs" />
+    <Compile Include="GroupManagement\ViewModels\EditGroupViewModel.cs" />
+    <Compile Include="GroupManagement\ViewModels\AddStudentsToGroupViewModel.cs" />
+    <Compile Include="GroupManagement\ViewModels\BulkRenameGroupViewModel.cs" />
+    <Compile Include="GroupManagement\ViewModels\DeleteFoldersMessageViewModel.cs" />
+    <Compile Include="GroupManagement\ViewModels\ManageGroupsViewModel.cs" />
+    <Compile Include="GroupManagement\Views\AddGroup.xaml.cs">
+      <DependentUpon>AddGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagement\Views\EditGroup.xaml.cs">
+      <DependentUpon>EditGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagement\Views\AddStudentsToGroup.xaml.cs">
+      <DependentUpon>AddStudentsToGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagement\Views\BulkRenameGroup.xaml.cs">
+      <DependentUpon>BulkRenameGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagement\Views\DeleteFoldersMessage.xaml.cs">
+      <DependentUpon>DeleteFoldersMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupManagement\Views\ManageGroups.xaml.cs">
+      <DependentUpon>ManageGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Conversions.cs" />
+    <Compile Include="Helpers\CreateExcelFile.cs" />
+    <Compile Include="Helpers\DataLoader.cs" />
+    <Compile Include="Helpers\StringSwap.cs" />
+    <Compile Include="ImageQuixManagement\ViewModels\AddEditIQAccountViewModel.cs" />
+    <Compile Include="ImageQuixManagement\ViewModels\AddEditIQVandOSettingsViewModel.cs" />
+    <Compile Include="ImageQuixManagement\ViewModels\AddEditPriceSheetViewModel.cs" />
+    <Compile Include="ImageQuixManagement\Views\AddEditIQAccount.xaml.cs">
+      <DependentUpon>AddEditIQAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageQuixManagement\Views\AddEditIQVandOSettings.xaml.cs">
+      <DependentUpon>AddEditIQVandOSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageQuixManagement\Views\AddEditPriceSheet.xaml.cs">
+      <DependentUpon>AddEditPriceSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="License Management\Converters\IntToBoolConverter.cs" />
+    <Compile Include="License Management\Converters\StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="License Management\ViewModels\AddCreditsViewModel.cs" />
+    <Compile Include="License Management\ViewModels\CreateUserViewModel.cs" />
+    <Compile Include="License Management\Views\AddCredits.xaml.cs">
+      <DependentUpon>AddCredits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="License Management\Views\CreateUser.xaml.cs">
+      <DependentUpon>CreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mask Management\ViewModels\AddEditMasksViewModel.cs" />
+    <Compile Include="Mask Management\ViewModels\BulkRenameMaksViewModel.cs" />
+    <Compile Include="Mask Management\ViewModels\SearchSchoolViewModel.cs" />
+    <Compile Include="Mask Management\Views\AddEditMasks.xaml.cs">
+      <DependentUpon>AddEditMasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mask Management\Views\BulkRenameMaks.xaml.cs">
+      <DependentUpon>BulkRenameMaks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mask Management\Views\SearchSchool.xaml.cs">
+      <DependentUpon>SearchSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\ActivateBehaviour.cs" />
+    <Compile Include="MVVM\DialogCloserExtension.cs" />
+    <Compile Include="MVVM\FilteredDataSupport.cs" />
+    <Compile Include="MVVM\MVVMMessageService.cs" />
+    <Compile Include="MVVM\RelayCommand.cs" />
+    <Compile Include="MVVM\ViewModelBase.cs" />
+    <Compile Include="MVVM\ViewModelLocator.cs" />
+    <Compile Include="MVVM\WaitCursorViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\AddNewOrderPackageViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\CreateNewBatchViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\EditManualOrderViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\EditOrderItemBilliingCodeViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\ImagesWithoutOrdersViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\ImportOrderPathSelectorViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\ImportOrdersProgressBarViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\MissingOrdersViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\NewManualOrdersViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\UpdateOrderTrackingNumberViewModel.cs" />
+    <Compile Include="OrdersManagement\Views\AddNewOrderPackage.xaml.cs">
+      <DependentUpon>AddNewOrderPackage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\CreateNewBatch.xaml.cs">
+      <DependentUpon>CreateNewBatch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\EditOrderItemBilliingCode.xaml.cs">
+      <DependentUpon>EditOrderItemBilliingCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\ViewModels\AddPackagesToOrderItemViewModel.cs" />
+    <Compile Include="OrdersManagement\ViewModels\AddToOrdersViewModel.cs" />
+    <Compile Include="OrdersManagement\Views\AddPackagesToOrderItem.xaml.cs">
+      <DependentUpon>AddPackagesToOrderItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\AddToOrders.xaml.cs">
+      <DependentUpon>AddToOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\ImagesWithoutOrders.xaml.cs">
+      <DependentUpon>ImagesWithoutOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\ImportOrderPathSelector.xaml.cs">
+      <DependentUpon>ImportOrderPathSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\ImportOrdersProgressBar.xaml.cs">
+      <DependentUpon>ImportOrdersProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\MissingOrders.xaml.cs">
+      <DependentUpon>MissingOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\NewManualOrders.xaml.cs">
+      <DependentUpon>NewManualOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\NewOrder.xaml.cs">
+      <DependentUpon>NewOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersManagement\Views\UpdateOrderTrackingNumber.xaml.cs">
+      <DependentUpon>UpdateOrderTrackingNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoShoot Management\ViewModels\AddNewPhotoshootTypeViewModel.cs" />
+    <Compile Include="PhotoShoot Management\Views\AddNewPhotoshootType.xaml.cs">
+      <DependentUpon>AddNewPhotoshootType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QRBarcode_Helpers\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QRBarcode_Helpers\XtraReport1.designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QRBarcode_Helpers\XtraReport1NoTeacher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QRBarcode_Helpers\XtraReport1NoTeacher.designer.cs">
+      <DependentUpon>XtraReport1NoTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\ViewModels\AddEditStudioViewModel.cs" />
+    <Compile Include="Settings\ViewModels\EditDefaultPricingViewModel.cs" />
+    <Compile Include="Settings\ViewModels\FileLocationViewModel.cs" />
+    <Compile Include="Settings\Views\AddEditStudio.xaml.cs">
+      <DependentUpon>AddEditStudio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Views\EditDefaultPricing.xaml.cs">
+      <DependentUpon>EditDefaultPricing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Views\FileLocation.xaml.cs">
+      <DependentUpon>FileLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\ViewModels\TrackStudentsAcrossYearsViewModel.cs" />
+    <Compile Include="Student Management\Views\StudentQRCodeEightStudentsGroupByTeacher.xaml.cs">
+      <DependentUpon>StudentQRCodeEightStudentsGroupByTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\StudentQRCodeEightStudentsWithOutGroupByTeacher.xaml.cs">
+      <DependentUpon>StudentQRCodeEightStudentsWithOutGroupByTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\StudentQRCodeOneStudentGroupByTeacher.xaml.cs">
+      <DependentUpon>StudentQRCodeOneStudentGroupByTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\StudentQRCodeOneStudentWithOutTeacher.xaml.cs">
+      <DependentUpon>StudentQRCodeOneStudentWithOutTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\TrackStudentsAcrossYears.xaml.cs">
+      <DependentUpon>TrackStudentsAcrossYears.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View Management\UserControls\ViewModels\AddEditUsersViewModel.cs" />
+    <Compile Include="View Management\UserControls\Views\AddEditUsers.xaml.cs">
+      <DependentUpon>AddEditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowManagement\ViewModels\AddCollectionItemsViewModel.cs" />
+    <Compile Include="WorkflowManagement\ViewModels\AddEditEquipmentItemsViewModel.cs" />
+    <Compile Include="WorkflowManagement\ViewModels\AddEditWorkflowItemsViewModel.cs" />
+    <Compile Include="WorkflowManagement\ViewModels\AddRemoveCollectionItemsViewModel.cs" />
+    <Compile Include="WorkflowManagement\ViewModels\EditPhotoshootWorkflowItemsViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkflowManagement\Views\AddCollectionItems.xaml.cs">
+      <DependentUpon>AddCollectionItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowManagement\Views\AddEditEquipmentItems.xaml.cs">
+      <DependentUpon>AddEditEquipmentItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowManagement\Views\AddEditWorkflowItems.xaml.cs">
+      <DependentUpon>AddEditWorkflowItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowManagement\Views\AddRemoveCollectionItems.xaml.cs">
+      <DependentUpon>AddRemoveCollectionItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowManagement\Views\EditPhotoshootWorkflowItems.xaml.cs">
+      <DependentUpon>EditPhotoshootWorkflowItems.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhotographyJobManagement\ViewModels\AddNewPhotographyJobViewModel.cs" />
+    <Compile Include="PhotographyJobManagement\ViewModels\BulkRenameJobViewModel.cs" />
+    <Compile Include="PhotographyJobManagement\ViewModels\SelectSchoolYearViewModel.cs" />
+    <Compile Include="PhotographyJobManagement\ViewModels\ValidateDataFileViewModel.cs" />
+    <Compile Include="PhotographyJobManagement\Views\AddNewPhotographyJob.xaml.cs">
+      <DependentUpon>AddNewPhotographyJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotographyJobManagement\Views\BulkRenameJob.xaml.cs">
+      <DependentUpon>BulkRenameJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotographyJobManagement\Views\SelectSchoolYear.xaml.cs">
+      <DependentUpon>SelectSchoolYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotographyJobManagement\Views\ValidateDataFile.xaml.cs">
+      <DependentUpon>ValidateDataFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoShoot Management\ViewModels\AddEditPhotoShootViewModel.cs" />
+    <Compile Include="PhotoShoot Management\ViewModels\BulkRenamePhotoShootViewModel.cs" />
+    <Compile Include="PhotoShoot Management\Views\AddEditPhotoShoot.xaml.cs">
+      <DependentUpon>AddEditPhotoShoot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoShoot Management\Views\BulkRenamePhotoShoot.xaml.cs">
+      <DependentUpon>BulkRenamePhotoShoot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\ViewModels\AddEditActivityTypeViewModel.cs" />
+    <Compile Include="School Management\ViewModels\AddEditActivityViewModel.cs" />
+    <Compile Include="School Management\ViewModels\AddEditSchoolViewModel.cs" />
+    <Compile Include="School Management\ViewModels\BulkRenameSchoolViewModel.cs" />
+    <Compile Include="School Management\ViewModels\DeviceScanningViewModel.cs" />
+    <Compile Include="School Management\Views\AddEditActivity.xaml.cs">
+      <DependentUpon>AddEditActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\Views\AddEditActivityType.xaml.cs">
+      <DependentUpon>AddEditActivityType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\Views\AddEditSchool.xaml.cs">
+      <DependentUpon>AddEditSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\Views\BulkRenameSchool.xaml.cs">
+      <DependentUpon>BulkRenameSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\Views\DeviceScanning.xaml.cs">
+      <DependentUpon>DeviceScanning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="School Management\Views\PrintDeviceQRCode.xaml.cs">
+      <DependentUpon>PrintDeviceQRCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\UserControls\ViewModels\MaskViewModel.cs" />
+    <Compile Include="Settings\UserControls\Views\Mask.xaml.cs">
+      <DependentUpon>Mask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\ShellApi.cs" />
+    <Compile Include="Shell\ShellExecute.cs" />
+    <Compile Include="Shell\ShellFileOperation.cs" />
+    <Compile Include="Shell\ShellNameMapping.cs" />
+    <Compile Include="Student Management\ViewModels\AddEditStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\AddStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\BulkRenameStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\CountStudentsViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\EditImportBatchesViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\ExportStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\GenerateStudentQRCodeViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\GetImagesWithoutStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\ImportStudentViewModel.cs" />
+    <Compile Include="Student Management\ViewModels\ReImportStudentsViewModel.cs" />
+    <Compile Include="Student Management\Views\AddEditStudent.xaml.cs">
+      <DependentUpon>AddEditStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\AddStudent.xaml.cs">
+      <DependentUpon>AddStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\BulkRenameStudent.xaml.cs">
+      <DependentUpon>BulkRenameStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\CountStudents.xaml.cs">
+      <DependentUpon>CountStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\EditImportBatches.xaml.cs">
+      <DependentUpon>EditImportBatches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\ExportStudent.xaml.cs">
+      <DependentUpon>ExportStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\GenerateStudentQRCode.xaml.cs">
+      <DependentUpon>GenerateStudentQRCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\GetImagesWithoutStudent.xaml.cs">
+      <DependentUpon>GetImagesWithoutStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\ImportStudent.xaml.cs">
+      <DependentUpon>ImportStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\PrintStudentsQRCode.xaml.cs">
+      <DependentUpon>PrintStudentsQRCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Student Management\Views\ReImportStudents.xaml.cs">
+      <DependentUpon>ReImportStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\ViewModels\AssignStudentViewModel.cs" />
+    <Compile Include="StudentImageManagement\ViewModels\BulkRenameStudentImageViewModel.cs" />
+    <Compile Include="StudentImageManagement\ViewModels\CountImagesViewModel.cs" />
+    <Compile Include="StudentImageManagement\ViewModels\RestoreImagesViewModel.cs" />
+    <Compile Include="StudentImageManagement\ViewModels\RestoreRetouchImagesViewModel.cs" />
+    <Compile Include="StudentImageManagement\ViewModels\UploadStudentImagesViewModel.cs" />
+    <Compile Include="StudentImageManagement\Views\AssignStudent.xaml.cs">
+      <DependentUpon>AssignStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\BulkRenameStudentImage.xaml.cs">
+      <DependentUpon>BulkRenameStudentImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\CountDuplicateStudents.xaml.cs">
+      <DependentUpon>CountDuplicateStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\CountImages.xaml.cs">
+      <DependentUpon>CountImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\RestoreImages.xaml.cs">
+      <DependentUpon>RestoreImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\RestoreRetouchImages.xaml.cs">
+      <DependentUpon>RestoreRetouchImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentImageManagement\Views\UploadStudentImages.xaml.cs">
+      <DependentUpon>UploadStudentImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View Management\UserControls\ViewModels\ViewPhotoShootViewModel.cs" />
+    <Compile Include="View Management\UserControls\Views\ViewPhotoShoot.xaml.cs">
+      <DependentUpon>ViewPhotoShoot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="WorkPlace\Converters\ColorValueConverter.cs" />
+    <Compile Include="WorkPlace\Converters\GeneratePDFMultiValueConverter.cs" />
+    <Compile Include="WorkPlace\Converters\GridFooterConverter.cs" />
+    <Compile Include="WorkPlace\Converters\IntToEnableConveter.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ActivateStudentsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ActiveStudiosViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\AddEditUsers.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\DashBoardViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\DashBoardWorkflowItemsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\EquipmentItemsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ImageQuixAccountsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ImportBatchesViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\LockedPhotosViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ManageUsersViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\OrderformDefaultPricingViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\OrderPackagesViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\OrdersViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\PhotographyJobViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\PhotoShootsWithoutWorkflowsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\SchoolsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\SearchOrdersViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\SPPriceSheetViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\StudentsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\UniversalImageSearchViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\UniversalStudentSearchViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ValidatePhotoShootsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\WorkflowCollectionsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\WorkflowItemsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\Views\ActivateStudents.xaml.cs">
+      <DependentUpon>ActivateStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\ActiveStudios.xaml.cs">
+      <DependentUpon>ActiveStudios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\Activities.xaml.cs">
+      <DependentUpon>Activities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\DashBoard.xaml.cs">
+      <DependentUpon>DashBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\DashBoardWorkflowItems.xaml.cs">
+      <DependentUpon>DashBoardWorkflowItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\EquipmentItems.xaml.cs">
+      <DependentUpon>EquipmentItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\ImageQuixAccounts.xaml.cs">
+      <DependentUpon>ImageQuixAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\ImportBatches.xaml.cs">
+      <DependentUpon>ImportBatches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\LockedPhotos.xaml.cs">
+      <DependentUpon>LockedPhotos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\ManageUsers.xaml.cs">
+      <DependentUpon>ManageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\OrderformDefaultPricing.xaml.cs">
+      <DependentUpon>OrderformDefaultPricing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\OrderPackages.xaml.cs">
+      <DependentUpon>OrderPackages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\OrdersWithStudets.xaml.cs">
+      <DependentUpon>OrdersWithStudets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\PhotographyJob.xaml.cs">
+      <DependentUpon>PhotographyJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\PhotoShootsWithoutWorkflows.xaml.cs">
+      <DependentUpon>PhotoShootsWithoutWorkflows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\Schools.xaml.cs">
+      <DependentUpon>Schools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\SearchOrders.xaml.cs">
+      <DependentUpon>SearchOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\SPPriceSheet.xaml.cs">
+      <DependentUpon>SPPriceSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\Students.xaml.cs">
+      <DependentUpon>Students.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\UniversalImageSearch.xaml.cs">
+      <DependentUpon>UniversalImageSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\UniversalStudentSearch.xaml.cs">
+      <DependentUpon>UniversalStudentSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\ValidatePhotoShoots.xaml.cs">
+      <DependentUpon>ValidatePhotoShoots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\WorkflowCollections.xaml.cs">
+      <DependentUpon>WorkflowCollections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\UserControls\Views\WorkflowItems.xaml.cs">
+      <DependentUpon>WorkflowItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\ViewModels\AboutUsViewModel.cs" />
+    <Compile Include="WorkPlace\UserControls\ViewModels\ActivitiesViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\AutoCreateGroupsViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\CustomMessageBoxViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\ExportToTextFileViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\ExportViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\GeneratePasswordViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\GeneratePDFViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\GetRatingViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\LoginViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\ManageDBConnectionsViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\ProgressBarRenameViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\ReviewPricingViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\SyncDeleteMessageViewModel.cs" />
+    <Compile Include="WorkPlace\ViewModels\YearbookSelectionViewModel.cs" />
+    <Compile Include="WorkPlace\Views\AboutUs.xaml.cs">
+      <DependentUpon>AboutUs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\AutoCreateGroups.xaml.cs">
+      <DependentUpon>AutoCreateGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\Export.xaml.cs">
+      <DependentUpon>Export.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\ExportOrders.xaml.cs">
+      <DependentUpon>ExportOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\ExportToTextFile.xaml.cs">
+      <DependentUpon>ExportToTextFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\GeneratePassword.xaml.cs">
+      <DependentUpon>GeneratePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\GeneratePDF.xaml.cs">
+      <DependentUpon>GeneratePDF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\GetRating.xaml.cs">
+      <DependentUpon>GetRating.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\ManageDBConnections.xaml.cs">
+      <DependentUpon>ManageDBConnections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\ProgressBarRename.xaml.cs">
+      <DependentUpon>ProgressBarRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\ReviewPricing.xaml.cs">
+      <DependentUpon>ReviewPricing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\SyncDeleteMessage.xaml.cs">
+      <DependentUpon>SyncDeleteMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace\Views\YearbookSelection.xaml.cs">
+      <DependentUpon>YearbookSelection.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Connection Management\Views\AddNewConnection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Connection Management\Views\DataBaseBackUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Error Management\Views\ShowErrors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\AddGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\EditGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\AddStudentsToGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\BulkRenameGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\DeleteFoldersMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupManagement\Views\ManageGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageQuixManagement\Views\AddEditIQAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageQuixManagement\Views\AddEditIQVandOSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageQuixManagement\Views\AddEditPriceSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="License Management\Views\AddCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="License Management\Views\CreateUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Code\clsDashBoard.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Mask Management\Views\AddEditMasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mask Management\Views\BulkRenameMaks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mask Management\Views\SearchSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\AddNewOrderPackage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\CreateNewBatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\EditOrderItemBilliingCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\AddPackagesToOrderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\AddToOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\ImagesWithoutOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\ImportOrderPathSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\ImportOrdersProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\MissingOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\NewManualOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersManagement\Views\NewOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OrdersManagement\Views\UpdateOrderTrackingNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotoShoot Management\Views\AddNewPhotoshootType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\Views\AddEditStudio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\Views\EditDefaultPricing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\Views\FileLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Student Management\Views\StudentQRCodeEightStudentsGroupByTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\StudentQRCodeEightStudentsWithOutGroupByTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\StudentQRCodeOneStudentGroupByTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\StudentQRCodeOneStudentWithOutTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\TrackStudentsAcrossYears.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View Management\UserControls\Views\AddEditUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkflowManagement\Views\AddCollectionItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkflowManagement\Views\AddEditEquipmentItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WorkflowManagement\Views\AddEditWorkflowItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkflowManagement\Views\AddRemoveCollectionItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkflowManagement\Views\EditPhotoshootWorkflowItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotographyJobManagement\Views\AddNewPhotographyJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotographyJobManagement\Views\BulkRenameJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotographyJobManagement\Views\SelectSchoolYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotographyJobManagement\Views\ValidateDataFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotoShoot Management\Views\AddEditPhotoShoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotoShoot Management\Views\BulkRenamePhotoShoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\AddEditActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\AddEditActivityType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\AddEditSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\BulkRenameSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\DeviceScanning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="School Management\Views\PrintDeviceQRCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\UserControls\Views\Mask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\AddEditStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\AddStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\BulkRenameStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\CountStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\EditImportBatches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\ExportStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\GenerateStudentQRCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\GetImagesWithoutStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\ImportStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\PrintStudentsQRCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Student Management\Views\ReImportStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\AssignStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\BulkRenameStudentImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\CountDuplicateStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\CountImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\RestoreImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\RestoreRetouchImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentImageManagement\Views\UploadStudentImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View Management\UserControls\Views\ViewPhotoShoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ActivateStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ActiveStudios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\Activities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\DashBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\DashBoardWorkflowItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\EquipmentItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ImageQuixAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ImportBatches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\LockedPhotos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ManageUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\OrderformDefaultPricing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\OrderPackages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\OrdersWithStudets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\PhotographyJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\PhotoShootsWithoutWorkflows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\Schools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\SearchOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\SPPriceSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\Students.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\UniversalImageSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\UniversalStudentSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\ValidatePhotoShoots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\WorkflowCollections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\UserControls\Views\WorkflowItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\AboutUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\AutoCreateGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\Export.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\ExportOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\ExportToTextFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\GeneratePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\GeneratePDF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\GetRating.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\ManageDBConnections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\ProgressBarRename.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\ReviewPricing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\SyncDeleteMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkPlace\Views\YearbookSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="QRBarcode_Helpers\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QRBarcode_Helpers\XtraReport1NoTeacher.resx">
+      <DependentUpon>XtraReport1NoTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App_Code\PhotoSorterDBModel.dbml.layout">
+      <DependentUpon>PhotoSorterDBModel.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Licenses.licx" />
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App_Code\PhotoSorterDBModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PhotoSorterDBModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\Templates\Orderformoption1.1.pdf" />
+    <None Include="bin\Debug\Templates\Orderformoption1.pdf" />
+    <None Include="bin\Debug\Templates\Orderformoption2.pdf" />
+    <None Include="bin\Debug\Templates\Orderformoption3.pdf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\about.png" />
+    <Resource Include="Images\Activate.png" />
+    <Resource Include="Images\AddGroupImage.png" />
+    <Resource Include="Images\addToGroups.png" />
+    <Resource Include="Images\add_credit.png" />
+    <Resource Include="Images\admincd.png" />
+    <Resource Include="Images\All-Mail-Items_17.png" />
+    <Resource Include="Images\AssignStudentnew.jpg" />
+    <Resource Include="Images\AssignStudents.png" />
+    <Resource Include="Images\autoGroup.png" />
+    <Resource Include="Images\button-import-excel.png" />
+    <Resource Include="Images\Calendar_25.png" />
+    <Resource Include="Images\checkbox_checked.png" />
+    <Resource Include="Images\checkbox_unchecked.png" />
+    <Resource Include="Images\connected.bmp" />
+    <Resource Include="Images\Contacts_17.png" />
+    <Resource Include="Images\Contacts_25.png" />
+    <Resource Include="Images\copy.jpg" />
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\count.png" />
+    <Resource Include="Images\Countadmincd.png" />
+    <Resource Include="Images\counting.jpg" />
+    <Resource Include="Images\CountyearBook.png" />
+    <Resource Include="Images\cyan-open-file-icone-5941-128.png" />
+    <Resource Include="Images\dashboard.png" />
+    <Resource Include="Images\db_update.png" />
+    <Resource Include="Images\Deactivate.png" />
+    <Resource Include="Images\Deactivate1.png" />
+    <Resource Include="Images\default price.png" />
+    <Resource Include="Images\default price2.png" />
+    <Resource Include="Images\default price3.png" />
+    <Resource Include="Images\default school.png" />
+    <Resource Include="Images\default school2.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\deleteFromGroup.png" />
+    <Resource Include="Images\devicebarcode.png" />
+    <Resource Include="Images\deviceqr.png" />
+    <Resource Include="Images\disabled.bmp" />
+    <Resource Include="Images\disconnected.bmp" />
+    <Resource Include="Images\document_open.png" />
+    <Resource Include="Images\drag.jpg" />
+    <Resource Include="Images\drag.png" />
+    <Resource Include="Images\edit.jpg" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\error.bmp" />
+    <Resource Include="Images\export.jpg" />
+    <Resource Include="Images\export.png" />
+    <Resource Include="Images\exportdatafile.png" />
+    <Resource Include="Images\file-open-icon.png" />
+    <Resource Include="Images\generatebarcode.png" />
+    <Resource Include="Images\group.png" />
+    <Resource Include="Images\groupPhoto.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\home_17.png" />
+    <Resource Include="Images\imgReassignPhotoshoots.png" />
+    <Resource Include="Images\Import.jpg" />
+    <Resource Include="Images\import.png" />
+    <Resource Include="Images\importbatches.png" />
+    <Resource Include="Images\importqrfile.png" />
+    <Resource Include="Images\importqrfile2.png" />
+    <Resource Include="Images\Inbox_17.png" />
+    <Resource Include="Images\IPTC.png" />
+    <Resource Include="Images\locationSetting.png" />
+    <Resource Include="Images\locked.png" />
+    <Resource Include="Images\Mail_25.png" />
+    <Resource Include="Images\maskSettings.png" />
+    <Resource Include="Images\mpof.ico" />
+    <Resource Include="Images\newButton.png" />
+    <Resource Include="Images\NoStudent.png" />
+    <Resource Include="Images\open-file.png" />
+    <Resource Include="Images\openFolder.png" />
+    <Resource Include="Images\passwordGenerate.png" />
+    <Resource Include="Images\photo sorter.png" />
+    <Resource Include="Images\photoJob.png" />
+    <Resource Include="Images\photoShoot.png" />
+    <Resource Include="Images\price.png" />
+    <Resource Include="Images\Program-Group-icon.png" />
+    <Resource Include="Images\PS.ico" />
+    <Resource Include="Images\PS3.ico" />
+    <Resource Include="Images\qrcode.png" />
+    <Resource Include="Images\rating.png" />
+    <Resource Include="Images\ReducedAll.png" />
+    <Resource Include="Images\reducedimages.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\rename.jpg" />
+    <Resource Include="Images\Rename.png" />
+    <Resource Include="Images\renameImages.png" />
+    <Resource Include="Images\ResyncImage.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\school.png" />
+    <Resource Include="Images\search.gif" />
+    <Resource Include="Images\search.ico" />
+    <Resource Include="Images\search.jpg" />
+    <Resource Include="Images\Sent-Items_17.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\student.png" />
+    <Resource Include="Images\StudentWithoutImage.png" />
+    <Resource Include="Images\synch.png" />
+    <Resource Include="Images\universalStudent.png" />
+    <Resource Include="Images\validatedatafile.png" />
+    <Resource Include="Images\views2.png" />
+    <Resource Include="Images\yearBook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\restoreIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PS4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Aurigma.GraphicsMill.dll" />
+    <Content Include="bin\Debug\DocumentFormat.OpenXml.dll" />
+    <Content Include="bin\Debug\Excel.dll" />
+    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Debug\itextsharp.dll" />
+    <Content Include="bin\Debug\Ookii.Dialogs.Wpf.dll" />
+    <Content Include="bin\Debug\QRCodeFontNet.dll" />
+    <Content Include="bin\Debug\RandomLicenseGenerator.dll" />
+    <Content Include="bin\Debug\SoftekBarcodeLib3.dll" />
+    <Content Include="bin\Debug\System.Windows.Interactivity.dll" />
+    <Resource Include="Images\AutoCretatePhotoshoots.png" />
+    <Resource Include="Images\ClearBatches.png" />
+    <Resource Include="Images\Track_Students.png" />
+    <Resource Include="Images\DeleteManulStudents.png" />
+    <Resource Include="Images\Studio.png" />
+    <Resource Include="Images\shiprush.png" />
+    <Resource Include="Images\SPPriceSheet.png" />
+    <Resource Include="Images\swapStudentFLNames.png" />
+    <Resource Include="Images\Manage_Users.png" />
+    <Resource Include="Images\Image_Quix.png" />
+    <Resource Include="Images\imagenotfound.png" />
+    <Resource Include="Images\workflowcollection.png" />
+    <Resource Include="Images\workflow.png" />
+    <Resource Include="Images\mergeschool.png" />
+    <Resource Include="Images\ordertracking.png" />
+    <Resource Include="Images\updatevendororderid.png" />
+    <Resource Include="Images\searchorders.png" />
+    <Resource Include="Images\orderbygallery.png" />
+    <Resource Include="Images\yearbookchoice.png" />
+    <Resource Include="Images\imageswithoutorders.png" />
+    <Resource Include="Images\ordersbystudent.png" />
+    <Resource Include="Images\dbbackup.png" />
+    <Resource Include="Images\manualorders.png" />
+    <Resource Include="Images\copyretouch.png" />
+    <Resource Include="Images\assign-order-image.png" />
+    <Resource Include="Images\validate-photoshoot.png" />
+    <Resource Include="Images\edit-validated.png" />
+    <Resource Include="Images\editorder.png" />
+    <Resource Include="Images\missingimages.png" />
+    <Resource Include="bin\Debug\TemplatesCoordinates\Order.jpg" />
+    <Resource Include="Images\exported.png" />
+    <Resource Include="Images\Fulfilled.png" />
+    <Resource Include="Images\sendlog.png" />
+    <Resource Include="Images\order-packages.png" />
+    <Resource Include="Images\editorderitem.png" />
+    <Resource Include="Images\import-orders.png" />
+    <Resource Include="Images\auto_create_group_photo.png" />
+    <Resource Include="Images\add-to-cart.png" />
+    <Resource Include="Images\add_to_orders.png" />
+    <Resource Include="Images\login.ico" />
+    <Resource Include="Images\activities_all.png" />
+    <Resource Include="Images\activities.png" />
+    <Resource Include="Images\activities_my.png" />
+    <Resource Include="Images\settings2.png" />
+    <Resource Include="Images\settings_1.png" />
+    <Resource Include="Images\school_1.png" />
+    <Resource Include="Images\school_2.png" />
+    <Resource Include="bin\Debug\TemplatesCoordinates\Coordinates.xml" />
+    <Content Include="bin\Debug\WPFCustomMessageBox.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\Templates\.svn\prop-base\" />
+    <Folder Include="bin\Debug\Templates\.svn\props\" />
+    <Folder Include="bin\Debug\Templates\.svn\text-base\" />
+    <Folder Include="bin\Debug\Templates\.svn\tmp\prop-base\" />
+    <Folder Include="bin\Debug\Templates\.svn\tmp\props\" />
+    <Folder Include="bin\Debug\Templates\.svn\tmp\text-base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

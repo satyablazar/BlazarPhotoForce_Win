@@ -1,0 +1,149 @@
+﻿<Window x:Class="PhotoForce.School_Management.AddEditSchool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+        Title="Add/Edit School"  Height="600" Width="490" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="96"/>
+            <ColumnDefinition Width="117"/>
+            <ColumnDefinition Width="93"/>
+            <ColumnDefinition Width="156"/>
+            <ColumnDefinition Width="12"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="School Name" Name="lblSchoolName"  Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Padding="0,2,0,0" Margin="0,3,0,0"></Label>
+        <TextBox Name="txtschoolname" Text="{Binding schoolName,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Padding="0" Height="22" Margin="0,4,0,0"></TextBox>
+        <Label Content="Students " Name="lblStudents" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"  Padding="0,2,0,0"></Label>
+        <TextBox Name="txtstudents" Text="{Binding students,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="2" Padding="0" Height="22" Margin="0,0,82,0" Grid.ColumnSpan="2"></TextBox>
+        <Label Content="Rating :" Name="lblRating" Width="44" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3"  Padding="0,2,0,0" Margin="43,0,0,0"></Label>
+        <!--<ComboBox Name="cmbrating" ItemsSource="{Binding ratingData,Mode=TwoWay}" SelectedValue="{Binding selectedRating, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" DisplayMemberPath="Name" SelectedValuePath="Name" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" ></ComboBox>-->
+        <TextBox Name="txtrating" Text="{Binding ratingData, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" />
+        <!-- SelectedValue="{Binding selectedRating, Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" -->
+        <Label Content="School Year " Name="lblSchoolYear" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtschoolYear" Text="{Binding schoolYear,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="2" Grid.Column="2" Padding="0" Height="22" Margin="0,0,82,0" Grid.ColumnSpan="2"></TextBox>
+        <Label Content="Studio :" Name="lblStudio" Width="44" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="2" Grid.Column="3" Padding="0,2,0,0" Margin="42,0,0,0"/>
+        <ComboBox Name="cmbStudio" ItemsSource="{Binding cbStudioData,Mode=TwoWay}" SelectedValue="{Binding selectedStudio, Mode=TwoWay}" Grid.Row="2" Grid.Column="4" DisplayMemberPath="StudioName" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" ></ComboBox>
+        <Label Content="Calendars" Name="lblCalendars" Width="68" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3"  Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtCalendars" Text="{Binding calendars,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="3" Grid.Column="2" Padding="0" Height="22" Margin="0,0,82,0" Grid.ColumnSpan="2"></TextBox>
+        <Label Content="Pencils :" Name="lblPencils" Width="44" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Grid.Column="3" Padding="0,2,0,0" Margin="41,0,0,0"/>
+        <TextBox Name="txtPencils" Text="{Binding pencils,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="3" Grid.Column="4" Padding="0" Height="22" />
+        <Label Content="Expiration Date" Name="lblContractExpiration" Width="90" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top"  Padding="0,2,0,0"></Label>
+        <DatePicker Name="dtpContractExpiration" SelectedDate="{Binding dtContractExpiration,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Row="4"  Grid.Column="2" VerticalAlignment="Top" Padding="0" Height="22" Margin="0,0,82,0" Grid.ColumnSpan="2" />
+        <Label Content="ID Cards :" Name="lblIdCards" Width="53" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="4" Grid.Column="3" Padding="0,2,0,0" Margin="32,0,0,0"/>
+        <TextBox Name="txtIdCards" Text="{Binding idCards,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="4" Grid.Column="4" Padding="0" Height="22" ></TextBox>
+
+        <Label Content="Notes" Name="lblNotes" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtnotes" Text="{Binding notes,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Padding="0" Height="22" Margin="0,0,82,0"></TextBox>
+
+        <Label Content="Visit Site :" Name="lblVisitAddress" Width="53" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Grid.Column="3" Padding="0,2,0,0" Margin="31,0,0,0"/>
+        <TextBox Name="txtVisitAddress" Text="{Binding visitAddress,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="5" Grid.Column="4" Padding="0" Height="22" />
+
+        <Label Content="Address 1" Name="lblAddress1" Width="68" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="6" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtaddress1" Text="{Binding address1,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Padding="0" Height="22"></TextBox>
+        <Label Content="Address 2" Name="lblAddress2" Width="68" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="7" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtaddress2" Text="{Binding address2,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" Padding="0" Height="22"></TextBox>
+        <Label Content="Address 3" Name="lblAddress3" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="8" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtaddress3" Text="{Binding address3,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Padding="0" Height="22"></TextBox>
+        <Label Content="City" Name="lblCity"  Width="80" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="9" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtcity" Text="{Binding city,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Padding="0" Height="22"></TextBox>
+        <Label Content="Affiliation" Name="lblAffiliation"  Width="80" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="10" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtAffiliation" Text="{Binding affiliation,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3"  Padding="0" Height="22"></TextBox>
+        <Label Content="State" Name="lblState"  Width="80" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="11" Grid.Column="1" Padding="0,2,0,0"></Label>
+        <TextBox Name="txtstate" Text="{Binding state,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="11" Grid.Column="2"  Padding="0" Height="22" Margin="0,0,4,0"/>
+        <Label Content="Zip :" Name="lblZip" Width="25" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,2,0,0" Margin="63,0,0,0" Grid.Row="11" Grid.Column="3"></Label>
+        <TextBox Name="txtZip" Text="{Binding zip,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Padding="0" Grid.Row="11" Grid.Column="4" Height="22" Margin="5,0,0,0"/>
+        <!--<Label Content="Zip" Name="lblZip" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top"  Padding="0,2,0,0" Grid.Row="11" Grid.Column="1"></Label>
+        <TextBox Name="txtZip" Text="{Binding zip,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Padding="0" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Height="22"></TextBox>-->
+
+        <Label Content="Contact1 Name " Name="lblContact1Name" Width="92" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="12" Grid.Column="1"  Padding="0,2,0,0"></Label>
+        <TextBox Name="txtContact1Name" Text="{Binding contact1Name,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="12" Grid.Column="2" Padding="0" Height="22" Margin="0,1,4,0"></TextBox>
+        <Label Content="Contact1 Email :" Name="lblContact1Email" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="12" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact1Email" Text="{Binding contact1Email,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="12" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+        <Label Content="Contact1 Type :" Name="lblContact1Type" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="13" Grid.Column="1"  Padding="0,2,0,0" Margin="0,0,0,0"></Label>
+        <ComboBox Name="cmbContact1Type" ItemsSource="{Binding contact1TypeData,Mode=TwoWay}" SelectedValue="{Binding selectedContact1Type, Mode=TwoWay}" Grid.Row="13" Grid.Column="2" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" Margin="0,2,4,0" ></ComboBox>
+        <Label Content="Contact1 Notes :" Name="lblContact1Notes" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="13" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact1Notes" Text="{Binding contact1Notes,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="13" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+
+        <Label Content="Contact2 Name " Name="lblContact2Name" Width="92" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="14" Grid.Column="1"  Padding="0,2,0,0"></Label>
+        <TextBox Name="txtContact2Name" Text="{Binding contact2Name,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="14" Grid.Column="2" Padding="0" Height="22" Margin="0,1,4,0"></TextBox>
+        <Label Content="Contact2 Email :" Name="lblContact2Email" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="14" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact2Email" Text="{Binding contact2Email,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="14" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+        <Label Content="Contact2 Type :" Name="lblContact2Type" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="15" Grid.Column="1"  Padding="0,2,0,0" Margin="0,0,0,0"></Label>
+        <ComboBox Name="cmbContact2Type" ItemsSource="{Binding contact2TypeData,Mode=TwoWay}" SelectedValue="{Binding selectedContact2Type, Mode=TwoWay}" Grid.Row="15" Grid.Column="2"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" Margin="0,2,4,0" ></ComboBox>
+        <Label Content="Contact2 Notes :" Name="lblContact2Notes" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="15" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact2Notes" Text="{Binding contact2Notes,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="15" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+
+        <Label Content="Contact3 Name " Name="lblContact3Name" Width="92" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="16" Grid.Column="1"  Padding="0,2,0,0"></Label>
+        <TextBox Name="txtContact3Name" Text="{Binding contact3Name,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="16" Grid.Column="2" Padding="0" Height="22" Margin="0,1,4,0"></TextBox>
+        <Label Content="Contact3 Email :" Name="lblContact3Email" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="16" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact3Email" Text="{Binding contact3Email,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="16" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+        <Label Content="Contact3 Type :" Name="lblContact3Type" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="17" Grid.Column="1"  Padding="0,2,0,0" Margin="0,0,0,0"></Label>
+        <ComboBox Name="cmbContact3Type" ItemsSource="{Binding contact3TypeData,Mode=TwoWay}" SelectedValue="{Binding selectedContact3Type, Mode=TwoWay}" Grid.Row="17" Grid.Column="2" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="0" Height="22" Margin="0,2,4,0" ></ComboBox>
+        <Label Content="Contact3 Notes :" Name="lblContact3Notes" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="17" Grid.Column="3" Padding="0,2,0,0" Margin="1,0,0,0" />
+        <TextBox Name="txtContact3Notes" Text="{Binding contact3Notes,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="17" Grid.Column="4" Padding="0" Height="22" Margin="5,0,0,0"/>
+
+        <Label Content="Path" HorizontalAlignment="Left" Name="lblPath" VerticalAlignment="Top" Width="67"  Padding="0" Grid.Row="18" Grid.Column="1" Margin="0,3,0,0"/>
+        <TextBox Name="txtFolderPath" Text="{Binding folderPath,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="3" Padding="0,2,0,0" Height="22" Margin="0,2,81,0" />
+        <Button Content="Browse" HorizontalAlignment="Right" Name="btnBrowse" VerticalAlignment="Top" Width="76" Grid.Row="18" Grid.Column="4" Command="{Binding BrowseSchoolPathCommand}" Margin="0,2,0,0" />
+
+
+        <Label Content="Yearbook" HorizontalAlignment="Left" Padding="0,2,0,0" Name="lblYearbook" VerticalAlignment="Top" Width="67" Grid.Row="19" Grid.Column="1" Margin="0,3,0,0" />
+        <RadioButton Content="Yes" IsChecked="{Binding yearBookYes,Mode=TwoWay}" Height="22" HorizontalAlignment="Stretch" GroupName="yearbook" Grid.Row="19" Grid.Column="2" Name="rbYearbookYes" VerticalAlignment="Top" Margin="0,4,56,0"/>
+        <RadioButton Content="No" IsChecked="{Binding yearBookNo,Mode=TwoWay}" Height="26" HorizontalAlignment="Stretch" GroupName="yearbook" Grid.Row="20" Grid.Column="2" Name="rbYearbookNo" VerticalAlignment="Top" SnapsToDevicePixels="False" Margin="0,4,65,0" Grid.RowSpan="2" />
+        <Label Content="ID" HorizontalAlignment="Left" Padding="0,2,0,0" Name="lblIdRequired" VerticalAlignment="Top" Width="34" Grid.Row="19" Grid.Column="2" Margin="77,5,0,0" />
+        <RadioButton Content="Yes" IsChecked="{Binding idRequiredYes,Mode=TwoWay}" Height="22" HorizontalAlignment="Stretch" Grid.Row="19" Grid.Column="2" GroupName="idrequired" Name="rbidrequiredYes" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="117,4,10,0"/>
+        <RadioButton Content="No" IsChecked="{Binding idRequiredNo,Mode=TwoWay}" Height="25" HorizontalAlignment="Stretch" Grid.Row="20" Grid.Column="2" GroupName="idrequired" Name="rbidrequiredNo" VerticalAlignment="Top" SnapsToDevicePixels="False" Grid.ColumnSpan="2" Margin="117,4,18,0" Grid.RowSpan="2" />
+        <Label Content="Active" Height="17" HorizontalAlignment="Stretch" Padding="0,2,0,0" Name="lblisActive" VerticalAlignment="Top" Grid.Row="19" Grid.Column="3" SnapsToDevicePixels="False" Margin="92,15,98,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <CheckBox IsChecked="{Binding isActive,Mode=TwoWay}" Height="25" Width="35" HorizontalAlignment="Stretch" Name="cbisActive" Grid.Row="19" Grid.Column="4" VerticalAlignment="Top" SnapsToDevicePixels="False" Margin="60,14,60,0" Grid.RowSpan="2" />
+
+        <Button Content="Save &amp; Close"  HorizontalAlignment="Right"  Name="Update" VerticalAlignment="Bottom" Grid.Row="21" Grid.Column="4" Command="{Binding SaveAndCloseCommand}" Margin="0,0,64,0" />
+        <Button Content="Cancel"  HorizontalAlignment="Right" Name="Clear" VerticalAlignment="Bottom" Width="60" Grid.Row="21" Grid.Column="4" Command="{Binding WindowCloseCommand}" />
+
+    </Grid>
+</Window>

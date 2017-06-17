@@ -1,0 +1,21 @@
+﻿<Window x:Class="PhotoForce.GroupManagement.DeleteFoldersMessage"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+       MVVM:DialogCloserExtension.DialogResult="{Binding DialogResult}"
+       Title="Folders Delete Confirmation" Height="202"  Width="465" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding WindowCloseCommand}"/>
+    </Window.InputBindings>
+    <Grid Height="180" Width="456">
+        <Image Margin="25,22,374,109" Name="imgStudentPhotoPreview" Source="pack://application:,,,../../Images/about.png"/>
+        <TextBlock Name="lblDeleteDestiationFoldersMsg" Text="The destination folder is not empty. Choose how you would like to proceed." TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="95,26,0,0" Width="355" Height="36"></TextBlock>
+        <CheckBox Name="cbDeleteFolders" IsChecked="{Binding isDeleteFoldersSelected,Mode=TwoWay}" Margin="83,87,83,69" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="24">
+            <TextBlock Text="Delete all files in destination folder before export" Height="18" VerticalAlignment="Center" />
+        </CheckBox>
+        <!--<CheckBox  Height="20" Width="290" Content="" Margin="83,80"/>-->
+        <Button Content="Export"  HorizontalAlignment="Right"  Name="btnExport" VerticalAlignment="Bottom"  Command="{Binding ExportCommand}" Height="22" Width="76" Margin="0,0,103,31" />
+        <Button Content="Cancel"  HorizontalAlignment="Right"  Name="btnCancel" VerticalAlignment="Bottom"  Command="{Binding WindowCloseCommand}" Height="22" Width="76" Margin="0,0,22,31" />
+    </Grid>
+</Window>
+

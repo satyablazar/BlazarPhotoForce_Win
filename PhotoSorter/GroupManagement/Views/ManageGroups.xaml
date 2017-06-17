@@ -1,0 +1,198 @@
+﻿<UserControl x:Class="PhotoForce.GroupManagement.ManageGroups"
+        xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+        xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+        Height="auto" Width="auto" IsVisibleChanged="UserControl_IsVisibleChanged_1" DataContext="{Binding ManageGroupsViewModelBase, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <WorkPlace:GridFooterConverter x:Key="gridFooterMultiConverter"/>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>
+    </UserControl.Resources>
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockManageGroups" dx:DXSerializer.SerializationID="dockManagerID3" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" Name="layoutManageGroups">
+                <dxdo:LayoutGroup Orientation="Horizontal" Name="Group1" >
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group2">
+                        <dxdo:LayoutPanel AllowClose="False" Caption="Groups" Name="pnlGroup" AllowHide="False" AllowDrag="False">
+                            <dxdo:LayoutPanel.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding GroupPanelGotFocusCommand}"/>
+                            </dxdo:LayoutPanel.InputBindings>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgGroups" ItemsSource="{Binding dgGroupsData,Mode=TwoWay}"  SelectedItems="{Binding selectedGroups,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlerID8" >
+                                    <dxg:GridControl.InputBindings >
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GroupsGridMouseDoubleClickCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn FieldName="ID" Header="Group ID" Name="grdGroupID" />
+                                        <dxg:GridColumn FieldName="GroupName" Header="Group Name" Name="grdGroupName" />
+                                        <dxg:GridColumn FieldName="School.SchoolName" Header="School" Name="grdSchool" />
+                                        <dxg:GridColumn FieldName="Notes" Header="Group Purpose" Name="grdPurpose" />
+                                        <dxg:GridColumn FieldName="createdOn" Name="grdDateCreated" Header="Created On" SortOrder="Descending" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" FocusedRow="{Binding selectedGroup,Mode=TwoWay}" MultiSelectMode="Row" ShowGroupPanel="{Binding groupsTableShowGroupPanel,Mode=TwoWay}"
+                                                       ShowSearchPanelMode="{Binding groupsShowSearchPanelMode,Mode=TwoWay}" SearchControl="{Binding groupsTableSearchControl,Mode=TwoWay}"
+                                                       Name="groupsTableView" AllowEditing="False" Focusable="False" CellStyle="{StaticResource RowStyle}">
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewKeyDown">
+                                                    <i:InvokeCommandAction Command="{Binding GroupsTableViewMouseUpCommand}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="PreviewKeyUp">
+                                                    <i:InvokeCommandAction Command="{Binding GroupsTableViewMouseUpCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+
+                                            <dxg:TableView.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick" Command="{Binding GroupsTableViewMouseUpCommand}"/>
+                                            </dxg:TableView.InputBindings>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource gridFooterMultiConverter}">
+                                            <Binding ElementName="dgGroups" Path="VisibleRowCount"/>
+                                            <Binding Path="selectedGroups.Count"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                              
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+
+                    <dxdo:LayoutPanel Caption="Group Photo's" AllowClose="False" Name="pnlClassPhotos" AllowHide="False" AllowDrag="False">
+                        <dxdo:LayoutPanel.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ClassPanelPhotosGotFocusCommand}"/>
+                        </dxdo:LayoutPanel.InputBindings>
+                        <dxg:GridControl Name="dgClassPhotos" ItemsSource="{Binding dgClassPhotosData,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlerID9" >
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="StudentImage.ImageName" Header="Image Name" Name="grdImageName" />
+                                <dxg:GridColumn Width="70" >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="70" Content="Remove" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                            </dxg:GridControl.Columns>
+
+                            <dxg:GridControl.View>
+                                <dxg:TableView NavigationStyle="Row" ShowAutoFilterRow="True" ShowGroupPanel="{Binding groupPhotosTableShowGroupPanel,Mode=TwoWay}" FocusedRow="{Binding selectedClassPhoto,Mode=TwoWay}"
+                                               SearchPanelFindMode="{Binding groupPhotosShowSearchPanelMode,Mode=TwoWay}" SearchControl="{Binding groupPhotosSearchControl,Mode=TwoWay}"
+                                               Name="classPhotosTableView" AllowEditing="False" Focusable="False">
+
+                                    <dxg:TableView.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding ClassPhotosTableMouseUpCommand}"/>
+                                    </dxg:TableView.InputBindings>
+                                </dxg:TableView>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+
+                <dxdo:LayoutGroup Grid.Row="2" Orientation="Horizontal" Name="Group3">
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group4">
+                        <dxdo:LayoutPanel Caption="Student Photos" AllowClose="False" Name="pnlStudentPhotos" AllowHide="False" AllowDrag="False">
+                            <dxdo:LayoutPanel.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StudentPhotosPanelGotFocusCommand}"/>
+                            </dxdo:LayoutPanel.InputBindings>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgStudentPhotos" SelectedItems="{Binding selectedStudentPhotos,Mode=TwoWay}" ItemsSource="{Binding dgStudentPhotosData,Mode=TwoWay}"
+                                                     dx:DXSerializer.SerializationID="gridControlerID10" MVVM:FilteredDataSupport.VisibleData="{Binding VisibleData, Mode=TwoWay}">
+                                    <dxg:GridControl.InputBindings>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StudentPhotosPanelDoubleClickCommand}"/>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                    </dxg:GridControl.InputBindings>
+                                    <!--<dxg:SelectAllColumn />-->
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Image" FieldName="StudentImage.ImageName" Name="grdColumnImageName" />
+                                        <dxg:GridColumn Header="Image Number" FieldName="StudentImage.ImageNumber" Name="grdColumnimagenumber"  />
+                                        <dxg:GridColumn Header="School Name" FieldName="StudentImage.School.SchoolName" Name="grdColumnstudentSchoolName" ReadOnly="True"/>
+                                        <dxg:GridColumn Header="First Name" FieldName="StudentImage.Student.FirstName" Name="grdColumnFirstName"  />
+                                        <dxg:GridColumn Header="Last Name" FieldName="StudentImage.Student.Lastname" Name="grdColumnLastname"  />
+                                        <dxg:GridColumn Header="Teacher" FieldName="StudentImage.Student.Teacher" Name="grdColumnTeacher" />
+                                        <dxg:GridColumn Header="Photo Shoot" FieldName="StudentImage.PhotoShoot.PhotoShotName" Name="grdColumnPhotoShoot"  />
+                                        <dxg:GridColumn Header="Grade" FieldName="StudentImage.Student.Grade" Name="grdColumnGrade"  />
+                                        <dxg:GridColumn Header="Rating" FieldName="StudentImage.Rating" Name="grdColumnRating"   />
+                                        <dxg:GridColumn Header="YearBook" FieldName="StudentImage.yearbook" Name="grdChkyearbook"  />
+                                        <dxg:GridColumn Header="Admin CD" FieldName="StudentImage.Admincd" Name="grdChkadmincd"  />
+                                        <dxg:GridColumn Header="Home Room" FieldName="StudentImage.HomeRoom" Name="grdColumnHomeRoom"  />
+                                        <dxg:GridColumn Header="DOB" FieldName="StudentImage.Student.DOB" Name="grdColumnDob"  />
+                                        <dxg:GridColumn Header="Student?" FieldName="StudentImage.Student.IsStudent" Name="grdColumnIsStudent"/>										
+										<dxg:GridColumn Header="Password" FieldName="StudentImage.Student.Password" Name="grdColumnPassword"/>
+										<dxg:GridColumn Header="Email" FieldName="StudentImage.Student.Emailaddress" Name="grdColumnEmailaddress"/>										
+                                        <dxg:GridColumn Header="Address" FieldName="StudentImage.Student.Address" Name="grdColumnAddress"  />
+                                        <dxg:GridColumn Header="City" FieldName="StudentImage.Student.City" Name="grdColumnCityy"  />
+                                        <dxg:GridColumn Header="State" FieldName="StudentImage.Student.State" Name="grdColumnStatee"  />
+                                        <dxg:GridColumn Header="Zip" FieldName="StudentImage.Student.Zip" Name="grdColumnZip"  />
+                                        <dxg:GridColumn Header="Phone" FieldName="StudentImage.Student.Phone" Name="grdColumnPhone"  />
+                                        <dxg:GridColumn Header="Packages" FieldName="StudentImage.Packages" Name="grdColumnPackages"  />
+                                        <dxg:GridColumn Header="Custom 1" FieldName="StudentImage.Custom1" Name="grdColumnCustom1"  />
+                                        <dxg:GridColumn Header="Custom 2" FieldName="StudentImage.Custom2" Name="grdColumnCustom2"  />
+                                        <dxg:GridColumn Header="Custom 3" FieldName="StudentImage.Custom3" Name="grdColumnCustom3"  />
+                                        <dxg:GridColumn Header="Custom 4" FieldName="StudentImage.Custom4" Name="grdColumnCustom4"  />
+                                        <dxg:GridColumn Header="Custom 5" FieldName="StudentImage.Custom5" Name="grdColumnCustom5"  />
+                                        <dxg:GridColumn Header="Custom 6" FieldName="StudentImage.Custom6" Name="grdColumnCustom6"  />
+                                        <dxg:GridColumn Header="Custom 7" FieldName="StudentImage.Custom7" Name="grdColumnCustom7"  />
+                                        <dxg:GridColumn Header="Custom 8" FieldName="StudentImage.Custom8" Name="grdColumnCustom8"  />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowGroupPanel="{Binding studentPhotosTableShowGroupPanel,Mode=TwoWay}" ShowAutoFilterRow="True" FocusedRow="{Binding selectedStudentPhoto,Mode=TwoWay}" MultiSelectMode="Row"
+                                                       ShowSearchPanelMode="{Binding studentPhotosShowSearchPanelMode,Mode=TwoWay}" SearchControl="{Binding studentPhotosSearchControl,Mode=TwoWay}"
+                                                       Name="studentPhotosTable" HorizontalAlignment="Stretch" CellStyle="{StaticResource RowStyle}" AllowEditing="False">
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewKeyDown">
+                                                    <i:InvokeCommandAction Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="PreviewKeyUp">
+                                                    <i:InvokeCommandAction Command="{Binding StudentPhotosTableKeyUpCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Width="250" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource gridFooterMultiConverter}">
+                                            <Binding ElementName="dgStudentPhotos" Path="VisibleRowCount"/>
+                                            <Binding Path="selectedStudentPhotos.Count"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                    <dxdo:LayoutGroup Name="Group5" >
+                        <dxdo:LayoutPanel Name="Panel1" Caption="Photo Preview" AllowClose="False" AllowHide="False" AllowDrag="False">
+                            <Image Name="imgStudentPhotoPreview" Source="{Binding studentImageSource,Mode=TwoWay}">
+                                <Image.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding StudentImagePreviewCommand}"/>
+                                </Image.InputBindings>
+                            </Image>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+</UserControl>

@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="PhotoForce.WorkPlace.UserControls.SPPriceSheet"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
+             xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             Height="auto" Width="auto" Name="SPPriceSheets" DataContext="{Binding SPPriceSheetViewModelBase, Source={StaticResource ViewModelLocator}}">
+    <UserControl.Resources>
+        <WorkPlace:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+        <WorkPlace:GridFooterConverter x:Key="GridFooterMultiConverter"/>
+        <MVVM:ViewModelLocator x:Key="ViewModelLocator"/>
+    </UserControl.Resources>
+    <Grid>
+        <dxdo:DockLayoutManager Name="dockSPPriceSheet" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:LayoutGroup Grid.Column="2" Orientation="Vertical" Name="grpSPPriceSheet" AllowHide="False">
+                <dxdo:LayoutGroup Grid.Row="2" Orientation="Horizontal" Name="grpSPPricesheet1">
+                    <dxdo:LayoutGroup ItemWidth="3*" Name="Group3">
+                        <dxdo:LayoutPanel Caption="Price Sheets" AllowClose="False" Name="pnlPricesheets" AllowHide="False" AllowDrag="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <dxg:GridControl Name="dgSPPricesheets" ItemsSource="{Binding dgSPPricesheetsData,Mode=TwoWay}" SelectedItems="{Binding selectedSPPricesheets,Mode=TwoWay}" dx:DXSerializer.SerializationID="gridControlID2">
+                                    <dxg:GridControl.Columns>
+                                        <!--<dxg:GridColumn Header="Account ID" FieldName="IQAccountId" Name="grddColumnAccountId"  AllowEditing="True"/>-->
+                                        <dxg:GridColumn Header="SP-PriceSheet ID" FieldName="SPPriceSheetId" Name="grdColumnSPPriceSheetId" />
+                                        <dxg:GridColumn Header="Description" FieldName="Description" Name="grdColumnPriceSheetDescription" />
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView FocusedRow="{Binding selectedSPPricesheet,Mode=TwoWay}" ShowAutoFilterRow="True" AllowEditing="False"
+                                                                   ShowSearchPanelMode="{Binding pricesheetsSearchPanelMode,Mode=TwoWay}" EditFormShowMode="Inline"
+                                                                   SearchControl="{Binding pricesheetsSearchControl,Mode=TwoWay}" ShowGroupPanel="{Binding pricesheetsShowGroupPanel,Mode=TwoWay}"
+                                                                   CellStyle="{StaticResource RowStyle}"
+                                                                   MultiSelectMode="Row" HorizontalAlignment="Stretch">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="RowUpdated">
+                                                    <i:InvokeCommandAction Command="{Binding RowUpdateCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+
+                                            <!--InputBindings seems to not working for KeyUp and KeyDown Events .,so we used event triggers   (Mohan)-->
+
+                                            <dxg:TableView.InputBindings>
+                                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding PricesheetsGridDoubleClickCommand}" />
+                                                <MouseBinding MouseAction="LeftClick" Command="{Binding PricesheetsMouseUpCommand}" />
+                                            </dxg:TableView.InputBindings>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <TextBlock Height="20" Grid.Row="1" Width="250" HorizontalAlignment="Left">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource GridFooterMultiConverter}">
+                                            <Binding ElementName="dgSPPricesheets" Path="VisibleRowCount" />
+                                            <Binding Path="selectedSPPricesheets.Count" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
+    </Grid>
+</UserControl>
