@@ -10,7 +10,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:WorkPlace="clr-namespace:PhotoForce.WorkPlace"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-        xmlns:dxlc="clr-namespace:DevExpress.Xpf.LayoutControl;assembly=DevExpress.Xpf.LayoutControl.v15.2"
+        xmlns:dxlc="clr-namespace:DevExpress.Xpf.LayoutControl;assembly=DevExpress.Xpf.LayoutControl.v16.2"
         xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns:MVVM="clr-namespace:PhotoForce.MVVM"
@@ -21,7 +21,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid>
-            <dxdo:DockLayoutManager Name="dockOrdersByStudents" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True" >
+            <dxdo:DockLayoutManager Name="dockOrdersByStudents" dx:DXSerializer.SerializationID="dockManagerID" dx:WorkspaceManager.IsEnabled="True">
                 <dxdo:LayoutGroup Orientation="Vertical" Name="layoutOrders">
                     <!--Student-->
                     <dxdo:LayoutGroup Orientation="Horizontal" Name="Group1">

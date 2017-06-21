@@ -11,7 +11,7 @@ namespace PhotoForce.MVVM
 {
     public class ActivateBehavior : Behavior<Control>
     {
-        //Test
+
         //Boolean isActivated;
 
         //public static readonly DependencyProperty ActivatedProperty =

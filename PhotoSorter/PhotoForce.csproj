@@ -17,6 +17,22 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,6 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +53,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\PS4.ico</ApplicationIcon>
@@ -43,113 +61,111 @@
   <ItemGroup>
     <Reference Include="Aurigma.GraphicsMill, Version=7.5.69.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Aurigma.GraphicsMill.dll</HintPath>
+      <HintPath>C:\Program Files\Aurigma\Graphics Mill 7 Redistributable\.Net 4.0\Binaries_x86\Aurigma.GraphicsMill.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v15.2.Core">
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Charts.v15.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.CodeParser.v15.2">
-      <HintPath>..\..\..\Sw\Sw\DevExpress.CodeParser.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Data.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Data.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v15.2">
-      <HintPath>..\..\..\Sw\Sw\DevExpress.DataAccess.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.DataAccess.v15.2.UI">
-      <HintPath>..\..\..\Sw\Sw\DevExpress.DataAccess.v15.2.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Images.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Images.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Images.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Mvvm.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Mvvm.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Printing.v15.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="devexpress.xpf.carousel.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="devexpress.xpf.controls.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Controls.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Core.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Docking.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Gauges.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Core.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Core.v16.2.Extensions, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Docking.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Gauges.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v15.2.Core, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.NavBar.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v16.2.Extensions, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Printing.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Layout.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.PropertyGrid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.LayoutControl.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Ribbon.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.NavBar.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Office2010Black.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Printing.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Office2013DarkGray.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.Seven.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Ribbon.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sw\Sw\DevExpress.Xpf.Themes.Seven.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Themes.Office2010Black.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraCharts.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Themes.Office2013DarkGray.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraEditors.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Themes.Seven.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraGrid.v15.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraPrinting.v15.2.dll</HintPath>
+      
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraReports.v15.2.dll</HintPath>
+      
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraReports.v15.2.Extensions.dll</HintPath>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2.Extensions, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -176,6 +192,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -1259,7 +1276,6 @@
     <None Include="App_Code\PhotoSorterDBModel.dbml.layout">
       <DependentUpon>PhotoSorterDBModel.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="Licenses.licx" />
     <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1274,7 +1290,9 @@
     <None Include="bin\Debug\Templates\Orderformoption1.pdf" />
     <None Include="bin\Debug\Templates\Orderformoption2.pdf" />
     <None Include="bin\Debug\Templates\Orderformoption3.pdf" />
+    <Fakes Include="Fakes\DevExpress.Data.v15.2.fakes" />
     <None Include="packages.config" />
+    <None Include="Plugins\MyInstallAction.InstallState" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1282,7 +1300,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -1408,6 +1428,71 @@
     <Content Include="bin\Debug\RandomLicenseGenerator.dll" />
     <Content Include="bin\Debug\SoftekBarcodeLib3.dll" />
     <Content Include="bin\Debug\System.Windows.Interactivity.dll" />
+    <Content Include="Plugins\Aurigma.GraphicsMill.dll" />
+    <Content Include="Plugins\DevExpress.Charts.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.CodeParser.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Data.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.DataAccess.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.DataAccess.v15.2.UI.dll" />
+    <Content Include="Plugins\DevExpress.Images.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Mvvm.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Office.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Pdf.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Pdf.v15.2.Drawing.dll" />
+    <Content Include="Plugins\DevExpress.PivotGrid.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Printing.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.RichEdit.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Sparkline.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Utils.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Utils.v15.2.UI.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Controls.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Core.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Core.v15.2.Extensions.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Docking.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.DocumentViewer.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Gauges.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Grid.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Grid.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Grid.v15.2.Extensions.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Layout.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.LayoutControl.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.NavBar.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Printing.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.PropertyGrid.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Ribbon.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Themes.Office2010Black.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Themes.Office2013DarkGray.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpf.Themes.Seven.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.Xpo.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraBars.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraCharts.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraCharts.v15.2.Extensions.dll" />
+    <Content Include="Plugins\DevExpress.XtraCharts.v15.2.Wizard.dll" />
+    <Content Include="Plugins\DevExpress.XtraEditors.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraGauges.v15.2.Core.dll" />
+    <Content Include="Plugins\DevExpress.XtraGrid.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraLayout.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraNavBar.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraPivotGrid.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraPrinting.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraReports.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraReports.v15.2.Extensions.dll" />
+    <Content Include="Plugins\DevExpress.XtraRichEdit.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraTreeList.v15.2.dll" />
+    <Content Include="Plugins\DevExpress.XtraVerticalGrid.v15.2.dll" />
+    <Content Include="Plugins\DocumentFormat.OpenXml.dll" />
+    <Content Include="Plugins\Excel.dll" />
+    <Content Include="Plugins\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Plugins\Ionic.Zip.dll" />
+    <Content Include="Plugins\itextsharp.dll" />
+    <Content Include="Plugins\MyInstallAction.dll" />
+    <Content Include="Plugins\Newtonsoft.Json.dll" />
+    <Content Include="Plugins\Ookii.Dialogs.Wpf.dll" />
+    <Content Include="Plugins\PresentationCore.dll" />
+    <Content Include="Plugins\QRCodeFontNet.dll" />
+    <Content Include="Plugins\RandomLicenseGenerator.dll" />
+    <Content Include="Plugins\SoftekBarcodeLib3.dll" />
+    <Content Include="Plugins\System.Windows.Interactivity.dll" />
     <Resource Include="Images\AutoCretatePhotoshoots.png" />
     <Resource Include="Images\ClearBatches.png" />
     <Resource Include="Images\Track_Students.png" />
@@ -1468,6 +1553,23 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
